@@ -1,0 +1,294 @@
+[
+  {
+    "id": "node_cafe_start",
+    "speaker_portuguese": "Garçom / Atendente",
+    "speaker_russian": "Официант",
+    "line_portuguese": "Bom dia! Bem-vindo. O que vai desejar hoje?",
+    "line_russian": "Доброе утро! Добро пожаловать. Что будете заказывать?",
+    "audio_path": null,
+    "scenario_id": "sc_cafe_lisboa",
+    "scenario_title": "No Café em Lisboa",
+    "scenario_category": "food",
+    "dialect": "pt_pt",
+    "options": [
+      {
+        "id": "opt_cafe_bica",
+        "text_portuguese": "Uma bica e dois pastéis de nata, por favor.",
+        "text_russian": "Один эспрессо (бику) и два паштел-де-ната, пожалуйста.",
+        "next_node_id": "node_cafe_sugar",
+        "notes": "В Лиссабоне эспрессо называют 'uma bica' (в Порту — 'um cimbalino')."
+      },
+      {
+        "id": "opt_cafe_galão",
+        "text_portuguese": "Queria um galão bem quente e uma torrada com manteiga.",
+        "text_russian": "Я хотел бы кофе с молоком в высоком стакане (галаун) и тост со сливочным маслом.",
+        "next_node_id": "node_cafe_toast",
+        "notes": "'Galão' — классический португальский кофе с молоком в стеклянном бокале."
+      },
+      {
+        "id": "opt_cafe_menu",
+        "text_portuguese": "Pode me trazer a carta com os preços, se faz favor?",
+        "text_russian": "Не могли бы вы принести меню с ценами, пожалуйста?",
+        "next_node_id": "node_cafe_menu",
+        "notes": "В Португалии меню часто называют 'a carta', а просьбу формулируют 'se faz favor'."
+      }
+    ]
+  },
+  {
+    "id": "node_cafe_sugar",
+    "speaker_portuguese": "Garçom / Atendente",
+    "speaker_russian": "Официант",
+    "line_portuguese": "Com certeza! Deseja com açúcar ou adoçante? E quer canela nos pastéis?",
+    "line_russian": "Конечно! Желаете с сахаром или сахарозаменителем? И посыпать корицей пирожные?",
+    "audio_path": null,
+    "scenario_id": "sc_cafe_lisboa",
+    "scenario_title": "No Café em Lisboa",
+    "scenario_category": "food",
+    "dialect": "pt_pt",
+    "options": [
+      {
+        "id": "opt_canela_sim",
+        "text_portuguese": "Sim, com muita canela e açúcar mascavado, obrigado!",
+        "text_russian": "Да, с большим количеством корицы и коричневым сахаром, спасибо!",
+        "next_node_id": "node_cafe_pay",
+        "notes": "Паштел-де-ната традиционно посыпают корицей (canela) и сахарной пудрой."
+      },
+      {
+        "id": "opt_sem_acucar",
+        "text_portuguese": "Sem açúcar, por favor. Gosto do café puro e forte.",
+        "text_russian": "Без сахара, пожалуйста. Я люблю чистый и крепкий кофе.",
+        "next_node_id": "node_cafe_pay",
+        "notes": "Крепкий черный кофе ценят знатоки португальских зерен."
+      }
+    ]
+  },
+  {
+    "id": "node_cafe_toast",
+    "speaker_portuguese": "Garçom / Atendente",
+    "speaker_russian": "Официант",
+    "line_portuguese": "Excelente escolha! A torrada vem no pão alentejano crocante. Mais alguma coisa?",
+    "line_russian": "Отличный выбор! Тост будет на хрустящем алентежанском хлебе. Что-нибудь ещё?",
+    "audio_path": null,
+    "scenario_id": "sc_cafe_lisboa",
+    "scenario_title": "No Café em Lisboa",
+    "scenario_category": "food",
+    "dialect": "pt_pt",
+    "options": [
+      {
+        "id": "opt_so_isso",
+        "text_portuguese": "Por agora é só isso, muito obrigado.",
+        "text_russian": "На данный момент это всё, большое спасибо.",
+        "next_node_id": "node_cafe_pay",
+        "notes": "'É só isso' — универсальная фраза завершения заказа."
+      }
+    ]
+  },
+  {
+    "id": "node_cafe_menu",
+    "speaker_portuguese": "Garçom / Atendente",
+    "speaker_russian": "Официант",
+    "line_portuguese": "Aqui está a ementa. Hoje temos também sumo de laranja natural fresco.",
+    "line_russian": "Вот меню. Сегодня у нас также есть свежевыжатый апельсиновый сок.",
+    "audio_path": null,
+    "scenario_id": "sc_cafe_lisboa",
+    "scenario_title": "No Café em Lisboa",
+    "scenario_category": "food",
+    "dialect": "pt_pt",
+    "options": [
+      {
+        "id": "opt_sumo_laranja",
+        "text_portuguese": "Perfeito! Vou querer um sumo de laranja e uma bica.",
+        "text_russian": "Отлично! Я буду апельсиновый сок и эспрессо.",
+        "next_node_id": "node_cafe_pay",
+        "notes": "В Португалии сок — это 'sumo', а в Бразилии — 'suco'."
+      }
+    ]
+  },
+  {
+    "id": "node_cafe_pay",
+    "speaker_portuguese": "Garçom / Atendente",
+    "speaker_russian": "Официант",
+    "line_portuguese": "Aqui tem o seu pedido. Bom apetite! Quando quiser a conta, é só chamar.",
+    "line_russian": "Вот ваш заказ. Приятного аппетита! Когда понадобится счёт, просто позовите.",
+    "audio_path": null,
+    "scenario_id": "sc_cafe_lisboa",
+    "scenario_title": "No Café em Lisboa",
+    "scenario_category": "food",
+    "dialect": "pt_pt",
+    "options": [
+      {
+        "id": "opt_pagar_cartao",
+        "text_portuguese": "Pode trazer a conta? Aceita pagamento por Multibanco / cartão?",
+        "text_russian": "Можете принести счёт? Принимаете оплату картой (Multibanco)?",
+        "next_node_id": "node_cafe_final",
+        "notes": "'Multibanco' — единая национальная сеть безналичных платежей в Португалии."
+      },
+      {
+        "id": "opt_pagar_dinheiro",
+        "text_portuguese": "Vou pagar em dinheiro. Fique com o troco!",
+        "text_russian": "Я заплачу наличными. Оставьте сдачу себе!",
+        "next_node_id": "node_cafe_final",
+        "notes": "'O troco' — сдача. 'Fique com o troco' — вежливый способ оставить чаевые."
+      }
+    ]
+  },
+  {
+    "id": "node_cafe_final",
+    "speaker_portuguese": "Garçom / Atendente",
+    "speaker_russian": "Официант",
+    "line_portuguese": "Tudo certo! Muito obrigado e tenha um ótimo dia em Lisboa!",
+    "line_russian": "Все в порядке! Большое спасибо и хорошего вам дня в Лиссабоне!",
+    "audio_path": null,
+    "scenario_id": "sc_cafe_lisboa",
+    "scenario_title": "No Café em Lisboa",
+    "scenario_category": "food",
+    "dialect": "pt_pt",
+    "options": []
+  },
+  {
+    "id": "node_praia_start",
+    "speaker_portuguese": "Vendedor Ambulante / Carioca",
+    "speaker_russian": "Продавец на пляже / Местный",
+    "line_portuguese": "Fala, meu camarada! Tudo bem? Vai uma água de coco geladinha aí?",
+    "line_russian": "Здорово, друг! Как жизнь? Ледяного кокосика не желаешь?",
+    "audio_path": null,
+    "scenario_id": "sc_praia_rio",
+    "scenario_title": "Na Praia de Copacabana",
+    "scenario_category": "culture",
+    "dialect": "pt_br",
+    "options": [
+      {
+        "id": "opt_praia_coco",
+        "text_portuguese": "Opa! Quero sim, bem gelada, por favor. Quanto custa?",
+        "text_russian": "О, хочу! Похолоднее, пожалуйста. Сколько стоит?",
+        "next_node_id": "node_praia_coco_open",
+        "notes": "'Opa!' — популярное разговорное бразильское восклицание приветствия или согласия."
+      },
+      {
+        "id": "opt_praia_mate",
+        "text_portuguese": "Tem chá mate gelado com limão e biscoito Globo?",
+        "text_russian": "А есть холодный чай мате с лимоном и печенье Глобо?",
+        "next_node_id": "node_praia_mate",
+        "notes": "Мате с лимоном и печенье Globo — культовый дуэт на пляжах Рио-де-Жанейро."
+      },
+      {
+        "id": "opt_praia_cadeira",
+        "text_portuguese": "Antes de beber, você aluga cadeira de praia e guarda-sol?",
+        "text_russian": "Прежде чем пить, ты сдаешь в аренду пляжные кресла и зонтик?",
+        "next_node_id": "node_praia_umbrella",
+        "notes": "На бразильских пляжах барраки (палатки) сдают кресла и зонтики на весь день."
+      }
+    ]
+  },
+  {
+    "id": "node_praia_coco_open",
+    "speaker_portuguese": "Vendedor",
+    "speaker_russian": "Продавец",
+    "line_portuguese": "Tá dez reais, irmão. Vou furar aqui e botar o canudo. Quer que corte depois pra comer a polpa?",
+    "line_russian": "Десять реалов, брат. Сейчас пробью и вставлю трубочку. Расколоть потом, чтобы мякоть съесть?",
+    "audio_path": null,
+    "scenario_id": "sc_praia_rio",
+    "scenario_title": "Na Praia de Copacabana",
+    "scenario_category": "culture",
+    "dialect": "pt_br",
+    "options": [
+      {
+        "id": "opt_praia_polpa_sim",
+        "text_portuguese": "Com certeza! A carninha do coco é a melhor parte.",
+        "text_russian": "Конечно! Мякоть кокоса — самая лучшая часть.",
+        "next_node_id": "node_praia_pay",
+        "notes": "В Бразилии мякоть кокоса ласково называют 'carninha do coco'."
+      },
+      {
+        "id": "opt_praia_polpa_nao",
+        "text_portuguese": "Não precisa, só a água mesmo. Tá uma delícia no calor!",
+        "text_russian": "Не нужно, только воду. В такую жару — просто кайф!",
+        "next_node_id": "node_praia_pay",
+        "notes": "'Uma delícia' — классический способ выразить удовольствие от еды или напитка."
+      }
+    ]
+  },
+  {
+    "id": "node_praia_mate",
+    "speaker_portuguese": "Vendedor",
+    "speaker_russian": "Продавец",
+    "line_portuguese": "Com certeza, patrão! Meio a meio mate com limão, e o biscoito é salgado ou doce?",
+    "line_russian": "Конечно, босс! Мате наполовину с лимоном, а печенье соленое или сладкое?",
+    "audio_path": null,
+    "scenario_id": "sc_praia_rio",
+    "scenario_title": "Na Praia de Copacabana",
+    "scenario_category": "culture",
+    "dialect": "pt_br",
+    "options": [
+      {
+        "id": "opt_mate_salgado",
+        "text_portuguese": "Biscoito salgado, no pacote amarelo tradicional!",
+        "text_russian": "Соленое печенье, в традиционной желтой пачке!",
+        "next_node_id": "node_praia_pay",
+        "notes": "Желтая пачка Biscoito Globo — соленое, зеленая — сладкое."
+      }
+    ]
+  },
+  {
+    "id": "node_praia_umbrella",
+    "speaker_portuguese": "Vendedor",
+    "speaker_russian": "Продавец",
+    "line_portuguese": "Alugo sim! Vinte reais a cadeira e trinta o guarda-sol pro dia inteiro. Fica à vontade!",
+    "line_russian": "Конечно сдаю! Двадцать реалов за шезлонг и тридцать за зонт на весь день. Располагайся!",
+    "audio_path": null,
+    "scenario_id": "sc_praia_rio",
+    "scenario_title": "Na Praia de Copacabana",
+    "scenario_category": "culture",
+    "dialect": "pt_br",
+    "options": [
+      {
+        "id": "opt_fechado",
+        "text_portuguese": "Fechado! Monta ali perto da água pra mim, por favor.",
+        "text_russian": "Договорились! Поставь вон там ближе к воде, пожалуйста.",
+        "next_node_id": "node_praia_pay",
+        "notes": "'Fechado!' означает 'договорились!', 'по рукам!'."
+      }
+    ]
+  },
+  {
+    "id": "node_praia_pay",
+    "speaker_portuguese": "Vendedor",
+    "speaker_russian": "Продавец",
+    "line_portuguese": "Show de bola! Aceito Pix, cartão de crédito ou dinheiro vivo. Como prefere pagar?",
+    "line_russian": "Красота! Принимаю Pix, кредитку или наличку. Как предпочитаешь заплатить?",
+    "audio_path": null,
+    "scenario_id": "sc_praia_rio",
+    "scenario_title": "Na Praia de Copacabana",
+    "scenario_category": "culture",
+    "dialect": "pt_br",
+    "options": [
+      {
+        "id": "opt_praia_pix",
+        "text_portuguese": "Vou pagar no Pix. Me passa a chave ou o QR code!",
+        "text_russian": "Заплачу через Pix. Покажи QR-код или ключ!",
+        "next_node_id": "node_praia_final",
+        "notes": "'Pix' — мгновенная система переводов по QR-коду, работающая даже у уличных продавцов в Бразилии."
+      },
+      {
+        "id": "opt_praia_cartao",
+        "text_portuguese": "No cartão por aproximação, por favor.",
+        "text_russian": "Картой бесконтактно, пожалуйста.",
+        "next_node_id": "node_praia_final",
+        "notes": "Бесконтактная оплата в Бразилии называется 'por aproximação'."
+      }
+    ]
+  },
+  {
+    "id": "node_praia_final",
+    "speaker_portuguese": "Vendedor",
+    "speaker_russian": "Продавец",
+    "line_portuguese": "Valeu demais, parceiro! Aproveita o sol e o mar do Rio de Janeiro!",
+    "line_russian": "От души спасибо, дружище! Наслаждайся солнцем и морем Рио-де-Жанейро!",
+    "audio_path": null,
+    "scenario_id": "sc_praia_rio",
+    "scenario_title": "Na Praia de Copacabana",
+    "scenario_category": "culture",
+    "dialect": "pt_br",
+    "options": []
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "id": "list_1",
+    "transcript": "Bom dia, você gostaria de tomar um café agora?",
+    "russian_translation": "Доброе утро, ты хотел бы выпить кофе сейчас?",
+    "difficulty": "beginner",
+    "focus_words": ["bom dia", "gostaria", "tomar", "café"],
+    "dialect": "all",
+    "audio_url": null
+  },
+  {
+    "id": "list_2",
+    "transcript": "Eu moro no Brasil há três anos e adoro a comida típica daqui.",
+    "russian_translation": "Я живу в Бразилии три года и обожаю местную традиционную еду.",
+    "difficulty": "beginner",
+    "focus_words": ["moro", "anos", "adoro", "comida"],
+    "dialect": "pt_br",
+    "audio_url": null
+  },
+  {
+    "id": "list_3",
+    "transcript": "Estou a apanhar o autocarro para o centro de Lisboa.",
+    "russian_translation": "Я сажусь на автобус в центр Лиссабона.",
+    "difficulty": "intermediate",
+    "focus_words": ["apanhar", "autocarro", "centro", "Lisboa"],
+    "dialect": "pt_pt",
+    "audio_url": null
+  },
+  {
+    "id": "list_4",
+    "transcript": "Amanhã nós vamos fazer uma caminhada na praia bem cedo.",
+    "russian_translation": "Завтра мы пойдем на прогулку по пляжу очень рано.",
+    "difficulty": "intermediate",
+    "focus_words": ["amanhã", "caminhada", "praia", "cedo"],
+    "dialect": "all",
+    "audio_url": null
+  },
+  {
+    "id": "list_5",
+    "transcript": "Se você tiver tempo livre no fim de semana, avise-me por favor.",
+    "russian_translation": "Если у тебя будет свободное время на выходных, дай мне знать, пожалуйста.",
+    "difficulty": "advanced",
+    "focus_words": ["tiver", "livre", "avise-me", "tempo"],
+    "dialect": "all",
+    "audio_url": null
+  },
+  {
+    "id": "list_6",
+    "transcript": "O pastel de nata é mais saboroso quando polvilhado com canela em pó.",
+    "russian_translation": "Паштел-де-ната вкуснее всего, когда посыпан корицей.",
+    "difficulty": "intermediate",
+    "focus_words": ["saboroso", "polvilhado", "canela", "pó"],
+    "dialect": "pt_pt",
+    "audio_url": null
+  },
+  {
+    "id": "list_7",
+    "transcript": "O trânsito na avenida principal está completamente parado por causa da chuva.",
+    "russian_translation": "Движение на главном проспекте полностью встало из-за дождя.",
+    "difficulty": "advanced",
+    "focus_words": ["trânsito", "avenida", "parado", "chuva"],
+    "dialect": "all",
+    "audio_url": null
+  }
+]

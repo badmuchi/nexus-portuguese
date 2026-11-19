@@ -1,0 +1,92 @@
+[
+  {
+    "id": "story_mercado_ribeira",
+    "title_portuguese": "Uma Manhã no Mercado da Ribeira",
+    "title_russian": "Утро на рынке Рибейра",
+    "dialect": "pt_pt",
+    "level": "A2 - B1",
+    "cover_icon": "storefront_rounded",
+    "description": "Погружение в колоритный Лиссабон: ароматы свежего хлеба, кофе и крики торговцев рыбой.",
+    "paragraphs": [
+      {
+        "portuguese": "O sol começa a iluminar as colinas de Lisboa. Na baixa, o Mercado da Ribeira abre as suas portas bem cedo.",
+        "russian": "Солнце начинает освещать холмы Лиссабона. В районе Байша рынок Рибейра открывает свои двери очень рано.",
+        "words": [
+          { "word": "colinas", "translation": "холмы", "pos": "noun" },
+          { "word": "abre", "translation": "открывает", "pos": "verb" },
+          { "word": "cedo", "translation": "рано", "pos": "adverb" }
+        ]
+      },
+      {
+        "portuguese": "O aroma do café acabado de tirar mistura-se com o cheiro a marisco fresco e laranjas do Algarve.",
+        "russian": "Аромат только что сваренного кофе смешивается с запахом свежих морепродуктов и алгарвийских апельсинов.",
+        "words": [
+          { "word": "acabado de tirar", "translation": "только что приготовленный/налитый", "pos": "phrase" },
+          { "word": "marisco", "translation": "морепродукты", "pos": "noun" }
+        ]
+      },
+      {
+        "portuguese": "As peixeiras anunciam aos gritos o peixe fresco que chegou de madrugada: sardinhas gordas, robalo e polvo tenro.",
+        "russian": "Торговки рыбой громко выкрикивают о свежей рыбе, прибывшей на рассвете: жирные сардины, сибас и нежный осьминог.",
+        "words": [
+          { "word": "peixeiras", "translation": "продавщицы рыбы", "pos": "noun" },
+          { "word": "madrugada", "translation": "раннее утро / рассвет", "pos": "noun" },
+          { "word": "polvo", "translation": "осьминог", "pos": "noun" }
+        ]
+      },
+      {
+        "portuguese": "Depois de escolher os melhores ingredientes, sentar-se na esplanada com uma bica quente é o melhor ritual da manhã.",
+        "russian": "После выбора лучших продуктов присесть на летней террасе с горячей чашечкой эспрессо — лучший утренний ритуал.",
+        "words": [
+          { "word": "esplanada", "translation": "открытая терраса кафе", "pos": "noun" },
+          { "word": "bica", "translation": "эспрессо (Лиссабон)", "pos": "noun" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "story_arpoador_sunset",
+    "title_portuguese": "O Pôr do Sol no Arpoador",
+    "title_russian": "Закат на скале Арпоадор",
+    "dialect": "pt_br",
+    "level": "A2 - B1",
+    "cover_icon": "wb_sunny_rounded",
+    "description": "Традиция аплодировать заходящему солнцу на стыке пляжей Ипанема и Копакабана в Рио.",
+    "paragraphs": [
+      {
+        "portuguese": "No final da tarde no Rio de Janeiro, uma multidão se reúne nas pedras do Arpoador.",
+        "russian": "В конце дня в Рио-де-Жанейро толпа людей собирается на камнях мыса Арпоадор.",
+        "words": [
+          { "word": "final da tarde", "translation": "конец дня / предвечернее время", "pos": "phrase" },
+          { "word": "multidão", "translation": "толпа людей", "pos": "noun" },
+          { "word": "pedras", "translation": "камни / скалы", "pos": "noun" }
+        ]
+      },
+      {
+        "portuguese": "O céu ganha tons de laranja, dourado e rosa refletidos nas ondas calmas do mar.",
+        "russian": "Небо окрашивается в оранжевые, золотистые и розовые тона, отражаясь в спокойных волнах моря.",
+        "words": [
+          { "word": "ganha", "translation": "приобретает", "pos": "verb" },
+          { "word": "tons", "translation": "оттенки, тона", "pos": "noun" },
+          { "word": "ondas", "translation": "волны", "pos": "noun" }
+        ]
+      },
+      {
+        "portuguese": "Quando o sol finalmente mergulha atrás do Morro Dois Irmãos, todo mundo começa a bater palmas em uníssono.",
+        "russian": "Когда солнце наконец погружается за гору «Два Брата», все вокруг начинают аплодировать в унисон.",
+        "words": [
+          { "word": "mergulha", "translation": "погружается / ныряет", "pos": "verb" },
+          { "word": "bater palmas", "translation": "хлопать в ладоши, аплодировать", "pos": "phrase" }
+        ]
+      },
+      {
+        "portuguese": "É um momento mágico que celebra a beleza da natureza e a energia contagiante da Cidade Maravilhosa.",
+        "russian": "Это волшебный момент, воспевающий красоту природы и заразительную энергию «Чудесного города».",
+        "words": [
+          { "word": "mágico", "translation": "магический, волшебный", "pos": "adjective" },
+          { "word": "contagiante", "translation": "заразительный, вдохновляющий", "pos": "adjective" }
+        ]
+      }
+    ]
+  }
+]

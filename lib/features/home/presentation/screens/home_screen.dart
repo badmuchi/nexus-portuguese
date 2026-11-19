@@ -1,0 +1,404 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/audio/hybrid_audio_playback_service.dart';
+import '../../../../core/database/app_database.dart';
+import '../../../../core/settings/app_settings_storage.dart';
+import 'package:nexus_portuguese_app/features/phonetics/presentation/screens/phonetics_screen.dart';
+import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
+import 'package:nexus_portuguese_app/features/stories/presentation/screens/stories_screen.dart';
+
+class HomeScreen extends StatefulWidget {
+  final void Function(int tabIndex) onNavigateToTab;
+
+  const HomeScreen({super.key, required this.onNavigateToTab});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  PortugueseDialect _currentDialect = PortugueseDialect.brazilian;
+  int _dueCardsCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadState();
+  }
+
+  Future<void> _loadState() async {
+    final settings = context.read<AppSettingsStorage>();
+    final db = context.read<AppDatabase>();
+    final dialect = await settings.getDialect();
+    final due = await db.getDueSrsCards(DateTime.now());
+
+    if (mounted) {
+      setState(() {
+        _currentDialect = dialect;
+        _dueCardsCount = due.length;
+      });
+    }
+  }
+
+  void _changeDialect(PortugueseDialect dialect) {
+    context.read<AppSettingsStorage>().setDialect(dialect);
+    setState(() => _currentDialect = dialect);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final audio = context.read<HybridAudioPlaybackService>();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Row(
+          children: [
+            Icon(Icons.auto_stories_rounded, color: Colors.amber),
+            SizedBox(width: 8),
+            Text('Nexus Portuguese', style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
+        actions: [
+          PopupMenuButton<PortugueseDialect>(
+            icon: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.primaryContainer,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(_currentDialect == PortugueseDialect.brazilian ? '🇧🇷 PT-BR' : '🇵🇹 PT-PT'),
+                  const Icon(Icons.arrow_drop_down, size: 18),
+                ],
+              ),
+            ),
+            tooltip: 'Сменить диалект',
+            onSelected: _changeDialect,
+            itemBuilder: (context) => [
+              const PopupMenuItem(
+                value: PortugueseDialect.brazilian,
+                child: Row(
+                  children: [
+                    Text('🇧🇷'),
+                    SizedBox(width: 8),
+                    Text('Бразильский (PT-BR)'),
+                  ],
+                ),
+              ),
+              const PopupMenuItem(
+                value: PortugueseDialect.european,
+                child: Row(
+                  children: [
+                    Text('🇵🇹'),
+                    SizedBox(width: 8),
+                    Text('Европейский (PT-PT)'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(width: 8),
+        ],
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            // Word of the Day (Palavra do Dia)
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    theme.colorScheme.primaryContainer,
+                    theme.colorScheme.surfaceContainerHighest,
+                  ],
+                ),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: theme.colorScheme.primary.withValues(alpha: 0.2),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primary,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Text(
+                          'PALAVRA DO DIA',
+                          style: TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 1.0,
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.volume_up_rounded),
+                        color: theme.colorScheme.primary,
+                        onPressed: () {
+                          audio.playAudioOrSpeak(fallbackText: 'Saudade. Estou com muita saudade.');
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    'Saudade',
+                    style: theme.textTheme.headlineMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Светлая тоска, ностальгия, скучание по тому, кого любишь',
+                    style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    '«Estou com muita saudade do Brasil.»',
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      fontStyle: FontStyle.italic,
+                      color: theme.colorScheme.outline,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 20),
+
+            // Due Cards Reminder Banner
+            if (_dueCardsCount > 0)
+              InkWell(
+                borderRadius: BorderRadius.circular(16),
+                onTap: () => widget.onNavigateToTab(2), // Tab index 2 is FSRS
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.amber.withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.amber.shade700),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.alarm_on_rounded, color: Colors.amber, size: 28),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              '$_dueCardsCount карточек ждут повторения',
+                              style: const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            const Text('Повторите их сейчас, чтобы закрепить в памяти!'),
+                          ],
+                        ),
+                      ),
+                      const Icon(Icons.chevron_right_rounded),
+                    ],
+                  ),
+                ),
+              ),
+
+            const SizedBox(height: 24),
+
+            Text(
+              'Разделы приложения:',
+              style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 12),
+
+            // Grid of Modules
+            GridView.count(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 2,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+              childAspectRatio: 1.35,
+              children: [
+                _buildModuleCard(
+                  theme,
+                  title: 'Диалоги',
+                  subtitle: 'Кафе, пляж, такси',
+                  icon: Icons.forum_rounded,
+                  color: Colors.teal,
+                  onTap: () => widget.onNavigateToTab(1),
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'FSRS Карточки',
+                  subtitle: 'Интервальные повторы',
+                  icon: Icons.style_rounded,
+                  color: Colors.blue,
+                  onTap: () => widget.onNavigateToTab(2),
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Грамматика',
+                  subtitle: 'Спряжения, do/no/à',
+                  icon: Icons.table_chart_rounded,
+                  color: Colors.indigo,
+                  onTap: () => widget.onNavigateToTab(3),
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Аудирование',
+                  subtitle: 'Диктанты и слух',
+                  icon: Icons.headphones_rounded,
+                  color: Colors.purple,
+                  onTap: () => widget.onNavigateToTab(4),
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Словарь',
+                  subtitle: 'Оффлайн поиск слов',
+                  icon: Icons.menu_book_rounded,
+                  color: Colors.green,
+                  onTap: () => widget.onNavigateToTab(5),
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Фонетика',
+                  subtitle: 'Носовые звуки ão/õe',
+                  icon: Icons.graphic_eq_rounded,
+                  color: Colors.deepOrange,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const PhoneticsScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Истории',
+                  subtitle: 'Интерактивные тексты',
+                  icon: Icons.auto_stories_rounded,
+                  color: Colors.brown,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const StoriesScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Сленг и идиомы',
+                  subtitle: 'Gírias: Legal vs Fixe',
+                  icon: Icons.emoji_emotions_rounded,
+                  color: Colors.amber.shade900,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SlangScreen()),
+                    );
+                  },
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 24),
+
+            // Cultural Dialect Tip Box
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: theme.colorScheme.surfaceContainerHighest,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                children: [
+                  const Text('💡', style: TextStyle(fontSize: 24)),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Знаете ли вы?',
+                          style: theme.textTheme.labelMedium?.copyWith(fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(height: 2),
+                        const Text(
+                          'В Бразилии для обращения на "ты" обычно используют "você" (со спряжением 3-го лица: você fala), а в Португалии чаще говорят "tu" (со спряжением 2-го лица: tu falas).',
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildModuleCard(
+    ThemeData theme, {
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+        side: BorderSide(color: theme.colorScheme.outlineVariant.withValues(alpha: 0.4)),
+      ),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(16),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(14.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CircleAvatar(
+                radius: 18,
+                backgroundColor: color.withValues(alpha: 0.15),
+                child: Icon(icon, color: color, size: 20),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                  ),
+                  Text(
+                    subtitle,
+                    style: theme.textTheme.labelSmall?.copyWith(color: theme.colorScheme.outline),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

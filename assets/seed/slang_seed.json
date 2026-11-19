@@ -1,0 +1,82 @@
+[
+  {
+    "id": "slang_legal_fixe",
+    "expression": "Legal vs Fixe",
+    "literal_translation": "Законный vs Неподвижный/прикрепленный",
+    "actual_meaning": "Круто, классно, здорово, потрясающе",
+    "dialect": "hybrid",
+    "origin_notes": "В Бразилии 'legal' или 'bacana' — главное слово одобрения. В Португалии эквивалент — 'fixe' (звучит как 'фиш').",
+    "example_sentence": "BR: Esse show foi muito legal! / PT: Este concerto foi bué fixe!",
+    "example_translation": "Этот концерт был очень крутым!"
+  },
+  {
+    "id": "slang_cara_gajo",
+    "expression": "Cara vs Gajo",
+    "literal_translation": "Лицо/морда vs Парень/мужик",
+    "actual_meaning": "Чувак, парень, тип",
+    "dialect": "hybrid",
+    "origin_notes": "В Бразилии обращение 'cara' или 'mano' слышно на каждом углу. В Португалии парня зовут 'gajo' (девушку — 'gaja').",
+    "example_sentence": "BR: E aí, cara, beleza? / PT: Aquele gajo é meu amigo.",
+    "example_translation": "BR: Ну что, чувак, как дела? / PT: Тот парень — мой друг."
+  },
+  {
+    "id": "slang_pulga_orelha",
+    "expression": "Estar com a pulga atrás da orelha",
+    "literal_translation": "Быть с блохой за ухом",
+    "actual_meaning": "Подозревать что-то неладное, сомневаться, быть настороже",
+    "dialect": "all",
+    "origin_notes": "Общепортугальская идиома. Употребляется, когда интуиция подсказывает, что вас обманывают или что-то скрывают.",
+    "example_sentence": "Ele mudou de assunto tão rápido que fiquei com a pulga atrás da orelha.",
+    "example_translation": "Он так быстро сменил тему, что я заподозрил неладное."
+  },
+  {
+    "id": "slang_cavalinho_chuva",
+    "expression": "Tirar o cavalinho da chuva",
+    "literal_translation": "Увести лошадку из-под дождя",
+    "actual_meaning": "Закатать губу, перестать надеяться, бросить пустые иллюзии",
+    "dialect": "pt_br",
+    "origin_notes": "Идиома зародилась в XIX веке: когда гости привязывали лошадей под навес от дождя, это означало долгие посиделки. Если хозяин говорил увести лошадей — пора уходить.",
+    "example_sentence": "Pode tirar seu cavalinho da chuva, eu não vou te emprestar dinheiro!",
+    "example_translation": "Можешь даже не надеяться (закатай губу), я не одолжу тебе денег!"
+  },
+  {
+    "id": "slang_ver_navios",
+    "expression": "Ficar a ver navios",
+    "literal_translation": "Остаться смотреть на корабли",
+    "actual_meaning": "Остаться ни с чем, быть обманутым в ожиданиях, у разбитого корыта",
+    "dialect": "all",
+    "origin_notes": "Историческая фраза из Португалии времен исчезновения короля Себастьяна I в 1578 году. Люди годами смотрели с холмов на море в ожидании его возвращения.",
+    "example_sentence": "Prometeram uma promoção no trabalho, mas no fim fiquei a ver navios.",
+    "example_translation": "Мне обещали повышение на работе, но в итоге я остался ни с чем."
+  },
+  {
+    "id": "slang_chutar_balde",
+    "expression": "Chutar o balde",
+    "literal_translation": "Пнуть ведро",
+    "actual_meaning": "Психануть, бросить всё к чертям, потерять терпение",
+    "dialect": "pt_br",
+    "origin_notes": "Внимание! В английском 'kick the bucket' значит умереть, а в бразильском португальском это означает махнуть на всё рукой в порыве злости или усталости.",
+    "example_sentence": "A dieta estava tão chata que ontem chutei o balde e comi uma pizza inteira.",
+    "example_translation": "Диета так надоела, что вчера я психанул и съел целую пиццу."
+  },
+  {
+    "id": "slang_dar_um_jeito",
+    "expression": "Dar um jeito / Jeitinho brasileiro",
+    "literal_translation": "Найти способ / манеру",
+    "actual_meaning": "Разрулить ситуацию, найти нестандартный выход из тупика",
+    "dialect": "pt_br",
+    "origin_notes": "Культурный феномен Бразилии: умение обойти бюрократию и трудности с помощью смекалки, обаяния и гибкости.",
+    "example_sentence": "Não se preocupe, no fim a gente sempre dá um jeito!",
+    "example_translation": "Не переживай, в конце концов мы всегда что-нибудь придумаем!"
+  },
+  {
+    "id": "slang_estar_nas_tintas",
+    "expression": "Estar-se nas tintas",
+    "literal_translation": "Быть в красках",
+    "actual_meaning": "Быть абсолютно равнодушным, плевать на что-то",
+    "dialect": "pt_pt",
+    "origin_notes": "Чисто европейское португальское выражение, синоним 'não me importar nada'.",
+    "example_sentence": "Eles podem criticar o quanto quiserem, eu estou-me nas tintas!",
+    "example_translation": "Они могут критиковать сколько угодно, мне совершенно плевать!"
+  }
+]

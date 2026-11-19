@@ -1,0 +1,222 @@
+[
+  {
+    "id": "dict_ser",
+    "word": "ser",
+    "part_of_speech": "verb",
+    "translation_ru": "быть, являться",
+    "frequency_rank": 1,
+    "dialect": "all",
+    "example_pt": "O Brasil é um país imenso e acolhedor.",
+    "example_ru": "Бразилия — огромная и гостеприимная страна.",
+    "notes": "Нерегулярный глагол; постоянное свойство или происхождение."
+  },
+  {
+    "id": "dict_estar",
+    "word": "estar",
+    "part_of_speech": "verb",
+    "translation_ru": "находиться, чувствовать себя",
+    "frequency_rank": 2,
+    "dialect": "all",
+    "example_pt": "Hoje estou muito feliz com o resultado.",
+    "example_ru": "Сегодня я очень счастлив полученному результату.",
+    "notes": "Временное состояние, настроение, локация."
+  },
+  {
+    "id": "dict_ter",
+    "word": "ter",
+    "part_of_speech": "verb",
+    "translation_ru": "иметь, обладать",
+    "frequency_rank": 3,
+    "dialect": "all",
+    "example_pt": "Eu tenho muitas dúvidas sobre a gramática.",
+    "example_ru": "У меня много вопросов по грамматике.",
+    "notes": "В Бразилии также используется в значении 'имеется' (Tem um café aqui)."
+  },
+  {
+    "id": "dict_ir",
+    "word": "ir",
+    "part_of_speech": "verb",
+    "translation_ru": "идти, ехать",
+    "frequency_rank": 4,
+    "dialect": "all",
+    "example_pt": "Vamos ao cinema neste sábado?",
+    "example_ru": "Пойдем в кино в эту субботу?",
+    "notes": "Вспомогательный глагол для ближайшего будущего."
+  },
+  {
+    "id": "dict_fazer",
+    "word": "fazer",
+    "part_of_speech": "verb",
+    "translation_ru": "делать, совершать",
+    "frequency_rank": 5,
+    "dialect": "all",
+    "example_pt": "O que você costuma fazer nos fins de semana?",
+    "example_ru": "Что ты обычно делаешь по выходным?",
+    "notes": "Безличные обороты о погоде: faz sol, faz frio."
+  },
+  {
+    "id": "dict_tempo",
+    "word": "tempo",
+    "part_of_speech": "noun",
+    "translation_ru": "время; погода",
+    "frequency_rank": 6,
+    "dialect": "all",
+    "example_pt": "O tempo voa quando estamos nos divertindo.",
+    "example_ru": "Время летит, когда мы веселимся.",
+    "notes": "Означает и физическое время (horas), и метеорологическую погоду (clima)."
+  },
+  {
+    "id": "dict_ano",
+    "word": "ano",
+    "part_of_speech": "noun",
+    "translation_ru": "год",
+    "frequency_rank": 7,
+    "dialect": "all",
+    "example_pt": "Feliz Ano Novo para você e sua família!",
+    "example_ru": "Счастливого Нового Года тебе и твоей семье!",
+    "notes": "Мужской род (o ano)."
+  },
+  {
+    "id": "dict_dia",
+    "word": "dia",
+    "part_of_speech": "noun",
+    "translation_ru": "день",
+    "frequency_rank": 8,
+    "dialect": "all",
+    "example_pt": "Tenha um bom dia de trabalho!",
+    "example_ru": "Хорошего рабочего дня!",
+    "notes": "Исключение: оканчивается на -a, но мужского рода (o dia)."
+  },
+  {
+    "id": "dict_vida",
+    "word": "vida",
+    "part_of_speech": "noun",
+    "translation_ru": "жизнь",
+    "frequency_rank": 9,
+    "dialect": "all",
+    "example_pt": "A vida é cheia de surpresas agradáveis.",
+    "example_ru": "Жизнь полна приятных неожиданностей.",
+    "notes": "Женский род (a vida)."
+  },
+  {
+    "id": "dict_homem",
+    "word": "homem",
+    "part_of_speech": "noun",
+    "translation_ru": "человек, мужчина",
+    "frequency_rank": 10,
+    "dialect": "all",
+    "example_pt": "Aquele homem é um excelente médico.",
+    "example_ru": "Тот мужчина — отличный врач.",
+    "notes": "Множественное число: homens."
+  },
+  {
+    "id": "dict_mulher",
+    "word": "mulher",
+    "part_of_speech": "noun",
+    "translation_ru": "женщина, жена",
+    "frequency_rank": 11,
+    "dialect": "all",
+    "example_pt": "Ela é uma mulher muito corajosa e inteligente.",
+    "example_ru": "Она очень смелая и умная женщина.",
+    "notes": "Множественное число: mulheres."
+  },
+  {
+    "id": "dict_bom",
+    "word": "bom / boa",
+    "part_of_speech": "adjective",
+    "translation_ru": "хороший, добрый",
+    "frequency_rank": 12,
+    "dialect": "all",
+    "example_pt": "Este livro é muito bom para quem está aprendendo.",
+    "example_ru": "Эта книга очень хороша для тех, кто учится.",
+    "notes": "Антоним: mau / má (плохой)."
+  },
+  {
+    "id": "dict_grande",
+    "word": "grande",
+    "part_of_speech": "adjective",
+    "translation_ru": "большой, великий",
+    "frequency_rank": 13,
+    "dialect": "all",
+    "example_pt": "São Paulo é uma cidade muito grande.",
+    "example_ru": "Сан-Паулу — очень большой город.",
+    "notes": "Перед существительным часто означает 'великий': um grande homem."
+  },
+  {
+    "id": "dict_novo",
+    "word": "novo / nova",
+    "part_of_speech": "adjective",
+    "translation_ru": "новый; молодой",
+    "frequency_rank": 14,
+    "dialect": "all",
+    "example_pt": "Comprei um casaco novo para o inverno.",
+    "example_ru": "Я купил новое пальто на зиму.",
+    "notes": "Антоним: velho (старый)."
+  },
+  {
+    "id": "dict_amigo",
+    "word": "amigo / amiga",
+    "part_of_speech": "noun",
+    "translation_ru": "друг, подруга",
+    "frequency_rank": 15,
+    "dialect": "all",
+    "example_pt": "Meus amigos moram perto de mim.",
+    "example_ru": "Мои друзья живут рядом со мной.",
+    "notes": "Культурно важное понятие в Бразилии и Португалии."
+  },
+  {
+    "id": "dict_casa",
+    "word": "casa",
+    "part_of_speech": "noun",
+    "translation_ru": "дом",
+    "frequency_rank": 16,
+    "dialect": "all",
+    "example_pt": "Sinta-se em casa!",
+    "example_ru": "Чувствуй себя как дома!",
+    "notes": "Em casa — дома; para casa — домой."
+  },
+  {
+    "id": "dict_palavra",
+    "word": "palavra",
+    "part_of_speech": "noun",
+    "translation_ru": "слово",
+    "frequency_rank": 17,
+    "dialect": "all",
+    "example_pt": "Não entendi esta palavra em português.",
+    "example_ru": "Я не понял это слово по-португальски.",
+    "notes": "Dar a palavra — дать слово."
+  },
+  {
+    "id": "dict_agua",
+    "word": "água",
+    "part_of_speech": "noun",
+    "translation_ru": "вода",
+    "frequency_rank": 18,
+    "dialect": "all",
+    "example_pt": "Beber bastante água faz bem à saúde.",
+    "example_ru": "Пить много воды полезно для здоровья.",
+    "notes": "Женский род (a água)."
+  },
+  {
+    "id": "dict_comida",
+    "word": "comida",
+    "part_of_speech": "noun",
+    "translation_ru": "еда, пища",
+    "frequency_rank": 19,
+    "dialect": "all",
+    "example_pt": "A comida brasileira é muito saborosa.",
+    "example_ru": "Бразильская еда очень вкусная.",
+    "notes": "От глагола comer."
+  },
+  {
+    "id": "dict_cidade",
+    "word": "cidade",
+    "part_of_speech": "noun",
+    "translation_ru": "город",
+    "frequency_rank": 20,
+    "dialect": "all",
+    "example_pt": "Lisboa é uma cidade cheia de história e encanto.",
+    "example_ru": "Лиссабон — город, полный истории и очарования.",
+    "notes": "Женский род (a cidade)."
+  }
+]
