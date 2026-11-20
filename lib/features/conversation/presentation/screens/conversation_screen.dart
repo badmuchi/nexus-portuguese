@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/audio/hybrid_audio_playback_service.dart';
+import 'package:nexus_portuguese_app/features/morphology/presentation/widgets/sentence_xray_sheet.dart';
 import '../../domain/entities/dialogue_models.dart';
 import '../cubit/conversation_cubit.dart';
 import '../cubit/conversation_state.dart';
@@ -325,6 +326,18 @@ class _ConversationScreenState extends State<ConversationScreen> {
                   icon: const Icon(Icons.volume_up_rounded, size: 20),
                   visualDensity: VisualDensity.compact,
                   onPressed: () => context.read<ConversationCubit>().playMessageAudio(item),
+                ),
+                IconButton(
+                  icon: const Icon(Icons.saved_search_rounded, size: 20),
+                  visualDensity: VisualDensity.compact,
+                  tooltip: 'X-Ray анализ фразы',
+                  onPressed: () {
+                    SentenceXRaySheet.show(
+                      context,
+                      sentencePortuguese: item.textPortuguese,
+                      translationRussian: item.textRussian,
+                    );
+                  },
                 ),
                 IconButton(
                   icon: const Icon(Icons.mic_none_rounded, size: 20),

@@ -39,3 +39,7 @@ flutter:
     - assets/seed/slang_seed.json
     - assets/seed/phonetics_seed.json
     - assets/audio/
+    - assets/audio/dialogue/
+    - assets/audio/listening/
+    - assets/audio/srs/
+    - assets/audio/slang/

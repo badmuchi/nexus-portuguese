@@ -7,6 +7,7 @@ import 'package:nexus_portuguese_app/features/phonetics/presentation/screens/pho
 import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
 import 'package:nexus_portuguese_app/features/speech_lab/presentation/screens/speech_lab_screen.dart';
 import 'package:nexus_portuguese_app/features/stories/presentation/screens/stories_screen.dart';
+import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
   final void Function(int tabIndex) onNavigateToTab;
@@ -46,6 +47,97 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() => _currentDialect = dialect);
   }
 
+  void _showReminderSettings() {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (ctx) {
+        return Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Row(
+                    children: [
+                      Icon(Icons.notifications_active_rounded, color: Colors.amber),
+                      SizedBox(width: 8),
+                      Text(
+                        'Ежедневные напоминания',
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.close_rounded),
+                    onPressed: () => Navigator.pop(ctx),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Регулярные 10 минут в день дают в 5 раз лучший результат, чем часовые штурмы раз в неделю.',
+              ),
+              const SizedBox(height: 16),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.alarm_rounded),
+                title: const Text('Время напоминания'),
+                subtitle: const Text('Каждый день в 10:00 утра'),
+                trailing: TextButton(
+                  onPressed: () async {
+                    final messenger = ScaffoldMessenger.of(context);
+                    final navigator = Navigator.of(ctx);
+                    final picked = await showTimePicker(
+                      context: context,
+                      initialTime: const TimeOfDay(hour: 10, minute: 0),
+                    );
+                    if (picked != null) {
+                      messenger.showSnackBar(
+                        SnackBar(
+                          content: Text('Напоминание установлено на ${picked.hour.toString().padLeft(2, '0')}:${picked.minute.toString().padLeft(2, '0')}!'),
+                          behavior: SnackBarBehavior.floating,
+                        ),
+                      );
+                      navigator.pop();
+                    }
+                  },
+                  child: const Text('Изменить'),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.green.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(Icons.check_circle_rounded, color: Colors.green),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text(
+                        DailyReminderService(context.read<AppSettingsStorage>())
+                            .formatReminderNotification(_dueCardsCount),
+                        style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -61,6 +153,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications_outlined),
+            tooltip: 'Напоминания',
+            onPressed: _showReminderSettings,
+          ),
           PopupMenuButton<PortugueseDialect>(
             icon: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),

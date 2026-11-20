@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/portuguese_normalizer.dart';
 import '../../../../core/widgets/portuguese_accent_bar.dart';
+import 'package:nexus_portuguese_app/features/morphology/presentation/widgets/sentence_xray_sheet.dart';
 import '../cubit/listening_cubit.dart';
 import '../cubit/listening_state.dart';
 
@@ -242,11 +243,31 @@ class _ListeningScreenState extends State<ListeningScreen> {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    FilledButton.icon(
-                      onPressed: () => context.read<ListeningCubit>().nextExercise(),
-                      icon: const Icon(Icons.arrow_forward_rounded),
-                      label: const Text('Следующая фраза'),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: OutlinedButton.icon(
+                            onPressed: () {
+                              SentenceXRaySheet.show(
+                                context,
+                                sentencePortuguese: ex.transcript,
+                                translationRussian: ex.russianTranslation,
+                              );
+                            },
+                            icon: const Icon(Icons.saved_search_rounded),
+                            label: const Text('X-Ray разбор'),
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: FilledButton.icon(
+                            onPressed: () => context.read<ListeningCubit>().nextExercise(),
+                            icon: const Icon(Icons.arrow_forward_rounded),
+                            label: const Text('Следующая'),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ],

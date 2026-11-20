@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/audio/hybrid_audio_playback_service.dart';
 import '../../../../core/database/app_database.dart';
+import 'package:nexus_portuguese_app/features/morphology/presentation/widgets/sentence_xray_sheet.dart';
 
 class StoriesScreen extends StatefulWidget {
   const StoriesScreen({super.key});
@@ -174,6 +175,18 @@ class _StoryDetailScreenState extends State<StoryDetailScreen> {
                       ),
                       Row(
                         children: [
+                          IconButton(
+                            icon: const Icon(Icons.saved_search_rounded),
+                            visualDensity: VisualDensity.compact,
+                            tooltip: 'X-Ray разбор фразы',
+                            onPressed: () {
+                              SentenceXRaySheet.show(
+                                context,
+                                sentencePortuguese: pt,
+                                translationRussian: ru,
+                              );
+                            },
+                          ),
                           IconButton(
                             icon: const Icon(Icons.volume_up_rounded),
                             visualDensity: VisualDensity.compact,

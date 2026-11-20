@@ -21,6 +21,7 @@ class DatabaseSeedService {
         _seedSlang(),
         _seedDictionary(),
       ]);
+      await _backfillSeedAudio();
       _logger.info('Database seeding completed successfully.');
     } catch (e, st) {
       _logger.error('Failed to seed database', e, st);
@@ -227,6 +228,51 @@ class DatabaseSeedService {
       await _db.upsertDictionaryEntries(companions);
     } catch (e) {
       _logger.warning('Error seeding Dictionary: $e');
+    }
+  }
+
+  Future<void> _backfillSeedAudio() async {
+    try {
+      final diagStr = await rootBundle.loadString('assets/seed/dialogues_seed.json');
+      final diagList = jsonDecode(diagStr) as List<dynamic>;
+      final diagMap = <String, String>{};
+      for (final item in diagList) {
+        final m = item as Map<String, dynamic>;
+        final p = m['audio_path'] as String?;
+        if (p != null && p.isNotEmpty) {
+          diagMap[m['id'] as String] = p;
+        }
+      }
+
+      final listStr = await rootBundle.loadString('assets/seed/listening_seed.json');
+      final listList = jsonDecode(listStr) as List<dynamic>;
+      final listMap = <String, String>{};
+      for (final item in listList) {
+        final m = item as Map<String, dynamic>;
+        final p = m['audio_url'] as String?;
+        if (p != null && p.isNotEmpty) {
+          listMap[m['id'] as String] = p;
+        }
+      }
+
+      final srsStr = await rootBundle.loadString('assets/seed/srs_seed.json');
+      final srsList = jsonDecode(srsStr) as List<dynamic>;
+      final srsMap = <String, String>{};
+      for (final item in srsList) {
+        final m = item as Map<String, dynamic>;
+        final p = m['audio_url'] as String?;
+        if (p != null && p.isNotEmpty) {
+          srsMap[m['id'] as String] = p;
+        }
+      }
+
+      await _db.backfillSeedAudio(
+        dialogueAudioById: diagMap,
+        listeningAudioById: listMap,
+        srsAudioById: srsMap,
+      );
+    } catch (e) {
+      _logger.warning('Error backfilling seed audio: $e');
     }
   }
 }

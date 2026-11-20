@@ -422,4 +422,42 @@ class AppDatabase extends _$AppDatabase {
       batch.insertAll(slangEntries, rows, mode: InsertMode.insertOrReplace);
     });
   }
+
+  /// Populates missing local audio paths on already-seeded rows without
+  /// overwriting existing user progress or custom cards.
+  Future<void> backfillSeedAudio({
+    required Map<String, String> dialogueAudioById,
+    required Map<String, String> listeningAudioById,
+    required Map<String, String> srsAudioById,
+  }) {
+    return transaction(() async {
+      for (final entry in dialogueAudioById.entries) {
+        await (update(dialogueNodes)
+              ..where(
+                (t) =>
+                    t.id.equals(entry.key) &
+                    (t.audioPath.isNull() | t.audioPath.equals('')),
+              ))
+            .write(DialogueNodesCompanion(audioPath: Value(entry.value)));
+      }
+      for (final entry in listeningAudioById.entries) {
+        await (update(listeningExercises)
+              ..where(
+                (t) =>
+                    t.id.equals(entry.key) &
+                    (t.audioUrl.isNull() | t.audioUrl.equals('')),
+              ))
+            .write(ListeningExercisesCompanion(audioUrl: Value(entry.value)));
+      }
+      for (final entry in srsAudioById.entries) {
+        await (update(srsCards)
+              ..where(
+                (t) =>
+                    t.id.equals(entry.key) &
+                    (t.audioUrl.isNull() | t.audioUrl.equals('')),
+              ))
+            .write(SrsCardsCompanion(audioUrl: Value(entry.value)));
+      }
+    });
+  }
 }

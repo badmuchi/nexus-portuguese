@@ -8,7 +8,7 @@
     "dialect": "all",
     "example_portuguese": "Olá! Como você está hoje?",
     "example_russian": "Привет! Как твои дела сегодня?",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_ola.mp3",
     "notes": "Универсальное приветствие в Бразилии и Португалии в любое время суток.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -22,7 +22,7 @@
     "dialect": "all",
     "example_portuguese": "Bom dia, tudo bem com você?",
     "example_russian": "Доброе утро, у тебя всё хорошо?",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_bom_dia.mp3",
     "notes": "Используется строго до обеда (12:00). После полудня говорят 'Boa tarde'.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -36,7 +36,7 @@
     "dialect": "all",
     "example_portuguese": "Muito obrigado pela sua ajuda!",
     "example_russian": "Большое спасибо за вашу помощь!",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_obrigado.mp3",
     "notes": "Мужчины всегда говорят 'obrigado', женщины — 'obrigada'. В ответ обычно звучит 'de nada' или 'não há de quê'.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -50,7 +50,7 @@
     "dialect": "all",
     "example_portuguese": "Um café expresso, por favor.",
     "example_russian": "Один эспрессо, пожалуйста.",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_por_favor.mp3",
     "notes": "В Бразилии также часто говорят 'por gentileza'.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -64,7 +64,7 @@
     "dialect": "all",
     "example_portuguese": "Oi, tudo bem? — Tudo bem, e você?",
     "example_russian": "Привет, всё хорошо? — Всё хорошо, а у тебя?",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_tudo_bem.mp3",
     "notes": "Самый популярный вопрос и ответ в португалоязычном мире.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -78,7 +78,7 @@
     "dialect": "all",
     "example_portuguese": "Estou com muita saudade do Brasil.",
     "example_russian": "Я очень скучаю по Бразилии.",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_saudade.mp3",
     "notes": "Уникальное португальское слово без прямого аналога в других языках. Обозначает смесь любви, грусти и приятных воспоминаний.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -92,7 +92,7 @@
     "dialect": "all",
     "example_portuguese": "Você fala português?",
     "example_russian": "Ты говоришь по-португальски?",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_falar.mp3",
     "notes": "Правильный глагол 1-го спряжения (-ar).",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -106,7 +106,7 @@
     "dialect": "all",
     "example_portuguese": "Eu gosto muito de música brasileira.",
     "example_russian": "Мне очень нравится бразильская музыка.",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_gostar.mp3",
     "notes": "КРИТИЧНО: всегда требует после себя предлог 'de' (gostar de algo/alguém).",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -120,7 +120,7 @@
     "dialect": "hybrid",
     "example_portuguese": "Onde fica o ponto de ônibus / paragem de autocarro?",
     "example_russian": "Где находится автобусная остановка?",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_onibus_autocarro.mp3",
     "notes": "Классическая лексическая разница: в Бразилии 'ônibus' и 'ponto', в Португалии 'autocarro' и 'paragem'.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -134,7 +134,7 @@
     "dialect": "hybrid",
     "example_portuguese": "Vamos viajar de trem amanhã de manhã.",
     "example_russian": "Мы поедем на поезде завтра утром.",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_trem_comboio.mp3",
     "notes": "В Бразилии говорят 'trem', в Португалии — 'comboio'. В штате Минас-Жерайс (Бразилия) слово trem также означает 'любая вещь'.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -148,7 +148,7 @@
     "dialect": "hybrid",
     "example_portuguese": "Perdi meu celular no metrô.",
     "example_russian": "Я потерял свой мобильник в метро.",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_celular_telemovel.mp3",
     "notes": "Бразилия: celular. Португалия: telemóvel.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -162,7 +162,7 @@
     "dialect": "hybrid",
     "example_portuguese": "Esse filme é muito legal / muito fixe!",
     "example_russian": "Этот фильм очень крутой!",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_legal_fixe.mp3",
     "notes": "В Бразилии 'legal' или 'bacana', в Португалии 'fixe' (читается как 'фиш').",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -176,7 +176,7 @@
     "dialect": "all",
     "example_portuguese": "Uma garrafa de água sem gás, por favor.",
     "example_russian": "Бутылку воды без газа, пожалуйста.",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_agua.mp3",
     "notes": "С газом — 'com gás', без газа — 'sem gás'.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -190,7 +190,7 @@
     "dialect": "all",
     "example_portuguese": "A conta, por favor!",
     "example_russian": "Счёт, пожалуйста!",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_conta.mp3",
     "notes": "Стандартная фраза в любом кафе или ресторане.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -204,7 +204,7 @@
     "dialect": "pt_br",
     "example_portuguese": "Eu adoro comer pão de queijo quentinho com café.",
     "example_russian": "Я обожаю есть горячий сырный хлеб с кофе.",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_pao_de_queijo.mp3",
     "notes": "Кулинарный символ Бразилии из маниоковой муки (polvilho) и сыра.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
@@ -218,7 +218,7 @@
     "dialect": "pt_pt",
     "example_portuguese": "Quero dois pastéis de nata com canela e um café.",
     "example_russian": "Я хочу два паштел-де-ната с корицей и кофе.",
-    "audio_url": null,
+    "audio_url": "assets/audio/srs/srs_pastel_de_nata.mp3",
     "notes": "Главная гастрономическая визитка Португалии из слоеного теста и заварного крема.",
     "source_name": "Kaikki Portuguese",
     "license_name": "CC BY-SA 4.0"
