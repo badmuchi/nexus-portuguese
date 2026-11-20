@@ -1,10 +1,18 @@
 import 'package:equatable/equatable.dart';
+import '../error/failures.dart';
 
 sealed class Result<T> extends Equatable {
   const Result();
 
+  const factory Result.ok(T data) = Success<T>;
+  factory Result.err(Failure failure) = FailureResult<T>.fromFailure;
+
   bool get isSuccess => this is Success<T>;
   bool get isFailure => this is FailureResult<T>;
+
+  bool get isOk => isSuccess;
+  T get value => (this as Success<T>).data;
+  Failure? get failure => failureOrNull;
 
   T? get dataOrNull => switch (this) {
         Success(data: final d) => d,
@@ -14,6 +22,11 @@ sealed class Result<T> extends Equatable {
   String? get errorOrNull => switch (this) {
         Success() => null,
         FailureResult(message: final m) => m,
+      };
+
+  Failure? get failureOrNull => switch (this) {
+        Success() => null,
+        FailureResult(failure: final f) => f,
       };
 
   R fold<R>({
@@ -38,8 +51,16 @@ final class Success<T> extends Result<T> {
 final class FailureResult<T> extends Result<T> {
   final String message;
   final Object? cause;
-  const FailureResult(this.message, [this.cause]);
+  @override
+  final Failure? failure;
+
+  const FailureResult(this.message, [this.cause]) : failure = null;
+
+  FailureResult.fromFailure(Failure f)
+      : message = f.message,
+        cause = f.cause,
+        failure = f;
 
   @override
-  List<Object?> get props => [message, cause];
+  List<Object?> get props => [message, cause, failure];
 }

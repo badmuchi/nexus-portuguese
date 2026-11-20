@@ -163,6 +163,22 @@ class SlangEntries extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+@DataClassName('PhoneticMasteryRow')
+class PhoneticMasteryEntries extends Table {
+  TextColumn get soundId => text()();
+  TextColumn get soundCategory => text()();
+  TextColumn get title => text()();
+  RealColumn get masteryScore => real().withDefault(const Constant(0.0))();
+  IntColumn get earAttempts => integer().withDefault(const Constant(0))();
+  IntColumn get earCorrect => integer().withDefault(const Constant(0))();
+  IntColumn get mouthAttempts => integer().withDefault(const Constant(0))();
+  RealColumn get mouthScoreSum => real().withDefault(const Constant(0.0))();
+  DateTimeColumn get lastPracticedAt => dateTime().nullable()();
+
+  @override
+  Set<Column> get primaryKey => {soundId};
+}
+
 @DriftDatabase(tables: [
   DialogueNodes,
   DialogueHistoryEntries,
@@ -175,6 +191,7 @@ class SlangEntries extends Table {
   DictionaryEntries,
   Stories,
   SlangEntries,
+  PhoneticMasteryEntries,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? e])
@@ -189,7 +206,17 @@ class AppDatabase extends _$AppDatabase {
         );
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+        onCreate: (m) => m.createAll(),
+        onUpgrade: (m, from, to) async {
+          if (from < 2) {
+            await m.createTable(phoneticMasteryEntries);
+          }
+        },
+      );
 
   // --- Dialogue queries ---
   Future<int> countDialogueNodes() async {
@@ -459,5 +486,91 @@ class AppDatabase extends _$AppDatabase {
             .write(SrsCardsCompanion(audioUrl: Value(entry.value)));
       }
     });
+  }
+
+  // --- Phonetic mastery queries ---
+  Future<List<PhoneticMasteryRow>> getAllPhoneticMastery() {
+    return select(phoneticMasteryEntries).get();
+  }
+
+  Future<PhoneticMasteryRow?> getPhoneticMasteryById(String soundId) {
+    return (select(phoneticMasteryEntries)..where((t) => t.soundId.equals(soundId))).getSingleOrNull();
+  }
+
+  Future<void> upsertPhoneticMastery(PhoneticMasteryEntriesCompanion row) {
+    return into(phoneticMasteryEntries).insertOnConflictUpdate(row);
+  }
+
+  Future<void> recordPhoneticEarAttempt({
+    required String soundId,
+    required bool isCorrect,
+    required String soundCategory,
+    required String title,
+  }) async {
+    final existing = await getPhoneticMasteryById(soundId);
+    final totalEarAttempts = (existing?.earAttempts ?? 0) + 1;
+    final totalEarCorrect = (existing?.earCorrect ?? 0) + (isCorrect ? 1 : 0);
+    final earAccuracy = totalEarAttempts > 0 ? (totalEarCorrect / totalEarAttempts) : 0.0;
+
+    final mouthAttempts = existing?.mouthAttempts ?? 0;
+    final mouthAvg = mouthAttempts > 0 ? ((existing?.mouthScoreSum ?? 0.0) / mouthAttempts) : 0.0;
+
+    final double mastery;
+    if (mouthAttempts == 0) {
+      mastery = (earAccuracy * 100).clamp(0.0, 100.0);
+    } else {
+      mastery = ((earAccuracy * 0.5 + (mouthAvg / 100.0) * 0.5) * 100).clamp(0.0, 100.0);
+    }
+
+    await into(phoneticMasteryEntries).insertOnConflictUpdate(
+      PhoneticMasteryEntriesCompanion(
+        soundId: Value(soundId),
+        soundCategory: Value(soundCategory),
+        title: Value(title),
+        masteryScore: Value(mastery),
+        earAttempts: Value(totalEarAttempts),
+        earCorrect: Value(totalEarCorrect),
+        mouthAttempts: Value(mouthAttempts),
+        mouthScoreSum: Value(existing?.mouthScoreSum ?? 0.0),
+        lastPracticedAt: Value(DateTime.now()),
+      ),
+    );
+  }
+
+  Future<void> recordPhoneticMouthAttempt({
+    required String soundId,
+    required double scorePercent,
+    required String soundCategory,
+    required String title,
+  }) async {
+    final existing = await getPhoneticMasteryById(soundId);
+    final totalMouthAttempts = (existing?.mouthAttempts ?? 0) + 1;
+    final totalMouthScoreSum = (existing?.mouthScoreSum ?? 0.0) + scorePercent;
+    final mouthAvg = totalMouthScoreSum / totalMouthAttempts;
+
+    final earAttempts = existing?.earAttempts ?? 0;
+    final earCorrect = existing?.earCorrect ?? 0;
+    final earAccuracy = earAttempts > 0 ? (earCorrect / earAttempts) : 0.0;
+
+    final double mastery;
+    if (earAttempts == 0) {
+      mastery = mouthAvg.clamp(0.0, 100.0);
+    } else {
+      mastery = ((earAccuracy * 0.5 + (mouthAvg / 100.0) * 0.5) * 100).clamp(0.0, 100.0);
+    }
+
+    await into(phoneticMasteryEntries).insertOnConflictUpdate(
+      PhoneticMasteryEntriesCompanion(
+        soundId: Value(soundId),
+        soundCategory: Value(soundCategory),
+        title: Value(title),
+        masteryScore: Value(mastery),
+        earAttempts: Value(earAttempts),
+        earCorrect: Value(earCorrect),
+        mouthAttempts: Value(totalMouthAttempts),
+        mouthScoreSum: Value(totalMouthScoreSum),
+        lastPracticedAt: Value(DateTime.now()),
+      ),
+    );
   }
 }

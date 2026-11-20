@@ -19,10 +19,14 @@ import 'features/home/presentation/screens/home_screen.dart';
 import 'features/listening/data/repositories/listening_repository_impl.dart';
 import 'features/listening/presentation/cubit/listening_cubit.dart';
 import 'features/listening/presentation/screens/listening_screen.dart';
+import 'features/phonetics/data/repositories/phonetics_repository_impl.dart';
+import 'features/phonetics/domain/repositories/phonetics_repository.dart';
+import 'features/phonetics/presentation/cubit/phonetics_trainer_cubit.dart';
 import 'features/progress/presentation/screens/progress_screen.dart';
 import 'features/srs/data/repositories/srs_repository_impl.dart';
 import 'features/srs/presentation/cubit/srs_cubit.dart';
 import 'features/srs/presentation/screens/srs_screen.dart';
+import 'core/speech/speech_recognition_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,11 +44,13 @@ void main() async {
     settings: settingsStorage,
   );
 
+  final speechService = DefaultSpeechRecognitionService();
   final srsRepository = SrsRepositoryImpl(database);
   final conversationRepository = ConversationRepositoryImpl(database);
   final grammarRepository = GrammarRepositoryImpl(database);
   final listeningRepository = ListeningRepositoryImpl(database);
   final dictionaryRepository = DictionaryRepositoryImpl(database);
+  final phoneticsRepository = PhoneticsRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -57,6 +63,7 @@ void main() async {
         RepositoryProvider<GrammarRepository>.value(value: grammarRepository),
         RepositoryProvider<ListeningRepository>.value(value: listeningRepository),
         RepositoryProvider<DictionaryRepository>.value(value: dictionaryRepository),
+        RepositoryProvider<PhoneticsRepository>.value(value: phoneticsRepository),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -90,6 +97,13 @@ void main() async {
               repository: dictionaryRepository,
               audioService: hybridAudio,
             ),
+          ),
+          BlocProvider<PhoneticsTrainerCubit>(
+            create: (_) => PhoneticsTrainerCubit(
+              repository: phoneticsRepository,
+              audioService: hybridAudio,
+              speechService: speechService,
+            )..loadTrainer(),
           ),
         ],
         child: const NexusPortugueseApp(),

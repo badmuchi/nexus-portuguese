@@ -38,6 +38,7 @@ flutter:
     - assets/seed/stories_seed.json
     - assets/seed/slang_seed.json
     - assets/seed/phonetics_seed.json
+    - assets/seed/phonetics_trainer_seed.json
     - assets/audio/
     - assets/audio/dialogue/
     - assets/audio/listening/

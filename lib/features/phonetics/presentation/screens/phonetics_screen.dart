@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/audio/hybrid_audio_playback_service.dart';
+import 'phonetics_trainer_screen.dart';
 
 class PhoneticsScreen extends StatefulWidget {
   const PhoneticsScreen({super.key});
@@ -41,14 +42,78 @@ class _PhoneticsScreenState extends State<PhoneticsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Фонетический атлас'),
+        actions: [
+          FilledButton.tonalIcon(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const PhoneticsTrainerScreen()),
+              );
+            },
+            icon: const Icon(Icons.psychology_rounded, size: 18),
+            label: const Text('Тренажёр'),
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : ListView.builder(
               padding: const EdgeInsets.all(16),
-              itemCount: _sections.length,
+              itemCount: _sections.length + 1,
               itemBuilder: (context, index) {
-                final section = _sections[index] as Map<String, dynamic>;
+                if (index == 0) {
+                  return Card(
+                    margin: const EdgeInsets.only(bottom: 20),
+                    color: theme.colorScheme.primaryContainer,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Icon(Icons.hearing_rounded, color: theme.colorScheme.onPrimaryContainer),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  'Интерактивный тренажёр носовых звуков',
+                                  style: theme.textTheme.titleMedium?.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.colorScheme.onPrimaryContainer,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            'Тренируй различение минимальных пар на слух (pão vs pau, avô vs avó) и ставь произношение в микрофон.',
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onPrimaryContainer,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          FilledButton.icon(
+                            style: FilledButton.styleFrom(
+                              backgroundColor: theme.colorScheme.primary,
+                              foregroundColor: theme.colorScheme.onPrimary,
+                            ),
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => const PhoneticsTrainerScreen()),
+                              );
+                            },
+                            icon: const Icon(Icons.play_arrow_rounded),
+                            label: const Text('Запустить тренажёр'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+
+                final section = _sections[index - 1] as Map<String, dynamic>;
                 final rules = (section['rules'] as List<dynamic>?) ?? [];
 
                 return Card(

@@ -5175,6 +5175,500 @@ class SlangEntriesCompanion extends UpdateCompanion<SlangRow> {
   }
 }
 
+class $PhoneticMasteryEntriesTable extends PhoneticMasteryEntries
+    with TableInfo<$PhoneticMasteryEntriesTable, PhoneticMasteryRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $PhoneticMasteryEntriesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _soundIdMeta =
+      const VerificationMeta('soundId');
+  @override
+  late final GeneratedColumn<String> soundId = GeneratedColumn<String>(
+      'sound_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _soundCategoryMeta =
+      const VerificationMeta('soundCategory');
+  @override
+  late final GeneratedColumn<String> soundCategory = GeneratedColumn<String>(
+      'sound_category', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+      'title', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _masteryScoreMeta =
+      const VerificationMeta('masteryScore');
+  @override
+  late final GeneratedColumn<double> masteryScore = GeneratedColumn<double>(
+      'mastery_score', aliasedName, false,
+      type: DriftSqlType.double,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0.0));
+  static const VerificationMeta _earAttemptsMeta =
+      const VerificationMeta('earAttempts');
+  @override
+  late final GeneratedColumn<int> earAttempts = GeneratedColumn<int>(
+      'ear_attempts', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  static const VerificationMeta _earCorrectMeta =
+      const VerificationMeta('earCorrect');
+  @override
+  late final GeneratedColumn<int> earCorrect = GeneratedColumn<int>(
+      'ear_correct', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  static const VerificationMeta _mouthAttemptsMeta =
+      const VerificationMeta('mouthAttempts');
+  @override
+  late final GeneratedColumn<int> mouthAttempts = GeneratedColumn<int>(
+      'mouth_attempts', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  static const VerificationMeta _mouthScoreSumMeta =
+      const VerificationMeta('mouthScoreSum');
+  @override
+  late final GeneratedColumn<double> mouthScoreSum = GeneratedColumn<double>(
+      'mouth_score_sum', aliasedName, false,
+      type: DriftSqlType.double,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0.0));
+  static const VerificationMeta _lastPracticedAtMeta =
+      const VerificationMeta('lastPracticedAt');
+  @override
+  late final GeneratedColumn<DateTime> lastPracticedAt =
+      GeneratedColumn<DateTime>('last_practiced_at', aliasedName, true,
+          type: DriftSqlType.dateTime, requiredDuringInsert: false);
+  @override
+  List<GeneratedColumn> get $columns => [
+        soundId,
+        soundCategory,
+        title,
+        masteryScore,
+        earAttempts,
+        earCorrect,
+        mouthAttempts,
+        mouthScoreSum,
+        lastPracticedAt
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'phonetic_mastery_entries';
+  @override
+  VerificationContext validateIntegrity(Insertable<PhoneticMasteryRow> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('sound_id')) {
+      context.handle(_soundIdMeta,
+          soundId.isAcceptableOrUnknown(data['sound_id']!, _soundIdMeta));
+    } else if (isInserting) {
+      context.missing(_soundIdMeta);
+    }
+    if (data.containsKey('sound_category')) {
+      context.handle(
+          _soundCategoryMeta,
+          soundCategory.isAcceptableOrUnknown(
+              data['sound_category']!, _soundCategoryMeta));
+    } else if (isInserting) {
+      context.missing(_soundCategoryMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+          _titleMeta, title.isAcceptableOrUnknown(data['title']!, _titleMeta));
+    } else if (isInserting) {
+      context.missing(_titleMeta);
+    }
+    if (data.containsKey('mastery_score')) {
+      context.handle(
+          _masteryScoreMeta,
+          masteryScore.isAcceptableOrUnknown(
+              data['mastery_score']!, _masteryScoreMeta));
+    }
+    if (data.containsKey('ear_attempts')) {
+      context.handle(
+          _earAttemptsMeta,
+          earAttempts.isAcceptableOrUnknown(
+              data['ear_attempts']!, _earAttemptsMeta));
+    }
+    if (data.containsKey('ear_correct')) {
+      context.handle(
+          _earCorrectMeta,
+          earCorrect.isAcceptableOrUnknown(
+              data['ear_correct']!, _earCorrectMeta));
+    }
+    if (data.containsKey('mouth_attempts')) {
+      context.handle(
+          _mouthAttemptsMeta,
+          mouthAttempts.isAcceptableOrUnknown(
+              data['mouth_attempts']!, _mouthAttemptsMeta));
+    }
+    if (data.containsKey('mouth_score_sum')) {
+      context.handle(
+          _mouthScoreSumMeta,
+          mouthScoreSum.isAcceptableOrUnknown(
+              data['mouth_score_sum']!, _mouthScoreSumMeta));
+    }
+    if (data.containsKey('last_practiced_at')) {
+      context.handle(
+          _lastPracticedAtMeta,
+          lastPracticedAt.isAcceptableOrUnknown(
+              data['last_practiced_at']!, _lastPracticedAtMeta));
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {soundId};
+  @override
+  PhoneticMasteryRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return PhoneticMasteryRow(
+      soundId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}sound_id'])!,
+      soundCategory: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}sound_category'])!,
+      title: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}title'])!,
+      masteryScore: attachedDatabase.typeMapping
+          .read(DriftSqlType.double, data['${effectivePrefix}mastery_score'])!,
+      earAttempts: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}ear_attempts'])!,
+      earCorrect: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}ear_correct'])!,
+      mouthAttempts: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}mouth_attempts'])!,
+      mouthScoreSum: attachedDatabase.typeMapping.read(
+          DriftSqlType.double, data['${effectivePrefix}mouth_score_sum'])!,
+      lastPracticedAt: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}last_practiced_at']),
+    );
+  }
+
+  @override
+  $PhoneticMasteryEntriesTable createAlias(String alias) {
+    return $PhoneticMasteryEntriesTable(attachedDatabase, alias);
+  }
+}
+
+class PhoneticMasteryRow extends DataClass
+    implements Insertable<PhoneticMasteryRow> {
+  final String soundId;
+  final String soundCategory;
+  final String title;
+  final double masteryScore;
+  final int earAttempts;
+  final int earCorrect;
+  final int mouthAttempts;
+  final double mouthScoreSum;
+  final DateTime? lastPracticedAt;
+  const PhoneticMasteryRow(
+      {required this.soundId,
+      required this.soundCategory,
+      required this.title,
+      required this.masteryScore,
+      required this.earAttempts,
+      required this.earCorrect,
+      required this.mouthAttempts,
+      required this.mouthScoreSum,
+      this.lastPracticedAt});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['sound_id'] = Variable<String>(soundId);
+    map['sound_category'] = Variable<String>(soundCategory);
+    map['title'] = Variable<String>(title);
+    map['mastery_score'] = Variable<double>(masteryScore);
+    map['ear_attempts'] = Variable<int>(earAttempts);
+    map['ear_correct'] = Variable<int>(earCorrect);
+    map['mouth_attempts'] = Variable<int>(mouthAttempts);
+    map['mouth_score_sum'] = Variable<double>(mouthScoreSum);
+    if (!nullToAbsent || lastPracticedAt != null) {
+      map['last_practiced_at'] = Variable<DateTime>(lastPracticedAt);
+    }
+    return map;
+  }
+
+  PhoneticMasteryEntriesCompanion toCompanion(bool nullToAbsent) {
+    return PhoneticMasteryEntriesCompanion(
+      soundId: Value(soundId),
+      soundCategory: Value(soundCategory),
+      title: Value(title),
+      masteryScore: Value(masteryScore),
+      earAttempts: Value(earAttempts),
+      earCorrect: Value(earCorrect),
+      mouthAttempts: Value(mouthAttempts),
+      mouthScoreSum: Value(mouthScoreSum),
+      lastPracticedAt: lastPracticedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(lastPracticedAt),
+    );
+  }
+
+  factory PhoneticMasteryRow.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return PhoneticMasteryRow(
+      soundId: serializer.fromJson<String>(json['soundId']),
+      soundCategory: serializer.fromJson<String>(json['soundCategory']),
+      title: serializer.fromJson<String>(json['title']),
+      masteryScore: serializer.fromJson<double>(json['masteryScore']),
+      earAttempts: serializer.fromJson<int>(json['earAttempts']),
+      earCorrect: serializer.fromJson<int>(json['earCorrect']),
+      mouthAttempts: serializer.fromJson<int>(json['mouthAttempts']),
+      mouthScoreSum: serializer.fromJson<double>(json['mouthScoreSum']),
+      lastPracticedAt: serializer.fromJson<DateTime?>(json['lastPracticedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'soundId': serializer.toJson<String>(soundId),
+      'soundCategory': serializer.toJson<String>(soundCategory),
+      'title': serializer.toJson<String>(title),
+      'masteryScore': serializer.toJson<double>(masteryScore),
+      'earAttempts': serializer.toJson<int>(earAttempts),
+      'earCorrect': serializer.toJson<int>(earCorrect),
+      'mouthAttempts': serializer.toJson<int>(mouthAttempts),
+      'mouthScoreSum': serializer.toJson<double>(mouthScoreSum),
+      'lastPracticedAt': serializer.toJson<DateTime?>(lastPracticedAt),
+    };
+  }
+
+  PhoneticMasteryRow copyWith(
+          {String? soundId,
+          String? soundCategory,
+          String? title,
+          double? masteryScore,
+          int? earAttempts,
+          int? earCorrect,
+          int? mouthAttempts,
+          double? mouthScoreSum,
+          Value<DateTime?> lastPracticedAt = const Value.absent()}) =>
+      PhoneticMasteryRow(
+        soundId: soundId ?? this.soundId,
+        soundCategory: soundCategory ?? this.soundCategory,
+        title: title ?? this.title,
+        masteryScore: masteryScore ?? this.masteryScore,
+        earAttempts: earAttempts ?? this.earAttempts,
+        earCorrect: earCorrect ?? this.earCorrect,
+        mouthAttempts: mouthAttempts ?? this.mouthAttempts,
+        mouthScoreSum: mouthScoreSum ?? this.mouthScoreSum,
+        lastPracticedAt: lastPracticedAt.present
+            ? lastPracticedAt.value
+            : this.lastPracticedAt,
+      );
+  PhoneticMasteryRow copyWithCompanion(PhoneticMasteryEntriesCompanion data) {
+    return PhoneticMasteryRow(
+      soundId: data.soundId.present ? data.soundId.value : this.soundId,
+      soundCategory: data.soundCategory.present
+          ? data.soundCategory.value
+          : this.soundCategory,
+      title: data.title.present ? data.title.value : this.title,
+      masteryScore: data.masteryScore.present
+          ? data.masteryScore.value
+          : this.masteryScore,
+      earAttempts:
+          data.earAttempts.present ? data.earAttempts.value : this.earAttempts,
+      earCorrect:
+          data.earCorrect.present ? data.earCorrect.value : this.earCorrect,
+      mouthAttempts: data.mouthAttempts.present
+          ? data.mouthAttempts.value
+          : this.mouthAttempts,
+      mouthScoreSum: data.mouthScoreSum.present
+          ? data.mouthScoreSum.value
+          : this.mouthScoreSum,
+      lastPracticedAt: data.lastPracticedAt.present
+          ? data.lastPracticedAt.value
+          : this.lastPracticedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PhoneticMasteryRow(')
+          ..write('soundId: $soundId, ')
+          ..write('soundCategory: $soundCategory, ')
+          ..write('title: $title, ')
+          ..write('masteryScore: $masteryScore, ')
+          ..write('earAttempts: $earAttempts, ')
+          ..write('earCorrect: $earCorrect, ')
+          ..write('mouthAttempts: $mouthAttempts, ')
+          ..write('mouthScoreSum: $mouthScoreSum, ')
+          ..write('lastPracticedAt: $lastPracticedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(soundId, soundCategory, title, masteryScore,
+      earAttempts, earCorrect, mouthAttempts, mouthScoreSum, lastPracticedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is PhoneticMasteryRow &&
+          other.soundId == this.soundId &&
+          other.soundCategory == this.soundCategory &&
+          other.title == this.title &&
+          other.masteryScore == this.masteryScore &&
+          other.earAttempts == this.earAttempts &&
+          other.earCorrect == this.earCorrect &&
+          other.mouthAttempts == this.mouthAttempts &&
+          other.mouthScoreSum == this.mouthScoreSum &&
+          other.lastPracticedAt == this.lastPracticedAt);
+}
+
+class PhoneticMasteryEntriesCompanion
+    extends UpdateCompanion<PhoneticMasteryRow> {
+  final Value<String> soundId;
+  final Value<String> soundCategory;
+  final Value<String> title;
+  final Value<double> masteryScore;
+  final Value<int> earAttempts;
+  final Value<int> earCorrect;
+  final Value<int> mouthAttempts;
+  final Value<double> mouthScoreSum;
+  final Value<DateTime?> lastPracticedAt;
+  final Value<int> rowid;
+  const PhoneticMasteryEntriesCompanion({
+    this.soundId = const Value.absent(),
+    this.soundCategory = const Value.absent(),
+    this.title = const Value.absent(),
+    this.masteryScore = const Value.absent(),
+    this.earAttempts = const Value.absent(),
+    this.earCorrect = const Value.absent(),
+    this.mouthAttempts = const Value.absent(),
+    this.mouthScoreSum = const Value.absent(),
+    this.lastPracticedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  PhoneticMasteryEntriesCompanion.insert({
+    required String soundId,
+    required String soundCategory,
+    required String title,
+    this.masteryScore = const Value.absent(),
+    this.earAttempts = const Value.absent(),
+    this.earCorrect = const Value.absent(),
+    this.mouthAttempts = const Value.absent(),
+    this.mouthScoreSum = const Value.absent(),
+    this.lastPracticedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  })  : soundId = Value(soundId),
+        soundCategory = Value(soundCategory),
+        title = Value(title);
+  static Insertable<PhoneticMasteryRow> custom({
+    Expression<String>? soundId,
+    Expression<String>? soundCategory,
+    Expression<String>? title,
+    Expression<double>? masteryScore,
+    Expression<int>? earAttempts,
+    Expression<int>? earCorrect,
+    Expression<int>? mouthAttempts,
+    Expression<double>? mouthScoreSum,
+    Expression<DateTime>? lastPracticedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (soundId != null) 'sound_id': soundId,
+      if (soundCategory != null) 'sound_category': soundCategory,
+      if (title != null) 'title': title,
+      if (masteryScore != null) 'mastery_score': masteryScore,
+      if (earAttempts != null) 'ear_attempts': earAttempts,
+      if (earCorrect != null) 'ear_correct': earCorrect,
+      if (mouthAttempts != null) 'mouth_attempts': mouthAttempts,
+      if (mouthScoreSum != null) 'mouth_score_sum': mouthScoreSum,
+      if (lastPracticedAt != null) 'last_practiced_at': lastPracticedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  PhoneticMasteryEntriesCompanion copyWith(
+      {Value<String>? soundId,
+      Value<String>? soundCategory,
+      Value<String>? title,
+      Value<double>? masteryScore,
+      Value<int>? earAttempts,
+      Value<int>? earCorrect,
+      Value<int>? mouthAttempts,
+      Value<double>? mouthScoreSum,
+      Value<DateTime?>? lastPracticedAt,
+      Value<int>? rowid}) {
+    return PhoneticMasteryEntriesCompanion(
+      soundId: soundId ?? this.soundId,
+      soundCategory: soundCategory ?? this.soundCategory,
+      title: title ?? this.title,
+      masteryScore: masteryScore ?? this.masteryScore,
+      earAttempts: earAttempts ?? this.earAttempts,
+      earCorrect: earCorrect ?? this.earCorrect,
+      mouthAttempts: mouthAttempts ?? this.mouthAttempts,
+      mouthScoreSum: mouthScoreSum ?? this.mouthScoreSum,
+      lastPracticedAt: lastPracticedAt ?? this.lastPracticedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (soundId.present) {
+      map['sound_id'] = Variable<String>(soundId.value);
+    }
+    if (soundCategory.present) {
+      map['sound_category'] = Variable<String>(soundCategory.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (masteryScore.present) {
+      map['mastery_score'] = Variable<double>(masteryScore.value);
+    }
+    if (earAttempts.present) {
+      map['ear_attempts'] = Variable<int>(earAttempts.value);
+    }
+    if (earCorrect.present) {
+      map['ear_correct'] = Variable<int>(earCorrect.value);
+    }
+    if (mouthAttempts.present) {
+      map['mouth_attempts'] = Variable<int>(mouthAttempts.value);
+    }
+    if (mouthScoreSum.present) {
+      map['mouth_score_sum'] = Variable<double>(mouthScoreSum.value);
+    }
+    if (lastPracticedAt.present) {
+      map['last_practiced_at'] = Variable<DateTime>(lastPracticedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('PhoneticMasteryEntriesCompanion(')
+          ..write('soundId: $soundId, ')
+          ..write('soundCategory: $soundCategory, ')
+          ..write('title: $title, ')
+          ..write('masteryScore: $masteryScore, ')
+          ..write('earAttempts: $earAttempts, ')
+          ..write('earCorrect: $earCorrect, ')
+          ..write('mouthAttempts: $mouthAttempts, ')
+          ..write('mouthScoreSum: $mouthScoreSum, ')
+          ..write('lastPracticedAt: $lastPracticedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -5194,6 +5688,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       $DictionaryEntriesTable(this);
   late final $StoriesTable stories = $StoriesTable(this);
   late final $SlangEntriesTable slangEntries = $SlangEntriesTable(this);
+  late final $PhoneticMasteryEntriesTable phoneticMasteryEntries =
+      $PhoneticMasteryEntriesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -5209,7 +5705,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         listeningAttemptLogs,
         dictionaryEntries,
         stories,
-        slangEntries
+        slangEntries,
+        phoneticMasteryEntries
       ];
 }
 
@@ -7801,6 +8298,257 @@ typedef $$SlangEntriesTableProcessedTableManager = ProcessedTableManager<
     (SlangRow, BaseReferences<_$AppDatabase, $SlangEntriesTable, SlangRow>),
     SlangRow,
     PrefetchHooks Function()>;
+typedef $$PhoneticMasteryEntriesTableCreateCompanionBuilder
+    = PhoneticMasteryEntriesCompanion Function({
+  required String soundId,
+  required String soundCategory,
+  required String title,
+  Value<double> masteryScore,
+  Value<int> earAttempts,
+  Value<int> earCorrect,
+  Value<int> mouthAttempts,
+  Value<double> mouthScoreSum,
+  Value<DateTime?> lastPracticedAt,
+  Value<int> rowid,
+});
+typedef $$PhoneticMasteryEntriesTableUpdateCompanionBuilder
+    = PhoneticMasteryEntriesCompanion Function({
+  Value<String> soundId,
+  Value<String> soundCategory,
+  Value<String> title,
+  Value<double> masteryScore,
+  Value<int> earAttempts,
+  Value<int> earCorrect,
+  Value<int> mouthAttempts,
+  Value<double> mouthScoreSum,
+  Value<DateTime?> lastPracticedAt,
+  Value<int> rowid,
+});
+
+class $$PhoneticMasteryEntriesTableFilterComposer
+    extends Composer<_$AppDatabase, $PhoneticMasteryEntriesTable> {
+  $$PhoneticMasteryEntriesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get soundId => $composableBuilder(
+      column: $table.soundId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get soundCategory => $composableBuilder(
+      column: $table.soundCategory, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get title => $composableBuilder(
+      column: $table.title, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get masteryScore => $composableBuilder(
+      column: $table.masteryScore, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get earAttempts => $composableBuilder(
+      column: $table.earAttempts, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get earCorrect => $composableBuilder(
+      column: $table.earCorrect, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get mouthAttempts => $composableBuilder(
+      column: $table.mouthAttempts, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get mouthScoreSum => $composableBuilder(
+      column: $table.mouthScoreSum, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get lastPracticedAt => $composableBuilder(
+      column: $table.lastPracticedAt,
+      builder: (column) => ColumnFilters(column));
+}
+
+class $$PhoneticMasteryEntriesTableOrderingComposer
+    extends Composer<_$AppDatabase, $PhoneticMasteryEntriesTable> {
+  $$PhoneticMasteryEntriesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get soundId => $composableBuilder(
+      column: $table.soundId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get soundCategory => $composableBuilder(
+      column: $table.soundCategory,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get title => $composableBuilder(
+      column: $table.title, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get masteryScore => $composableBuilder(
+      column: $table.masteryScore,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get earAttempts => $composableBuilder(
+      column: $table.earAttempts, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get earCorrect => $composableBuilder(
+      column: $table.earCorrect, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get mouthAttempts => $composableBuilder(
+      column: $table.mouthAttempts,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get mouthScoreSum => $composableBuilder(
+      column: $table.mouthScoreSum,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get lastPracticedAt => $composableBuilder(
+      column: $table.lastPracticedAt,
+      builder: (column) => ColumnOrderings(column));
+}
+
+class $$PhoneticMasteryEntriesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $PhoneticMasteryEntriesTable> {
+  $$PhoneticMasteryEntriesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get soundId =>
+      $composableBuilder(column: $table.soundId, builder: (column) => column);
+
+  GeneratedColumn<String> get soundCategory => $composableBuilder(
+      column: $table.soundCategory, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<double> get masteryScore => $composableBuilder(
+      column: $table.masteryScore, builder: (column) => column);
+
+  GeneratedColumn<int> get earAttempts => $composableBuilder(
+      column: $table.earAttempts, builder: (column) => column);
+
+  GeneratedColumn<int> get earCorrect => $composableBuilder(
+      column: $table.earCorrect, builder: (column) => column);
+
+  GeneratedColumn<int> get mouthAttempts => $composableBuilder(
+      column: $table.mouthAttempts, builder: (column) => column);
+
+  GeneratedColumn<double> get mouthScoreSum => $composableBuilder(
+      column: $table.mouthScoreSum, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get lastPracticedAt => $composableBuilder(
+      column: $table.lastPracticedAt, builder: (column) => column);
+}
+
+class $$PhoneticMasteryEntriesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $PhoneticMasteryEntriesTable,
+    PhoneticMasteryRow,
+    $$PhoneticMasteryEntriesTableFilterComposer,
+    $$PhoneticMasteryEntriesTableOrderingComposer,
+    $$PhoneticMasteryEntriesTableAnnotationComposer,
+    $$PhoneticMasteryEntriesTableCreateCompanionBuilder,
+    $$PhoneticMasteryEntriesTableUpdateCompanionBuilder,
+    (
+      PhoneticMasteryRow,
+      BaseReferences<_$AppDatabase, $PhoneticMasteryEntriesTable,
+          PhoneticMasteryRow>
+    ),
+    PhoneticMasteryRow,
+    PrefetchHooks Function()> {
+  $$PhoneticMasteryEntriesTableTableManager(
+      _$AppDatabase db, $PhoneticMasteryEntriesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$PhoneticMasteryEntriesTableFilterComposer(
+                  $db: db, $table: table),
+          createOrderingComposer: () =>
+              $$PhoneticMasteryEntriesTableOrderingComposer(
+                  $db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$PhoneticMasteryEntriesTableAnnotationComposer(
+                  $db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> soundId = const Value.absent(),
+            Value<String> soundCategory = const Value.absent(),
+            Value<String> title = const Value.absent(),
+            Value<double> masteryScore = const Value.absent(),
+            Value<int> earAttempts = const Value.absent(),
+            Value<int> earCorrect = const Value.absent(),
+            Value<int> mouthAttempts = const Value.absent(),
+            Value<double> mouthScoreSum = const Value.absent(),
+            Value<DateTime?> lastPracticedAt = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              PhoneticMasteryEntriesCompanion(
+            soundId: soundId,
+            soundCategory: soundCategory,
+            title: title,
+            masteryScore: masteryScore,
+            earAttempts: earAttempts,
+            earCorrect: earCorrect,
+            mouthAttempts: mouthAttempts,
+            mouthScoreSum: mouthScoreSum,
+            lastPracticedAt: lastPracticedAt,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String soundId,
+            required String soundCategory,
+            required String title,
+            Value<double> masteryScore = const Value.absent(),
+            Value<int> earAttempts = const Value.absent(),
+            Value<int> earCorrect = const Value.absent(),
+            Value<int> mouthAttempts = const Value.absent(),
+            Value<double> mouthScoreSum = const Value.absent(),
+            Value<DateTime?> lastPracticedAt = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              PhoneticMasteryEntriesCompanion.insert(
+            soundId: soundId,
+            soundCategory: soundCategory,
+            title: title,
+            masteryScore: masteryScore,
+            earAttempts: earAttempts,
+            earCorrect: earCorrect,
+            mouthAttempts: mouthAttempts,
+            mouthScoreSum: mouthScoreSum,
+            lastPracticedAt: lastPracticedAt,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (
+                    e.readTable<$PhoneticMasteryEntriesTable,
+                        PhoneticMasteryRow>(table),
+                    BaseReferences<_$AppDatabase, $PhoneticMasteryEntriesTable,
+                        PhoneticMasteryRow>(db, table, e)
+                  ))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$PhoneticMasteryEntriesTableProcessedTableManager
+    = ProcessedTableManager<
+        _$AppDatabase,
+        $PhoneticMasteryEntriesTable,
+        PhoneticMasteryRow,
+        $$PhoneticMasteryEntriesTableFilterComposer,
+        $$PhoneticMasteryEntriesTableOrderingComposer,
+        $$PhoneticMasteryEntriesTableAnnotationComposer,
+        $$PhoneticMasteryEntriesTableCreateCompanionBuilder,
+        $$PhoneticMasteryEntriesTableUpdateCompanionBuilder,
+        (
+          PhoneticMasteryRow,
+          BaseReferences<_$AppDatabase, $PhoneticMasteryEntriesTable,
+              PhoneticMasteryRow>
+        ),
+        PhoneticMasteryRow,
+        PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -7828,4 +8576,7 @@ class $AppDatabaseManager {
       $$StoriesTableTableManager(_db, _db.stories);
   $$SlangEntriesTableTableManager get slangEntries =>
       $$SlangEntriesTableTableManager(_db, _db.slangEntries);
+  $$PhoneticMasteryEntriesTableTableManager get phoneticMasteryEntries =>
+      $$PhoneticMasteryEntriesTableTableManager(
+          _db, _db.phoneticMasteryEntries);
 }

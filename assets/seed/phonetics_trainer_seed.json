@@ -1,0 +1,206 @@
+[
+  {
+    "sound_id": "nasal_ao",
+    "sound_category": "nasal_vowels",
+    "title": "Носовой дифтонг -ÃO / -AM",
+    "ipa": "[ɐ̃w̃]",
+    "tip_pt": "O ar sai simultaneamente pela boca e pelo nariz. Os lábios arredondam no final.",
+    "tip_ru": "Воздух выходит одновременно через нос и рот. Звук похож на французский носовой, но заканчивается кратким носовым [w̃].",
+    "contrast_pairs": [
+      {
+        "word_a": "pão",
+        "ipa_a": "[ˈpɐ̃w̃]",
+        "meaning_a_ru": "хлеб",
+        "word_b": "pau",
+        "ipa_b": "[ˈpaw]",
+        "meaning_b_ru": "палка / древесина",
+        "distinction_note": "В 'pão' звук идёт в нос (носовой резонанс), а в 'pau' — чистый открытый ротовой гласный."
+      },
+      {
+        "word_a": "mão",
+        "ipa_a": "[ˈmɐ̃w̃]",
+        "meaning_a_ru": "рука",
+        "word_b": "mau",
+        "ipa_b": "[ˈmaw]",
+        "meaning_b_ru": "плохой",
+        "distinction_note": "'mão' вибрирует в переносице, 'mau' произносится свободно в полости рта."
+      },
+      {
+        "word_a": "irmão",
+        "ipa_a": "[iʁˈmɐ̃w̃]",
+        "meaning_a_ru": "брат",
+        "word_b": "irmã",
+        "ipa_b": "[iʁˈmɐ̃]",
+        "meaning_b_ru": "сестра",
+        "distinction_note": "'irmão' заканчивается на полугласный [w̃], а 'irmã' — чистый носовой гласный [ɐ̃]."
+      }
+    ],
+    "dialect_comparison": {
+      "word": "coração",
+      "meaning_ru": "сердце",
+      "note_br": "В PT-BR носовой дифтонг произносится чуть более открыто и протяжно: [koɾaˈsɐ̃w̃].",
+      "note_pt": "В PT-PT первый слог редуцируется почти до нуля, дифтонг короче: [kuɾɐˈsɐ̃w̃]."
+    }
+  },
+  {
+    "sound_id": "nasal_ae",
+    "sound_category": "nasal_vowels",
+    "title": "Носовой дифтонг -ÃE",
+    "ipa": "[ɐ̃j̃]",
+    "tip_pt": "Nasalização com terminação no semivogal 'i' nasal.",
+    "tip_ru": "Начинается как носовой [ɐ̃] и плавно переходит в носовой полугласный [j̃].",
+    "contrast_pairs": [
+      {
+        "word_a": "mãe",
+        "ipa_a": "[ˈmɐ̃j̃]",
+        "meaning_a_ru": "мама",
+        "word_b": "mais",
+        "ipa_b": "[ˈmajs]",
+        "meaning_b_ru": "больше",
+        "distinction_note": "'mãe' имеет сильный носовой резонанс, 'mais' — обычный ротовой дифтонг со свистящим звуком на конце."
+      },
+      {
+        "word_a": "pães",
+        "ipa_a": "[ˈpɐ̃j̃s / ˈpɐ̃j̃ʃ]",
+        "meaning_a_ru": "хлеба (мн. ч.)",
+        "word_b": "pais",
+        "ipa_b": "[ˈpajs / ˈpajʃ]",
+        "meaning_b_ru": "родители",
+        "distinction_note": "'pães' — множественное число от pão с носовым дифтонгом, 'pais' — чистое ротовое 'ай'."
+      }
+    ],
+    "dialect_comparison": {
+      "word": "mãe",
+      "meaning_ru": "мама",
+      "note_br": "В PT-BR мягкое и певучее звучание [ˈmɐ̃j̃].",
+      "note_pt": "В PT-PT более закрытый первый звук [ˈmɐ̃j̃] с коротким придыханием."
+    }
+  },
+  {
+    "sound_id": "open_closed_o",
+    "sound_category": "open_closed_vowels",
+    "title": "Открытый Ó vs Закрытый Ô",
+    "ipa": "[ɔ] vs [o]",
+    "tip_pt": "Ó (agudo) tem abertura ampla da boca; Ô (circunflexo) é fechado e arredondado.",
+    "tip_ru": "Знак á/é/ó даёт широкий открытый гласный (рот шире). Знак â/ê/ô даёт узкий закрытый звук.",
+    "contrast_pairs": [
+      {
+        "word_a": "avó",
+        "ipa_a": "[aˈvɔ]",
+        "meaning_a_ru": "бабушка",
+        "word_b": "avô",
+        "ipa_b": "[aˈvo]",
+        "meaning_b_ru": "дедушка",
+        "distinction_note": "'avó' произносится с широким открытым 'О' [ɔ], а 'avô' — с закрытым глубоким 'О' [o]."
+      },
+      {
+        "word_a": "pó",
+        "ipa_a": "[ˈpɔ]",
+        "meaning_a_ru": "пыль / порошок",
+        "word_b": "porto",
+        "ipa_b": "[ˈpoʁtu]",
+        "meaning_b_ru": "порт",
+        "distinction_note": "В слове 'pó' гласный предельно открытый, в 'porto' — закрытый."
+      }
+    ],
+    "dialect_comparison": {
+      "word": "avó / avô",
+      "meaning_ru": "бабушка / дедушка",
+      "note_br": "В PT-BR начальная 'a' звучит открыто: [aˈvɔ] / [aˈvo].",
+      "note_pt": "В PT-PT начальная безударная 'a' редуцируется: [ɐˈvɔ] / [ɐˈvo]."
+    }
+  },
+  {
+    "sound_id": "open_closed_e",
+    "sound_category": "open_closed_vowels",
+    "title": "Открытый É vs Закрытый Ê",
+    "ipa": "[ɛ] vs [e]",
+    "tip_pt": "É é aberto como em 'festa'; Ê é fechado como em 'mesa'.",
+    "tip_ru": "É произносится как открытое русское 'э' в слове 'эхо'. Ê — узкое закрытое 'э' ближе к немецкому 'ee' или французскому é.",
+    "contrast_pairs": [
+      {
+        "word_a": "sede (aberto)",
+        "ipa_a": "[ˈsɛdʒi / ˈsɛdɨ]",
+        "meaning_a_ru": "штаб-квартира / резиденция",
+        "word_b": "sede (fechado)",
+        "ipa_b": "[ˈsedʒi / ˈsedɨ]",
+        "meaning_b_ru": "жажда",
+        "distinction_note": "Одно и то же написание, но открытый [ɛ] означает штаб-квартиру, а закрытый [e] — жажду!"
+      },
+      {
+        "word_a": "colher (verbo)",
+        "ipa_a": "[kuˈʎɛɾ]",
+        "meaning_a_ru": "собирать (урожай)",
+        "word_b": "colher (substantivo)",
+        "ipa_b": "[kuˈʎeɾ]",
+        "meaning_b_ru": "ложка",
+        "distinction_note": "Глагол имеет открытый звук [ɛ], а существительное 'ложка' — закрытый [e]."
+      }
+    ],
+    "dialect_comparison": {
+      "word": "café",
+      "meaning_ru": "кофе",
+      "note_br": "В PT-BR звонкий открытый слог [kaˈfɛ].",
+      "note_pt": "В PT-PT безударный первый слог редуцирован [kɐˈfɛ]."
+    }
+  },
+  {
+    "sound_id": "consonant_r_rr",
+    "sound_category": "consonant_shifts",
+    "title": "Одинарная R vs Двойная RR",
+    "ipa": "[ɾ] vs [ʁ / h]",
+    "tip_pt": "R simples entre vogais vibra a ponta da língua. RR é gutural / aspirado.",
+    "tip_ru": "Одинарная R между гласными — лёгкий удар кончиком языка (как в 'игра'). Двойная RR — гортанный звук (в PT-BR как хриплое 'х', в PT-PT как грассирующее 'р').",
+    "contrast_pairs": [
+      {
+        "word_a": "caro",
+        "ipa_a": "[ˈkaɾu]",
+        "meaning_a_ru": "дорогой (по цене)",
+        "word_b": "carro",
+        "ipa_b": "[ˈkaʁu / ˈkahu]",
+        "meaning_b_ru": "автомобиль",
+        "distinction_note": "'caro' имеет нежный язычный звук [ɾ], а 'carro' — сильный гортанный [ʁ/h]. Ошибка меняет смысл!"
+      },
+      {
+        "word_a": "muro",
+        "ipa_a": "[ˈmuɾu]",
+        "meaning_a_ru": "стена / забор",
+        "word_b": "murro",
+        "ipa_b": "[ˈmuʁu]",
+        "meaning_b_ru": "удар кулаком",
+        "distinction_note": "'muro' (стена) произносится с одним ударом языка, а 'murro' (удар) — глухое гортанное рычание."
+      }
+    ],
+    "dialect_comparison": {
+      "word": "Rio de Janeiro",
+      "meaning_ru": "Рио-де-Жанейро",
+      "note_br": "Начальная R звучит как мягкое выдыхательное [h]: [hiw dʒi ʒaˈnejɾu].",
+      "note_pt": "Начальная R звучит как сильное увулярное [ʁ]: [ʁiw dɨ ʒɐˈnɐjɾu]."
+    }
+  },
+  {
+    "sound_id": "dialect_contrast_s",
+    "sound_category": "dialect_contrast",
+    "title": "Финал слога: S свистящий vs шипящий",
+    "ipa": "[s / z] vs [ʃ / ʒ]",
+    "tip_pt": "No Brasil o 'S' final é frequentemente alveolar [s]. Em Portugal é sempre pós-alveolar [ʃ].",
+    "tip_ru": "В Бразилии 'S' на конце слога звучит как чистое 'С' (кроме Рио). В Португалии перед глухими согласными всегда звучит шипящее 'Ш', а перед звонкими — 'Ж'.",
+    "contrast_pairs": [
+      {
+        "word_a": "dois amigos",
+        "ipa_a": "[dojz aˈmiɡus / dojz ɐˈmiɡuʃ]",
+        "meaning_a_ru": "два друга (связка s -> z)",
+        "word_b": "dois carros",
+        "ipa_b": "[dojs ˈkaʁus / dojʃ ˈkaʁuʃ]",
+        "meaning_b_ru": "две машины (глухой s -> s / s -> sh)",
+        "distinction_note": "Перед гласной 'S' озвончается в [z], а перед согласной звучит как [s] в Сан-Паулу или [ʃ] в Лиссабоне."
+      }
+    ],
+    "dialect_comparison": {
+      "word": "Portugal",
+      "meaning_ru": "Португалия",
+      "note_br": "В PT-BR: [poʁtuˈɡaw] (буква L на конце переходит в полугласный [w]).",
+      "note_pt": "В PT-PT: [puɾtuˈɡaɫ] (редукция 'o' в [u], а конечная L — твёрдая веляризованная 'л')."
+    }
+  }
+]
