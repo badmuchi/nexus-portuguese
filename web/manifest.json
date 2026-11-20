@@ -1,11 +1,11 @@
 {
-    "name": "nexus_portuguese_app",
-    "short_name": "nexus_portuguese_app",
+    "name": "Nexus Portuguese",
+    "short_name": "Portuguese",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#1B5E20",
+    "theme_color": "#00875F",
+    "description": "Интерактивное изучение португальского языка (PT-BR / PT-PT): FSRS карточки, диалоги, фонетика, грамматика.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
