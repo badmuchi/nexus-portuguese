@@ -1,6 +1,11 @@
 import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:nexus_portuguese_app/core/database/app_database.dart';
+import 'package:nexus_portuguese_app/features/phonetics/data/repositories/phonetics_repository_impl.dart';
 import 'package:nexus_portuguese_app/features/phonetics/domain/entities/phonetic_trainer_models.dart';
+
+class MockAppDatabase extends Mock implements AppDatabase {}
 
 void main() {
   group('Phonetics Trainer Domain Models Tests', () {
@@ -82,6 +87,96 @@ void main() {
       expect(mastery.earAccuracyPercent, 80.0);
       expect(mastery.mouthAccuracyAverage, 90.0);
       expect(mastery.masteryScore, 85.0);
+    });
+  });
+
+  group('PhoneticsRepositoryImpl Data Layer Tests', () {
+    late MockAppDatabase mockDatabase;
+    late PhoneticsRepositoryImpl repository;
+
+    setUp(() {
+      mockDatabase = MockAppDatabase();
+      repository = PhoneticsRepositoryImpl(database: mockDatabase);
+    });
+
+    test('getMasteryList returns mapped entities from Drift rows', () async {
+      final now = DateTime(2026, 11, 20);
+      final row = PhoneticMasteryRow(
+        soundId: 'nasal_ao',
+        soundCategory: 'nasal_vowels',
+        title: 'Носовой -ÃO',
+        masteryScore: 85.0,
+        earAttempts: 10,
+        earCorrect: 8,
+        mouthAttempts: 2,
+        mouthScoreSum: 180.0,
+        lastPracticedAt: now,
+      );
+
+      when(() => mockDatabase.getAllPhoneticMastery()).thenAnswer((_) async => [row]);
+
+      final result = await repository.getMasteryList();
+      expect(result.isOk, true);
+      expect(result.value.length, 1);
+      expect(result.value.first.soundId, 'nasal_ao');
+      expect(result.value.first.masteryScore, 85.0);
+      expect(result.value.first.earAccuracyPercent, 80.0);
+    });
+
+    test('getMasteryList returns DatabaseFailure when database throws', () async {
+      when(() => mockDatabase.getAllPhoneticMastery()).thenThrow(Exception('DB error'));
+
+      final result = await repository.getMasteryList();
+      expect(result.isFailure, true);
+      expect(result.failure?.message, contains('Failed to fetch phonetic mastery'));
+    });
+
+    test('recordEarAnswer delegates to database and returns ok', () async {
+      when(() => mockDatabase.recordPhoneticEarAttempt(
+            soundId: any(named: 'soundId'),
+            isCorrect: any(named: 'isCorrect'),
+            soundCategory: any(named: 'soundCategory'),
+            title: any(named: 'title'),
+          )).thenAnswer((_) async {});
+
+      final result = await repository.recordEarAnswer(
+        soundId: 'nasal_ao',
+        isCorrect: true,
+        soundCategory: 'nasal_vowels',
+        title: 'Носовой -ÃO',
+      );
+
+      expect(result.isOk, true);
+      verify(() => mockDatabase.recordPhoneticEarAttempt(
+            soundId: 'nasal_ao',
+            isCorrect: true,
+            soundCategory: 'nasal_vowels',
+            title: 'Носовой -ÃO',
+          )).called(1);
+    });
+
+    test('recordMouthScore delegates to database and returns ok', () async {
+      when(() => mockDatabase.recordPhoneticMouthAttempt(
+            soundId: any(named: 'soundId'),
+            scorePercent: any(named: 'scorePercent'),
+            soundCategory: any(named: 'soundCategory'),
+            title: any(named: 'title'),
+          )).thenAnswer((_) async {});
+
+      final result = await repository.recordMouthScore(
+        soundId: 'nasal_ao',
+        scorePercent: 95.0,
+        soundCategory: 'nasal_vowels',
+        title: 'Носовой -ÃO',
+      );
+
+      expect(result.isOk, true);
+      verify(() => mockDatabase.recordPhoneticMouthAttempt(
+            soundId: 'nasal_ao',
+            scorePercent: 95.0,
+            soundCategory: 'nasal_vowels',
+            title: 'Носовой -ÃO',
+          )).called(1);
     });
   });
 }

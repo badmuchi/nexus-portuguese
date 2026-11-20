@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/audio/hybrid_audio_playback_service.dart';
-import '../../../../core/database/app_database.dart';
 import '../../../../core/settings/app_settings_storage.dart';
+import 'package:nexus_portuguese_app/features/srs/data/repositories/srs_repository_impl.dart';
 import 'package:nexus_portuguese_app/features/phonetics/presentation/screens/phonetics_screen.dart';
 import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
 import 'package:nexus_portuguese_app/features/speech_lab/presentation/screens/speech_lab_screen.dart';
@@ -30,9 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _loadState() async {
     final settings = context.read<AppSettingsStorage>();
-    final db = context.read<AppDatabase>();
+    final srsRepo = context.read<SrsRepository>();
     final dialect = await settings.getDialect();
-    final due = await db.getDueSrsCards(DateTime.now());
+    final due = await srsRepo.getDueCards();
 
     if (mounted) {
       setState(() {

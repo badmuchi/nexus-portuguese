@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/audio/hybrid_audio_playback_service.dart';
-import '../../../../core/database/app_database.dart';
+import '../cubit/slang_cubit.dart';
+import '../cubit/slang_state.dart';
 
 class SlangScreen extends StatefulWidget {
   const SlangScreen({super.key});
@@ -11,22 +12,10 @@ class SlangScreen extends StatefulWidget {
 }
 
 class _SlangScreenState extends State<SlangScreen> {
-  List<SlangRow> _slangList = [];
-  bool _isLoading = true;
-
   @override
   void initState() {
     super.initState();
-    _loadSlang();
-  }
-
-  Future<void> _loadSlang() async {
-    final db = context.read<AppDatabase>();
-    final list = await db.getAllSlang();
-    setState(() {
-      _slangList = list;
-      _isLoading = false;
-    });
+    context.read<SlangCubit>().loadSlang();
   }
 
   @override
@@ -38,13 +27,39 @@ class _SlangScreenState extends State<SlangScreen> {
       appBar: AppBar(
         title: const Text('Сленг и идиомы (Gírias)'),
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : ListView.builder(
+      body: BlocBuilder<SlangCubit, SlangState>(
+        builder: (context, state) {
+          if (state is SlangLoading || state is SlangInitial) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state is SlangError) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(state.message),
+                  const SizedBox(height: 12),
+                  FilledButton(
+                    onPressed: () => context.read<SlangCubit>().loadSlang(),
+                    child: const Text('Повторить'),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          if (state is SlangLoaded) {
+            final slangList = state.slangList;
+            if (slangList.isEmpty) {
+              return const Center(child: Text('Сленг пока не добавлен'));
+            }
+
+            return ListView.builder(
               padding: const EdgeInsets.all(16),
-              itemCount: _slangList.length,
+              itemCount: slangList.length,
               itemBuilder: (context, index) {
-                final item = _slangList[index];
+                final item = slangList[index];
 
                 return Card(
                   margin: const EdgeInsets.only(bottom: 16),
@@ -157,7 +172,12 @@ class _SlangScreenState extends State<SlangScreen> {
                   ),
                 );
               },
-            ),
+            );
+          }
+
+          return const SizedBox.shrink();
+        },
+      ),
     );
   }
 }
