@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/portuguese_normalizer.dart';
+import '../../../../core/widgets/portuguese_accent_bar.dart';
 import '../../domain/services/fsrs_engine.dart';
 import '../cubit/srs_cubit.dart';
 import '../cubit/srs_state.dart';
@@ -156,7 +158,10 @@ class _SrsScreenState extends State<SrsScreen> {
                         InkWell(
                           borderRadius: BorderRadius.circular(20),
                           onTap: state.reviewMode == SrsReviewMode.flashcard
-                              ? () => context.read<SrsCubit>().toggleFlip()
+                              ? () {
+                                  HapticFeedback.selectionClick();
+                                  context.read<SrsCubit>().toggleFlip();
+                                }
                               : null,
                           child: Container(
                             width: double.infinity,
@@ -261,7 +266,12 @@ class _SrsScreenState extends State<SrsScreen> {
 
                         // Typing Input area if typing mode
                         if (state.reviewMode == SrsReviewMode.typing && !state.isFrontRevealed) ...[
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 16),
+                          PortugueseAccentBar(
+                            controller: _typingController,
+                            onSubmitted: () => context.read<SrsCubit>().submitTypedAnswer(_typingController.text),
+                          ),
+                          const SizedBox(height: 10),
                           TextField(
                             controller: _typingController,
                             autofocus: true,

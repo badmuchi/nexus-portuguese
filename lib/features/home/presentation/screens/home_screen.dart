@@ -5,6 +5,7 @@ import '../../../../core/database/app_database.dart';
 import '../../../../core/settings/app_settings_storage.dart';
 import 'package:nexus_portuguese_app/features/phonetics/presentation/screens/phonetics_screen.dart';
 import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
+import 'package:nexus_portuguese_app/features/speech_lab/presentation/screens/speech_lab_screen.dart';
 import 'package:nexus_portuguese_app/features/stories/presentation/screens/stories_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -263,6 +264,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icons.headphones_rounded,
                   color: Colors.purple,
                   onTap: () => widget.onNavigateToTab(4),
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Лаборатория речи',
+                  subtitle: 'Акустика и дикция',
+                  icon: Icons.mic_external_on_rounded,
+                  color: Colors.pink.shade700,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SpeechLabScreen()),
+                    );
+                  },
                 ),
                 _buildModuleCard(
                   theme,

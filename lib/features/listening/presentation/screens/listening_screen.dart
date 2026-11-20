@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/utils/portuguese_normalizer.dart';
+import '../../../../core/widgets/portuguese_accent_bar.dart';
 import '../cubit/listening_cubit.dart';
 import '../cubit/listening_state.dart';
 
@@ -155,6 +156,13 @@ class _ListeningScreenState extends State<ListeningScreen> {
 
                   // Dictation Input Field
                   if (!state.isRevealed) ...[
+                    PortugueseAccentBar(
+                      controller: _dictationController,
+                      onSubmitted: () {
+                        context.read<ListeningCubit>().checkDictation(_dictationController.text);
+                      },
+                    ),
+                    const SizedBox(height: 10),
                     TextField(
                       controller: _dictationController,
                       maxLines: 3,

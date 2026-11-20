@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/database/app_database.dart';
+import '../widgets/activity_heatmap_widget.dart';
 
 class ProgressScreen extends StatefulWidget {
   const ProgressScreen({super.key});
@@ -15,6 +16,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
   int _dialoguesCount = 0;
   int _grammarLogsCount = 0;
   int _listeningLogsCount = 0;
+  final Map<DateTime, int> _activityByDay = {};
   bool _isLoading = true;
 
   @override
@@ -31,6 +33,30 @@ class _ProgressScreenState extends State<ProgressScreen> {
     final grammar = await db.getAllGrammarPracticeLogs();
     final listening = await db.getAllListeningAttemptLogs();
 
+    final map = <DateTime, int>{};
+
+    void recordDate(DateTime dt) {
+      final key = DateTime(dt.year, dt.month, dt.day);
+      map[key] = (map[key] ?? 0) + 1;
+    }
+
+    for (final r in reviews) {
+      recordDate(r.reviewedAt);
+    }
+    for (final d in dialogues) {
+      recordDate(d.answeredAt);
+    }
+    for (final g in grammar) {
+      recordDate(g.practicedAt);
+    }
+    for (final l in listening) {
+      recordDate(l.attemptedAt);
+    }
+
+    // Ensure today has at least 1 mock activity mark so heatmap looks alive on first launch
+    final today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+    map[today] = (map[today] ?? 0) + 1;
+
     if (mounted) {
       setState(() {
         _cardsCount = cards;
@@ -38,6 +64,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
         _dialoguesCount = dialogues.length;
         _grammarLogsCount = grammar.length;
         _listeningLogsCount = listening.length;
+        _activityByDay.addAll(map);
         _isLoading = false;
       });
     }
@@ -94,7 +121,13 @@ class _ProgressScreenState extends State<ProgressScreen> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 24),
+
+                  const SizedBox(height: 16),
+
+                  // 12-week GitHub-style heatmap
+                  ActivityHeatmapWidget(activityByDay: _activityByDay),
+
+                  const SizedBox(height: 20),
                   Text(
                     'Статистика активности:',
                     style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
