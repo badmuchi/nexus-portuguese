@@ -6011,6 +6011,504 @@ class SceneProgressEntriesCompanion extends UpdateCompanion<SceneProgressRow> {
   }
 }
 
+class $AssessmentResultEntriesTable extends AssessmentResultEntries
+    with TableInfo<$AssessmentResultEntriesTable, AssessmentResultRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $AssessmentResultEntriesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      hasAutoIncrement: true,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultConstraints:
+          GeneratedColumn.constraintIsAlways('PRIMARY KEY AUTOINCREMENT'));
+  static const VerificationMeta _determinedLevelMeta =
+      const VerificationMeta('determinedLevel');
+  @override
+  late final GeneratedColumn<String> determinedLevel = GeneratedColumn<String>(
+      'determined_level', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _levelTitleRuMeta =
+      const VerificationMeta('levelTitleRu');
+  @override
+  late final GeneratedColumn<String> levelTitleRu = GeneratedColumn<String>(
+      'level_title_ru', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _scorePercentageMeta =
+      const VerificationMeta('scorePercentage');
+  @override
+  late final GeneratedColumn<double> scorePercentage = GeneratedColumn<double>(
+      'score_percentage', aliasedName, false,
+      type: DriftSqlType.double, requiredDuringInsert: true);
+  static const VerificationMeta _totalQuestionsMeta =
+      const VerificationMeta('totalQuestions');
+  @override
+  late final GeneratedColumn<int> totalQuestions = GeneratedColumn<int>(
+      'total_questions', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _correctAnswersMeta =
+      const VerificationMeta('correctAnswers');
+  @override
+  late final GeneratedColumn<int> correctAnswers = GeneratedColumn<int>(
+      'correct_answers', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _skillScoresJsonMeta =
+      const VerificationMeta('skillScoresJson');
+  @override
+  late final GeneratedColumn<String> skillScoresJson = GeneratedColumn<String>(
+      'skill_scores_json', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _mistakesJsonMeta =
+      const VerificationMeta('mistakesJson');
+  @override
+  late final GeneratedColumn<String> mistakesJson = GeneratedColumn<String>(
+      'mistakes_json', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant('[]'));
+  static const VerificationMeta _completedAtMeta =
+      const VerificationMeta('completedAt');
+  @override
+  late final GeneratedColumn<DateTime> completedAt = GeneratedColumn<DateTime>(
+      'completed_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        determinedLevel,
+        levelTitleRu,
+        scorePercentage,
+        totalQuestions,
+        correctAnswers,
+        skillScoresJson,
+        mistakesJson,
+        completedAt
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'assessment_result_entries';
+  @override
+  VerificationContext validateIntegrity(
+      Insertable<AssessmentResultRow> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('determined_level')) {
+      context.handle(
+          _determinedLevelMeta,
+          determinedLevel.isAcceptableOrUnknown(
+              data['determined_level']!, _determinedLevelMeta));
+    } else if (isInserting) {
+      context.missing(_determinedLevelMeta);
+    }
+    if (data.containsKey('level_title_ru')) {
+      context.handle(
+          _levelTitleRuMeta,
+          levelTitleRu.isAcceptableOrUnknown(
+              data['level_title_ru']!, _levelTitleRuMeta));
+    } else if (isInserting) {
+      context.missing(_levelTitleRuMeta);
+    }
+    if (data.containsKey('score_percentage')) {
+      context.handle(
+          _scorePercentageMeta,
+          scorePercentage.isAcceptableOrUnknown(
+              data['score_percentage']!, _scorePercentageMeta));
+    } else if (isInserting) {
+      context.missing(_scorePercentageMeta);
+    }
+    if (data.containsKey('total_questions')) {
+      context.handle(
+          _totalQuestionsMeta,
+          totalQuestions.isAcceptableOrUnknown(
+              data['total_questions']!, _totalQuestionsMeta));
+    } else if (isInserting) {
+      context.missing(_totalQuestionsMeta);
+    }
+    if (data.containsKey('correct_answers')) {
+      context.handle(
+          _correctAnswersMeta,
+          correctAnswers.isAcceptableOrUnknown(
+              data['correct_answers']!, _correctAnswersMeta));
+    } else if (isInserting) {
+      context.missing(_correctAnswersMeta);
+    }
+    if (data.containsKey('skill_scores_json')) {
+      context.handle(
+          _skillScoresJsonMeta,
+          skillScoresJson.isAcceptableOrUnknown(
+              data['skill_scores_json']!, _skillScoresJsonMeta));
+    } else if (isInserting) {
+      context.missing(_skillScoresJsonMeta);
+    }
+    if (data.containsKey('mistakes_json')) {
+      context.handle(
+          _mistakesJsonMeta,
+          mistakesJson.isAcceptableOrUnknown(
+              data['mistakes_json']!, _mistakesJsonMeta));
+    }
+    if (data.containsKey('completed_at')) {
+      context.handle(
+          _completedAtMeta,
+          completedAt.isAcceptableOrUnknown(
+              data['completed_at']!, _completedAtMeta));
+    } else if (isInserting) {
+      context.missing(_completedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  AssessmentResultRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return AssessmentResultRow(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      determinedLevel: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}determined_level'])!,
+      levelTitleRu: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}level_title_ru'])!,
+      scorePercentage: attachedDatabase.typeMapping.read(
+          DriftSqlType.double, data['${effectivePrefix}score_percentage'])!,
+      totalQuestions: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}total_questions'])!,
+      correctAnswers: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}correct_answers'])!,
+      skillScoresJson: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}skill_scores_json'])!,
+      mistakesJson: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}mistakes_json'])!,
+      completedAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}completed_at'])!,
+    );
+  }
+
+  @override
+  $AssessmentResultEntriesTable createAlias(String alias) {
+    return $AssessmentResultEntriesTable(attachedDatabase, alias);
+  }
+}
+
+class AssessmentResultRow extends DataClass
+    implements Insertable<AssessmentResultRow> {
+  final int id;
+  final String determinedLevel;
+  final String levelTitleRu;
+  final double scorePercentage;
+  final int totalQuestions;
+  final int correctAnswers;
+  final String skillScoresJson;
+  final String mistakesJson;
+  final DateTime completedAt;
+  const AssessmentResultRow(
+      {required this.id,
+      required this.determinedLevel,
+      required this.levelTitleRu,
+      required this.scorePercentage,
+      required this.totalQuestions,
+      required this.correctAnswers,
+      required this.skillScoresJson,
+      required this.mistakesJson,
+      required this.completedAt});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['determined_level'] = Variable<String>(determinedLevel);
+    map['level_title_ru'] = Variable<String>(levelTitleRu);
+    map['score_percentage'] = Variable<double>(scorePercentage);
+    map['total_questions'] = Variable<int>(totalQuestions);
+    map['correct_answers'] = Variable<int>(correctAnswers);
+    map['skill_scores_json'] = Variable<String>(skillScoresJson);
+    map['mistakes_json'] = Variable<String>(mistakesJson);
+    map['completed_at'] = Variable<DateTime>(completedAt);
+    return map;
+  }
+
+  AssessmentResultEntriesCompanion toCompanion(bool nullToAbsent) {
+    return AssessmentResultEntriesCompanion(
+      id: Value(id),
+      determinedLevel: Value(determinedLevel),
+      levelTitleRu: Value(levelTitleRu),
+      scorePercentage: Value(scorePercentage),
+      totalQuestions: Value(totalQuestions),
+      correctAnswers: Value(correctAnswers),
+      skillScoresJson: Value(skillScoresJson),
+      mistakesJson: Value(mistakesJson),
+      completedAt: Value(completedAt),
+    );
+  }
+
+  factory AssessmentResultRow.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return AssessmentResultRow(
+      id: serializer.fromJson<int>(json['id']),
+      determinedLevel: serializer.fromJson<String>(json['determinedLevel']),
+      levelTitleRu: serializer.fromJson<String>(json['levelTitleRu']),
+      scorePercentage: serializer.fromJson<double>(json['scorePercentage']),
+      totalQuestions: serializer.fromJson<int>(json['totalQuestions']),
+      correctAnswers: serializer.fromJson<int>(json['correctAnswers']),
+      skillScoresJson: serializer.fromJson<String>(json['skillScoresJson']),
+      mistakesJson: serializer.fromJson<String>(json['mistakesJson']),
+      completedAt: serializer.fromJson<DateTime>(json['completedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'determinedLevel': serializer.toJson<String>(determinedLevel),
+      'levelTitleRu': serializer.toJson<String>(levelTitleRu),
+      'scorePercentage': serializer.toJson<double>(scorePercentage),
+      'totalQuestions': serializer.toJson<int>(totalQuestions),
+      'correctAnswers': serializer.toJson<int>(correctAnswers),
+      'skillScoresJson': serializer.toJson<String>(skillScoresJson),
+      'mistakesJson': serializer.toJson<String>(mistakesJson),
+      'completedAt': serializer.toJson<DateTime>(completedAt),
+    };
+  }
+
+  AssessmentResultRow copyWith(
+          {int? id,
+          String? determinedLevel,
+          String? levelTitleRu,
+          double? scorePercentage,
+          int? totalQuestions,
+          int? correctAnswers,
+          String? skillScoresJson,
+          String? mistakesJson,
+          DateTime? completedAt}) =>
+      AssessmentResultRow(
+        id: id ?? this.id,
+        determinedLevel: determinedLevel ?? this.determinedLevel,
+        levelTitleRu: levelTitleRu ?? this.levelTitleRu,
+        scorePercentage: scorePercentage ?? this.scorePercentage,
+        totalQuestions: totalQuestions ?? this.totalQuestions,
+        correctAnswers: correctAnswers ?? this.correctAnswers,
+        skillScoresJson: skillScoresJson ?? this.skillScoresJson,
+        mistakesJson: mistakesJson ?? this.mistakesJson,
+        completedAt: completedAt ?? this.completedAt,
+      );
+  AssessmentResultRow copyWithCompanion(AssessmentResultEntriesCompanion data) {
+    return AssessmentResultRow(
+      id: data.id.present ? data.id.value : this.id,
+      determinedLevel: data.determinedLevel.present
+          ? data.determinedLevel.value
+          : this.determinedLevel,
+      levelTitleRu: data.levelTitleRu.present
+          ? data.levelTitleRu.value
+          : this.levelTitleRu,
+      scorePercentage: data.scorePercentage.present
+          ? data.scorePercentage.value
+          : this.scorePercentage,
+      totalQuestions: data.totalQuestions.present
+          ? data.totalQuestions.value
+          : this.totalQuestions,
+      correctAnswers: data.correctAnswers.present
+          ? data.correctAnswers.value
+          : this.correctAnswers,
+      skillScoresJson: data.skillScoresJson.present
+          ? data.skillScoresJson.value
+          : this.skillScoresJson,
+      mistakesJson: data.mistakesJson.present
+          ? data.mistakesJson.value
+          : this.mistakesJson,
+      completedAt:
+          data.completedAt.present ? data.completedAt.value : this.completedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AssessmentResultRow(')
+          ..write('id: $id, ')
+          ..write('determinedLevel: $determinedLevel, ')
+          ..write('levelTitleRu: $levelTitleRu, ')
+          ..write('scorePercentage: $scorePercentage, ')
+          ..write('totalQuestions: $totalQuestions, ')
+          ..write('correctAnswers: $correctAnswers, ')
+          ..write('skillScoresJson: $skillScoresJson, ')
+          ..write('mistakesJson: $mistakesJson, ')
+          ..write('completedAt: $completedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      id,
+      determinedLevel,
+      levelTitleRu,
+      scorePercentage,
+      totalQuestions,
+      correctAnswers,
+      skillScoresJson,
+      mistakesJson,
+      completedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is AssessmentResultRow &&
+          other.id == this.id &&
+          other.determinedLevel == this.determinedLevel &&
+          other.levelTitleRu == this.levelTitleRu &&
+          other.scorePercentage == this.scorePercentage &&
+          other.totalQuestions == this.totalQuestions &&
+          other.correctAnswers == this.correctAnswers &&
+          other.skillScoresJson == this.skillScoresJson &&
+          other.mistakesJson == this.mistakesJson &&
+          other.completedAt == this.completedAt);
+}
+
+class AssessmentResultEntriesCompanion
+    extends UpdateCompanion<AssessmentResultRow> {
+  final Value<int> id;
+  final Value<String> determinedLevel;
+  final Value<String> levelTitleRu;
+  final Value<double> scorePercentage;
+  final Value<int> totalQuestions;
+  final Value<int> correctAnswers;
+  final Value<String> skillScoresJson;
+  final Value<String> mistakesJson;
+  final Value<DateTime> completedAt;
+  const AssessmentResultEntriesCompanion({
+    this.id = const Value.absent(),
+    this.determinedLevel = const Value.absent(),
+    this.levelTitleRu = const Value.absent(),
+    this.scorePercentage = const Value.absent(),
+    this.totalQuestions = const Value.absent(),
+    this.correctAnswers = const Value.absent(),
+    this.skillScoresJson = const Value.absent(),
+    this.mistakesJson = const Value.absent(),
+    this.completedAt = const Value.absent(),
+  });
+  AssessmentResultEntriesCompanion.insert({
+    this.id = const Value.absent(),
+    required String determinedLevel,
+    required String levelTitleRu,
+    required double scorePercentage,
+    required int totalQuestions,
+    required int correctAnswers,
+    required String skillScoresJson,
+    this.mistakesJson = const Value.absent(),
+    required DateTime completedAt,
+  })  : determinedLevel = Value(determinedLevel),
+        levelTitleRu = Value(levelTitleRu),
+        scorePercentage = Value(scorePercentage),
+        totalQuestions = Value(totalQuestions),
+        correctAnswers = Value(correctAnswers),
+        skillScoresJson = Value(skillScoresJson),
+        completedAt = Value(completedAt);
+  static Insertable<AssessmentResultRow> custom({
+    Expression<int>? id,
+    Expression<String>? determinedLevel,
+    Expression<String>? levelTitleRu,
+    Expression<double>? scorePercentage,
+    Expression<int>? totalQuestions,
+    Expression<int>? correctAnswers,
+    Expression<String>? skillScoresJson,
+    Expression<String>? mistakesJson,
+    Expression<DateTime>? completedAt,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (determinedLevel != null) 'determined_level': determinedLevel,
+      if (levelTitleRu != null) 'level_title_ru': levelTitleRu,
+      if (scorePercentage != null) 'score_percentage': scorePercentage,
+      if (totalQuestions != null) 'total_questions': totalQuestions,
+      if (correctAnswers != null) 'correct_answers': correctAnswers,
+      if (skillScoresJson != null) 'skill_scores_json': skillScoresJson,
+      if (mistakesJson != null) 'mistakes_json': mistakesJson,
+      if (completedAt != null) 'completed_at': completedAt,
+    });
+  }
+
+  AssessmentResultEntriesCompanion copyWith(
+      {Value<int>? id,
+      Value<String>? determinedLevel,
+      Value<String>? levelTitleRu,
+      Value<double>? scorePercentage,
+      Value<int>? totalQuestions,
+      Value<int>? correctAnswers,
+      Value<String>? skillScoresJson,
+      Value<String>? mistakesJson,
+      Value<DateTime>? completedAt}) {
+    return AssessmentResultEntriesCompanion(
+      id: id ?? this.id,
+      determinedLevel: determinedLevel ?? this.determinedLevel,
+      levelTitleRu: levelTitleRu ?? this.levelTitleRu,
+      scorePercentage: scorePercentage ?? this.scorePercentage,
+      totalQuestions: totalQuestions ?? this.totalQuestions,
+      correctAnswers: correctAnswers ?? this.correctAnswers,
+      skillScoresJson: skillScoresJson ?? this.skillScoresJson,
+      mistakesJson: mistakesJson ?? this.mistakesJson,
+      completedAt: completedAt ?? this.completedAt,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (determinedLevel.present) {
+      map['determined_level'] = Variable<String>(determinedLevel.value);
+    }
+    if (levelTitleRu.present) {
+      map['level_title_ru'] = Variable<String>(levelTitleRu.value);
+    }
+    if (scorePercentage.present) {
+      map['score_percentage'] = Variable<double>(scorePercentage.value);
+    }
+    if (totalQuestions.present) {
+      map['total_questions'] = Variable<int>(totalQuestions.value);
+    }
+    if (correctAnswers.present) {
+      map['correct_answers'] = Variable<int>(correctAnswers.value);
+    }
+    if (skillScoresJson.present) {
+      map['skill_scores_json'] = Variable<String>(skillScoresJson.value);
+    }
+    if (mistakesJson.present) {
+      map['mistakes_json'] = Variable<String>(mistakesJson.value);
+    }
+    if (completedAt.present) {
+      map['completed_at'] = Variable<DateTime>(completedAt.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('AssessmentResultEntriesCompanion(')
+          ..write('id: $id, ')
+          ..write('determinedLevel: $determinedLevel, ')
+          ..write('levelTitleRu: $levelTitleRu, ')
+          ..write('scorePercentage: $scorePercentage, ')
+          ..write('totalQuestions: $totalQuestions, ')
+          ..write('correctAnswers: $correctAnswers, ')
+          ..write('skillScoresJson: $skillScoresJson, ')
+          ..write('mistakesJson: $mistakesJson, ')
+          ..write('completedAt: $completedAt')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -6034,6 +6532,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       $PhoneticMasteryEntriesTable(this);
   late final $SceneProgressEntriesTable sceneProgressEntries =
       $SceneProgressEntriesTable(this);
+  late final $AssessmentResultEntriesTable assessmentResultEntries =
+      $AssessmentResultEntriesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -6051,7 +6551,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         stories,
         slangEntries,
         phoneticMasteryEntries,
-        sceneProgressEntries
+        sceneProgressEntries,
+        assessmentResultEntries
       ];
 }
 
@@ -9083,6 +9584,257 @@ typedef $$SceneProgressEntriesTableProcessedTableManager
         ),
         SceneProgressRow,
         PrefetchHooks Function()>;
+typedef $$AssessmentResultEntriesTableCreateCompanionBuilder
+    = AssessmentResultEntriesCompanion Function({
+  Value<int> id,
+  required String determinedLevel,
+  required String levelTitleRu,
+  required double scorePercentage,
+  required int totalQuestions,
+  required int correctAnswers,
+  required String skillScoresJson,
+  Value<String> mistakesJson,
+  required DateTime completedAt,
+});
+typedef $$AssessmentResultEntriesTableUpdateCompanionBuilder
+    = AssessmentResultEntriesCompanion Function({
+  Value<int> id,
+  Value<String> determinedLevel,
+  Value<String> levelTitleRu,
+  Value<double> scorePercentage,
+  Value<int> totalQuestions,
+  Value<int> correctAnswers,
+  Value<String> skillScoresJson,
+  Value<String> mistakesJson,
+  Value<DateTime> completedAt,
+});
+
+class $$AssessmentResultEntriesTableFilterComposer
+    extends Composer<_$AppDatabase, $AssessmentResultEntriesTable> {
+  $$AssessmentResultEntriesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get determinedLevel => $composableBuilder(
+      column: $table.determinedLevel,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get levelTitleRu => $composableBuilder(
+      column: $table.levelTitleRu, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<double> get scorePercentage => $composableBuilder(
+      column: $table.scorePercentage,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get totalQuestions => $composableBuilder(
+      column: $table.totalQuestions,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get correctAnswers => $composableBuilder(
+      column: $table.correctAnswers,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get skillScoresJson => $composableBuilder(
+      column: $table.skillScoresJson,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get mistakesJson => $composableBuilder(
+      column: $table.mistakesJson, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get completedAt => $composableBuilder(
+      column: $table.completedAt, builder: (column) => ColumnFilters(column));
+}
+
+class $$AssessmentResultEntriesTableOrderingComposer
+    extends Composer<_$AppDatabase, $AssessmentResultEntriesTable> {
+  $$AssessmentResultEntriesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get determinedLevel => $composableBuilder(
+      column: $table.determinedLevel,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get levelTitleRu => $composableBuilder(
+      column: $table.levelTitleRu,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<double> get scorePercentage => $composableBuilder(
+      column: $table.scorePercentage,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get totalQuestions => $composableBuilder(
+      column: $table.totalQuestions,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get correctAnswers => $composableBuilder(
+      column: $table.correctAnswers,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get skillScoresJson => $composableBuilder(
+      column: $table.skillScoresJson,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get mistakesJson => $composableBuilder(
+      column: $table.mistakesJson,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get completedAt => $composableBuilder(
+      column: $table.completedAt, builder: (column) => ColumnOrderings(column));
+}
+
+class $$AssessmentResultEntriesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $AssessmentResultEntriesTable> {
+  $$AssessmentResultEntriesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get determinedLevel => $composableBuilder(
+      column: $table.determinedLevel, builder: (column) => column);
+
+  GeneratedColumn<String> get levelTitleRu => $composableBuilder(
+      column: $table.levelTitleRu, builder: (column) => column);
+
+  GeneratedColumn<double> get scorePercentage => $composableBuilder(
+      column: $table.scorePercentage, builder: (column) => column);
+
+  GeneratedColumn<int> get totalQuestions => $composableBuilder(
+      column: $table.totalQuestions, builder: (column) => column);
+
+  GeneratedColumn<int> get correctAnswers => $composableBuilder(
+      column: $table.correctAnswers, builder: (column) => column);
+
+  GeneratedColumn<String> get skillScoresJson => $composableBuilder(
+      column: $table.skillScoresJson, builder: (column) => column);
+
+  GeneratedColumn<String> get mistakesJson => $composableBuilder(
+      column: $table.mistakesJson, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get completedAt => $composableBuilder(
+      column: $table.completedAt, builder: (column) => column);
+}
+
+class $$AssessmentResultEntriesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $AssessmentResultEntriesTable,
+    AssessmentResultRow,
+    $$AssessmentResultEntriesTableFilterComposer,
+    $$AssessmentResultEntriesTableOrderingComposer,
+    $$AssessmentResultEntriesTableAnnotationComposer,
+    $$AssessmentResultEntriesTableCreateCompanionBuilder,
+    $$AssessmentResultEntriesTableUpdateCompanionBuilder,
+    (
+      AssessmentResultRow,
+      BaseReferences<_$AppDatabase, $AssessmentResultEntriesTable,
+          AssessmentResultRow>
+    ),
+    AssessmentResultRow,
+    PrefetchHooks Function()> {
+  $$AssessmentResultEntriesTableTableManager(
+      _$AppDatabase db, $AssessmentResultEntriesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$AssessmentResultEntriesTableFilterComposer(
+                  $db: db, $table: table),
+          createOrderingComposer: () =>
+              $$AssessmentResultEntriesTableOrderingComposer(
+                  $db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$AssessmentResultEntriesTableAnnotationComposer(
+                  $db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            Value<String> determinedLevel = const Value.absent(),
+            Value<String> levelTitleRu = const Value.absent(),
+            Value<double> scorePercentage = const Value.absent(),
+            Value<int> totalQuestions = const Value.absent(),
+            Value<int> correctAnswers = const Value.absent(),
+            Value<String> skillScoresJson = const Value.absent(),
+            Value<String> mistakesJson = const Value.absent(),
+            Value<DateTime> completedAt = const Value.absent(),
+          }) =>
+              AssessmentResultEntriesCompanion(
+            id: id,
+            determinedLevel: determinedLevel,
+            levelTitleRu: levelTitleRu,
+            scorePercentage: scorePercentage,
+            totalQuestions: totalQuestions,
+            correctAnswers: correctAnswers,
+            skillScoresJson: skillScoresJson,
+            mistakesJson: mistakesJson,
+            completedAt: completedAt,
+          ),
+          createCompanionCallback: ({
+            Value<int> id = const Value.absent(),
+            required String determinedLevel,
+            required String levelTitleRu,
+            required double scorePercentage,
+            required int totalQuestions,
+            required int correctAnswers,
+            required String skillScoresJson,
+            Value<String> mistakesJson = const Value.absent(),
+            required DateTime completedAt,
+          }) =>
+              AssessmentResultEntriesCompanion.insert(
+            id: id,
+            determinedLevel: determinedLevel,
+            levelTitleRu: levelTitleRu,
+            scorePercentage: scorePercentage,
+            totalQuestions: totalQuestions,
+            correctAnswers: correctAnswers,
+            skillScoresJson: skillScoresJson,
+            mistakesJson: mistakesJson,
+            completedAt: completedAt,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (
+                    e.readTable<$AssessmentResultEntriesTable,
+                        AssessmentResultRow>(table),
+                    BaseReferences<_$AppDatabase, $AssessmentResultEntriesTable,
+                        AssessmentResultRow>(db, table, e)
+                  ))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$AssessmentResultEntriesTableProcessedTableManager
+    = ProcessedTableManager<
+        _$AppDatabase,
+        $AssessmentResultEntriesTable,
+        AssessmentResultRow,
+        $$AssessmentResultEntriesTableFilterComposer,
+        $$AssessmentResultEntriesTableOrderingComposer,
+        $$AssessmentResultEntriesTableAnnotationComposer,
+        $$AssessmentResultEntriesTableCreateCompanionBuilder,
+        $$AssessmentResultEntriesTableUpdateCompanionBuilder,
+        (
+          AssessmentResultRow,
+          BaseReferences<_$AppDatabase, $AssessmentResultEntriesTable,
+              AssessmentResultRow>
+        ),
+        AssessmentResultRow,
+        PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -9115,4 +9867,7 @@ class $AppDatabaseManager {
           _db, _db.phoneticMasteryEntries);
   $$SceneProgressEntriesTableTableManager get sceneProgressEntries =>
       $$SceneProgressEntriesTableTableManager(_db, _db.sceneProgressEntries);
+  $$AssessmentResultEntriesTableTableManager get assessmentResultEntries =>
+      $$AssessmentResultEntriesTableTableManager(
+          _db, _db.assessmentResultEntries);
 }

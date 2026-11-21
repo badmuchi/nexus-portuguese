@@ -191,6 +191,19 @@ class SceneProgressEntries extends Table {
   Set<Column> get primaryKey => {sceneId};
 }
 
+@DataClassName('AssessmentResultRow')
+class AssessmentResultEntries extends Table {
+  IntColumn get id => integer().autoIncrement()();
+  TextColumn get determinedLevel => text()();
+  TextColumn get levelTitleRu => text()();
+  RealColumn get scorePercentage => real()();
+  IntColumn get totalQuestions => integer()();
+  IntColumn get correctAnswers => integer()();
+  TextColumn get skillScoresJson => text()();
+  TextColumn get mistakesJson => text().withDefault(const Constant('[]'))();
+  DateTimeColumn get completedAt => dateTime()();
+}
+
 @DriftDatabase(tables: [
   DialogueNodes,
   DialogueHistoryEntries,
@@ -205,6 +218,7 @@ class SceneProgressEntries extends Table {
   SlangEntries,
   PhoneticMasteryEntries,
   SceneProgressEntries,
+  AssessmentResultEntries,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? e])
@@ -219,7 +233,7 @@ class AppDatabase extends _$AppDatabase {
         );
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -230,6 +244,9 @@ class AppDatabase extends _$AppDatabase {
           }
           if (from < 3) {
             await m.createTable(sceneProgressEntries);
+          }
+          if (from < 4) {
+            await m.createTable(assessmentResultEntries);
           }
         },
       );
@@ -614,5 +631,17 @@ class AppDatabase extends _$AppDatabase {
         lastVisitedAt: Value(DateTime.now()),
       ),
     );
+  }
+
+  // --- CEFR Level Assessment queries ---
+  Future<AssessmentResultRow?> getLatestAssessmentResult() {
+    return (select(assessmentResultEntries)
+          ..orderBy([(t) => OrderingTerm.desc(t.completedAt)])
+          ..limit(1))
+        .getSingleOrNull();
+  }
+
+  Future<int> insertAssessmentResult(AssessmentResultEntriesCompanion row) {
+    return into(assessmentResultEntries).insert(row);
   }
 }

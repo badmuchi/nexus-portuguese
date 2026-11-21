@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/audio/hybrid_audio_playback_service.dart';
 import '../../../../core/settings/app_settings_storage.dart';
 import 'package:nexus_portuguese_app/features/srs/data/repositories/srs_repository_impl.dart';
+import 'package:nexus_portuguese_app/features/assessment/presentation/cubit/assessment_cubit.dart';
+import 'package:nexus_portuguese_app/features/assessment/presentation/cubit/assessment_state.dart';
+import 'package:nexus_portuguese_app/features/assessment/presentation/screens/level_assessment_screen.dart';
 import 'package:nexus_portuguese_app/features/phonetics/presentation/screens/phonetics_screen.dart';
 import 'package:nexus_portuguese_app/features/scenes/presentation/screens/scenes_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
@@ -314,6 +317,91 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
 
+            const SizedBox(height: 20),
+
+            // CEFR Diagnostic Banner
+            BlocBuilder<AssessmentCubit, AssessmentState>(
+              builder: (context, assessmentState) {
+                String bannerTitle = 'Пройдите диагностику CEFR';
+                String bannerSubtitle = 'Определите свой уровень (A1–B2) и получите сертификат';
+                String? levelBadge;
+
+                if (assessmentState is AssessmentCompleted) {
+                  levelBadge = assessmentState.result.level.label;
+                  bannerTitle = 'Ваш уровень: ${assessmentState.result.levelTitleRu}';
+                  bannerSubtitle = 'Точность: ${assessmentState.result.scorePercentage.round()}% • Нажмите для просмотра сертификата';
+                }
+
+                return InkWell(
+                  borderRadius: BorderRadius.circular(16),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LevelAssessmentScreen()),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.deepPurple.withValues(alpha: 0.15),
+                          theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.deepPurple.withValues(alpha: 0.3)),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 44,
+                          height: 44,
+                          decoration: BoxDecoration(
+                            color: Colors.deepPurple,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Center(
+                            child: levelBadge != null
+                                ? Text(
+                                    levelBadge,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 18,
+                                    ),
+                                  )
+                                : const Icon(Icons.workspace_premium_rounded, color: Colors.white),
+                          ),
+                        ),
+                        const SizedBox(width: 14),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                bannerTitle,
+                                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+                              ),
+                              const SizedBox(height: 2),
+                              Text(
+                                bannerSubtitle,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: theme.colorScheme.onSurfaceVariant,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Icon(Icons.chevron_right_rounded),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+
             const SizedBox(height: 24),
 
             Text(
@@ -433,6 +521,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const ScenesCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Тест CEFR',
+                  subtitle: 'Уровень A1–B2',
+                  icon: Icons.workspace_premium_rounded,
+                  color: Colors.deepPurple,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LevelAssessmentScreen()),
                     );
                   },
                 ),

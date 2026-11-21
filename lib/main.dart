@@ -6,6 +6,9 @@ import 'core/audio/tts_speech_service.dart';
 import 'core/database/app_database.dart';
 import 'core/database/database_seed_service.dart';
 import 'core/settings/app_settings_storage.dart';
+import 'features/assessment/data/repositories/assessment_repository_impl.dart';
+import 'features/assessment/domain/repositories/assessment_repository.dart';
+import 'features/assessment/presentation/cubit/assessment_cubit.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -67,6 +70,7 @@ void main() async {
   final slangRepository = SlangRepositoryImpl(database);
   final storiesRepository = StoriesRepositoryImpl(database);
   final scenesRepository = ScenesRepositoryImpl(database: database);
+  final assessmentRepository = AssessmentRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -84,6 +88,7 @@ void main() async {
         RepositoryProvider<SlangRepository>.value(value: slangRepository),
         RepositoryProvider<StoriesRepository>.value(value: storiesRepository),
         RepositoryProvider<ScenesRepository>.value(value: scenesRepository),
+        RepositoryProvider<AssessmentRepository>.value(value: assessmentRepository),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -146,6 +151,13 @@ void main() async {
               audioService: hybridAudio,
               srsRepository: srsRepository,
             )..loadScenes(),
+          ),
+          BlocProvider<AssessmentCubit>(
+            create: (_) => AssessmentCubit(
+              repository: assessmentRepository,
+              audioService: hybridAudio,
+              srsRepository: srsRepository,
+            )..loadAssessment(),
           ),
         ],
         child: const NexusPortugueseApp(),
