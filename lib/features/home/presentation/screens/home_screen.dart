@@ -565,6 +565,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   },
                 ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Центр беглости',
+                  subtitle: 'Стрик и 12 наград 🏆',
+                  icon: Icons.military_tech_rounded,
+                  color: Colors.amber.shade800,
+                  onTap: () => widget.onNavigateToTab(6),
+                ),
               ],
             ),
 

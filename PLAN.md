@@ -34,31 +34,32 @@
 
 ---
 
-## 2. Завершённая фича: Construtor de Frases (Конструктор предложений и синтаксиса)
+### Фича 5: Construtor de Frases (Конструктор предложений и синтаксиса) (`lib/features/sentence_builder/`)
+- [x] Domain-модели: `SentencePuzzle`, `SentenceBuilderResult`.
+- [x] Data-слой: 20 калиброванных предложений A1-B1, `SentenceBuilderRepositoryImpl`.
+- [x] Cubit & State: `SentenceBuilderCubit` с анимацией сборки чипов, проверкой и FSRS.
+- [x] UI: `SentenceBuilderScreen` с Sentence X-Ray рентгеном и аудио.
+- [x] Тесты: `test/features/sentence_builder_test.dart`, `test/features/sentence_builder_cubit_test.dart` (100% pass).
 
-### Этап 1: Domain и Data слои (`lib/features/sentence_builder/`)
-- [x] **Domain-сущности (`domain/entities/`):**
-  - `sentence_puzzle.dart`: `SentencePuzzle` (португальская цель, русский перевод, канонический порядок токенов, перемешанные чипы + дистракторы, грамматическая подсказка, уровень CEFR, диалект).
-  - `sentence_builder_result.dart`: результат сессии с оценкой точности и списком ошибок.
-- [x] **Контракт репозитория (`domain/repositories/`):**
-  - `sentence_builder_repository.dart`: получение пазлов по уровню/диалекту и запись попыток.
-- [x] **Data-слой (`data/`):**
-  - `datasources/portuguese_sentence_seed_data.dart`: 20 калиброванных предложений A1-B1 со слияниями, crase, местоимениями и диалектными вариациями.
-  - `repositories/sentence_builder_repository_impl.dart`.
-- [x] **Unit-тесты:** `test/features/sentence_builder_test.dart` (100% pass).
+---
 
-### Этап 2: State Management (BLoC/Cubit)
-- [x] `cubit/sentence_builder_cubit.dart` & `sentence_builder_state.dart`:
-  - Добавление/возврат слов между банком чипов и строкой предложения.
-  - Проверка правильности порядка слов и пунктуации.
-  - Озвучка фразы и интеграция с FSRS и Sentence X-Ray.
-- [x] **Unit-тесты:** `test/features/sentence_builder_cubit_test.dart` (100% pass).
+## 2. Текущая фича: Centro de Conquistas & Fluência (Центр беглости, стриков и достижений)
 
-### Этап 3: Presentation UI и декомпозиция виджетов
-- [x] `screens/sentence_builder_screen.dart`: интерактивный экран сборки с анимацией чипов, подсказками и рентгеном фразы.
-- [x] Декомпозиция по плейбуку на приватные `StatelessWidget`.
+### Этап 1: Domain и Data слои (`lib/features/progress/`)
+- [ ] **Domain-сущности (`domain/entities/`):**
+  - `portuguese_badge.dart`: `PortugueseBadge` (12 культурных наград: Elétrico 28, Garota de Ipanema, Mestre do Til, Relâmpago dos Verbos, Cirurgião da Crase, Poliglota B1, Fogo Sagrado и др.).
+  - `progress_stats_entity.dart`: расширение модели (`fluencyScore`, `currentStreak`, `maxStreak`, `scenesCompletedCount`, `phoneticMasteryAvg`, `cefrLevel`, `cefrScorePercentage`, `unlockedBadges`).
+- [ ] **Data-слой (`data/`):**
+  - `progress_repository_impl.dart`: агрегация данных из всех таблиц Drift (`dialogueNodes`, `srsReviewLogs`, `grammarPracticeLogs`, `listeningAttemptLogs`, `assessmentResultEntries`, `phoneticMasteryEntries`, `sceneProgressEntries`).
+  - Расчёт реального динамического стрика по календарным дням.
+  - Расчёт формулы индекса беглости (0-100%).
+- [ ] **Unit-тесты:** `test/features/progress_test.dart` и обновление `test/features/progress_cubit_test.dart`.
 
-### Этап 4: Интеграция и верификация
-- [x] Карточка модуля в каталоге на `HomeScreen`.
-- [x] DI в `main.dart`.
-- [x] Прогон `flutter analyze` и `flutter test` (0 warnings, 110/110 tests passed).
+### Этап 2: State Management & Presentation UI
+- [ ] `widgets/fluency_score_card.dart`: круговой индикатор владения языком (0-100%) и бэйдж CEFR.
+- [ ] `widgets/streak_flame_card.dart`: стрик с недельной шкалой дней (Пн-Вс).
+- [ ] `widgets/badges_grid_section.dart`: сетка 12 культурных достижений (разблокированные vs закрытые с условиями).
+- [ ] `screens/progress_screen.dart`: полная интеграция с декомпозицией по `flutter-clean-arch-playbook`.
+
+### Этап 3: Интеграция и верификация
+- [ ] Прогон `flutter analyze` и `flutter test` (0 warnings, 100% pass).
