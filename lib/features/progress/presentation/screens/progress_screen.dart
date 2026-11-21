@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../core/database/app_database.dart';
+import '../cubit/progress_cubit.dart';
+import '../cubit/progress_state.dart';
 import '../widgets/activity_heatmap_widget.dart';
 
 class ProgressScreen extends StatefulWidget {
@@ -11,63 +12,10 @@ class ProgressScreen extends StatefulWidget {
 }
 
 class _ProgressScreenState extends State<ProgressScreen> {
-  int _cardsCount = 0;
-  int _reviewsCount = 0;
-  int _dialoguesCount = 0;
-  int _grammarLogsCount = 0;
-  int _listeningLogsCount = 0;
-  final Map<DateTime, int> _activityByDay = {};
-  bool _isLoading = true;
-
   @override
   void initState() {
     super.initState();
-    _loadStats();
-  }
-
-  Future<void> _loadStats() async {
-    final db = context.read<AppDatabase>();
-    final cards = await db.countSrsCards();
-    final reviews = await db.getAllSrsReviewLogs();
-    final dialogues = await db.getAllDialogueHistory();
-    final grammar = await db.getAllGrammarPracticeLogs();
-    final listening = await db.getAllListeningAttemptLogs();
-
-    final map = <DateTime, int>{};
-
-    void recordDate(DateTime dt) {
-      final key = DateTime(dt.year, dt.month, dt.day);
-      map[key] = (map[key] ?? 0) + 1;
-    }
-
-    for (final r in reviews) {
-      recordDate(r.reviewedAt);
-    }
-    for (final d in dialogues) {
-      recordDate(d.answeredAt);
-    }
-    for (final g in grammar) {
-      recordDate(g.practicedAt);
-    }
-    for (final l in listening) {
-      recordDate(l.attemptedAt);
-    }
-
-    // Ensure today has at least 1 mock activity mark so heatmap looks alive on first launch
-    final today = DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-    map[today] = (map[today] ?? 0) + 1;
-
-    if (mounted) {
-      setState(() {
-        _cardsCount = cards;
-        _reviewsCount = reviews.length;
-        _dialoguesCount = dialogues.length;
-        _grammarLogsCount = grammar.length;
-        _listeningLogsCount = listening.length;
-        _activityByDay.addAll(map);
-        _isLoading = false;
-      });
-    }
+    context.read<ProgressCubit>().loadStats();
   }
 
   @override
@@ -78,9 +26,32 @@ class _ProgressScreenState extends State<ProgressScreen> {
       appBar: AppBar(
         title: const Text('Прогресс и статистика'),
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
+      body: BlocBuilder<ProgressCubit, ProgressState>(
+        builder: (context, state) {
+          if (state is ProgressLoading || state is ProgressInitial) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (state is ProgressError) {
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(state.message),
+                  const SizedBox(height: 12),
+                  FilledButton(
+                    onPressed: () => context.read<ProgressCubit>().loadStats(),
+                    child: const Text('Повторить'),
+                  ),
+                ],
+              ),
+            );
+          }
+
+          if (state is ProgressLoaded) {
+            final stats = state.stats;
+
+            return SingleChildScrollView(
               padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -125,7 +96,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   const SizedBox(height: 16),
 
                   // 12-week GitHub-style heatmap
-                  ActivityHeatmapWidget(activityByDay: _activityByDay),
+                  ActivityHeatmapWidget(activityByDay: stats.activityByDay),
 
                   const SizedBox(height: 20),
                   Text(
@@ -137,15 +108,15 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     theme,
                     icon: Icons.style_rounded,
                     title: 'FSRS Карточки',
-                    value: '$_reviewsCount повторений',
-                    subtitle: 'Всего активных карточек в базе: $_cardsCount',
+                    value: '${stats.reviewsCount} повторений',
+                    subtitle: 'Всего активных карточек в базе: ${stats.cardsCount}',
                     color: Colors.blue,
                   ),
                   _buildStatCard(
                     theme,
                     icon: Icons.forum_rounded,
                     title: 'Пройдено диалогов',
-                    value: '$_dialoguesCount реплик',
+                    value: '${stats.dialoguesCount} реплик',
                     subtitle: 'Сценарии в Рио и Лиссабоне',
                     color: Colors.green,
                   ),
@@ -153,7 +124,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     theme,
                     icon: Icons.headphones_rounded,
                     title: 'Аудирование и диктанты',
-                    value: '$_listeningLogsCount попыток',
+                    value: '${stats.listeningLogsCount} попыток',
                     subtitle: 'Тренировка восприятия на слух',
                     color: Colors.purple,
                   ),
@@ -161,13 +132,18 @@ class _ProgressScreenState extends State<ProgressScreen> {
                     theme,
                     icon: Icons.table_chart_rounded,
                     title: 'Грамматические тренировки',
-                    value: '$_grammarLogsCount ответов',
+                    value: '${stats.grammarLogsCount} ответов',
                     subtitle: 'Спряжения, предлоги и времена',
                     color: Colors.orange,
                   ),
                 ],
               ),
-            ),
+            );
+          }
+
+          return const SizedBox.shrink();
+        },
+      ),
     );
   }
 

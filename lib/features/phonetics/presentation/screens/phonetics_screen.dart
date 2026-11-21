@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/audio/hybrid_audio_playback_service.dart';
+import '../../domain/repositories/phonetics_repository.dart';
 import 'phonetics_trainer_screen.dart';
 
 class PhoneticsScreen extends StatefulWidget {
@@ -23,14 +22,16 @@ class _PhoneticsScreenState extends State<PhoneticsScreen> {
   }
 
   Future<void> _loadPhoneticsData() async {
-    try {
-      final jsonStr = await rootBundle.loadString('assets/seed/phonetics_seed.json');
-      setState(() {
-        _sections = jsonDecode(jsonStr) as List<dynamic>;
-        _isLoading = false;
-      });
-    } catch (_) {
-      setState(() => _isLoading = false);
+    final repo = context.read<PhoneticsRepository>();
+    final res = await repo.getAtlasSections();
+    if (mounted) {
+      res.fold(
+        onSuccess: (data) => setState(() {
+          _sections = data;
+          _isLoading = false;
+        }),
+        onFailure: (_, __) => setState(() => _isLoading = false),
+      );
     }
   }
 

@@ -13,6 +13,19 @@ class PhoneticsRepositoryImpl implements PhoneticsRepository {
   PhoneticsRepositoryImpl({required this.database});
 
   @override
+  Future<Result<List<dynamic>>> getAtlasSections() async {
+    try {
+      final jsonString = await rootBundle.loadString('assets/seed/phonetics_seed.json');
+      final List<dynamic> jsonList = jsonDecode(jsonString) as List<dynamic>;
+      return Result.ok(jsonList);
+    } catch (e, stackTrace) {
+      return Result.err(
+        DatabaseFailure('Failed to load phonetics atlas: $e', stackTrace: stackTrace),
+      );
+    }
+  }
+
+  @override
   Future<Result<List<PhoneticExercise>>> getTrainerExercises() async {
     try {
       if (_cachedExercises != null && _cachedExercises!.isNotEmpty) {

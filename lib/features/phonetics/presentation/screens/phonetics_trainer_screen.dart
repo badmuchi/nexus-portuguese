@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../speech_lab/presentation/widgets/speech_waveform_indicator.dart';
+import '../../domain/entities/phonetic_trainer_models.dart';
 import '../cubit/phonetics_trainer_cubit.dart';
 import '../cubit/phonetics_trainer_state.dart';
 
@@ -9,8 +10,6 @@ class PhoneticsTrainerScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return BlocBuilder<PhoneticsTrainerCubit, PhoneticsTrainerState>(
       builder: (context, state) {
         if (state.isLoading) {
@@ -56,142 +55,25 @@ class PhoneticsTrainerScreen extends StatelessWidget {
               ? const Center(child: Text('Нет доступных упражнений'))
               : Column(
                   children: [
-                    // Exercise sound chips selector
-                    SizedBox(
-                      height: 52,
-                      child: ListView.separated(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.exercises.length,
-                        separatorBuilder: (_, __) => const SizedBox(width: 8),
-                        itemBuilder: (context, idx) {
-                          final item = state.exercises[idx];
-                          final isSelected = idx == state.currentExerciseIndex;
-                          final itemMastery = state.masteryMap[item.soundId]?.masteryScore ?? 0.0;
-
-                          return FilterChip(
-                            selected: isSelected,
-                            avatar: itemMastery >= 70
-                                ? const Icon(Icons.check_circle_rounded, size: 16, color: Colors.green)
-                                : null,
-                            label: Text('${item.title} (${itemMastery.toStringAsFixed(0)}%)'),
-                            onSelected: (_) {
-                              context.read<PhoneticsTrainerCubit>().selectExercise(idx);
-                            },
-                          );
-                        },
-                      ),
+                    _SoundChipsSelector(
+                      exercises: state.exercises,
+                      currentIndex: state.currentExerciseIndex,
+                      masteryMap: state.masteryMap,
                     ),
-
-                    // Mastery Header Card
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                      child: Card(
-                        elevation: 0,
-                        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    exercise.title,
-                                    style: theme.textTheme.titleMedium?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-                                    decoration: BoxDecoration(
-                                      color: theme.colorScheme.primaryContainer,
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: Text(
-                                      exercise.ipa,
-                                      style: theme.textTheme.labelMedium?.copyWith(
-                                        fontWeight: FontWeight.bold,
-                                        color: theme.colorScheme.onPrimaryContainer,
-                                      ),
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  Text(
-                                    '${(mastery?.masteryScore ?? 0.0).toStringAsFixed(0)}% мастерство',
-                                    style: theme.textTheme.labelMedium?.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      color: theme.colorScheme.primary,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 8),
-                              LinearProgressIndicator(
-                                value: ((mastery?.masteryScore ?? 0.0) / 100.0).clamp(0.0, 1.0),
-                                minHeight: 6,
-                                borderRadius: BorderRadius.circular(4),
-                              ),
-                              const SizedBox(height: 6),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    '👂 Слух: ${(mastery?.earAccuracyPercent ?? 0.0).toStringAsFixed(0)}% (${mastery?.earCorrect ?? 0}/${mastery?.earAttempts ?? 0})',
-                                    style: theme.textTheme.bodySmall,
-                                  ),
-                                  Text(
-                                    '🎙️ Речь: ${(mastery?.mouthAccuracyAverage ?? 0.0).toStringAsFixed(0)}% (${mastery?.mouthAttempts ?? 0} попыток)',
-                                    style: theme.textTheme.bodySmall,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
+                    _MasteryHeaderCard(
+                      exercise: exercise,
+                      mastery: mastery,
                     ),
-
-                    // Step Tabs Segmented Button
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
-                      child: SegmentedButton<TrainerStep>(
-                        segments: const [
-                          ButtonSegment(
-                            value: TrainerStep.theory,
-                            label: Text('Теория'),
-                            icon: Icon(Icons.school_rounded, size: 16),
-                          ),
-                          ButtonSegment(
-                            value: TrainerStep.ear,
-                            label: Text('Слух'),
-                            icon: Icon(Icons.hearing_rounded, size: 16),
-                          ),
-                          ButtonSegment(
-                            value: TrainerStep.mouth,
-                            label: Text('Речь'),
-                            icon: Icon(Icons.mic_rounded, size: 16),
-                          ),
-                          ButtonSegment(
-                            value: TrainerStep.dialect,
-                            label: Text('Контраст'),
-                            icon: Icon(Icons.compare_arrows_rounded, size: 16),
-                          ),
-                        ],
-                        selected: {state.step},
-                        onSelectionChanged: (set) {
-                          context.read<PhoneticsTrainerCubit>().setStep(set.first);
-                        },
-                      ),
-                    ),
-
-                    // Active Step View
+                    _StepSegmentedBar(currentStep: state.step),
                     Expanded(
                       child: SingleChildScrollView(
                         padding: const EdgeInsets.all(16),
-                        child: _buildStepContent(context, state, exercise),
+                        child: switch (state.step) {
+                          TrainerStep.theory => _TheorySection(exercise: exercise),
+                          TrainerStep.ear => _EarSection(state: state),
+                          TrainerStep.mouth => _MouthSection(state: state),
+                          TrainerStep.dialect => _DialectSection(exercise: exercise),
+                        },
                       ),
                     ),
                   ],
@@ -200,29 +82,183 @@ class PhoneticsTrainerScreen extends StatelessWidget {
       },
     );
   }
+}
 
-  Widget _buildStepContent(
-    BuildContext context,
-    PhoneticsTrainerState state,
-    dynamic exercise,
-  ) {
-    switch (state.step) {
-      case TrainerStep.theory:
-        return _buildTheoryStep(context, state, exercise);
-      case TrainerStep.ear:
-        return _buildEarStep(context, state);
-      case TrainerStep.mouth:
-        return _buildMouthStep(context, state);
-      case TrainerStep.dialect:
-        return _buildDialectStep(context, state, exercise);
-    }
+class _SoundChipsSelector extends StatelessWidget {
+  final List<PhoneticExercise> exercises;
+  final int currentIndex;
+  final Map<String, PhoneticMastery> masteryMap;
+
+  const _SoundChipsSelector({
+    required this.exercises,
+    required this.currentIndex,
+    required this.masteryMap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 52,
+      child: ListView.separated(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        scrollDirection: Axis.horizontal,
+        itemCount: exercises.length,
+        separatorBuilder: (_, __) => const SizedBox(width: 8),
+        itemBuilder: (context, idx) {
+          final item = exercises[idx];
+          final isSelected = idx == currentIndex;
+          final itemMastery = masteryMap[item.soundId]?.masteryScore ?? 0.0;
+
+          return FilterChip(
+            selected: isSelected,
+            avatar: itemMastery >= 70
+                ? const Icon(Icons.check_circle_rounded, size: 16, color: Colors.green)
+                : null,
+            label: Text('${item.title} (${itemMastery.toStringAsFixed(0)}%)'),
+            onSelected: (_) {
+              context.read<PhoneticsTrainerCubit>().selectExercise(idx);
+            },
+          );
+        },
+      ),
+    );
   }
+}
 
-  Widget _buildTheoryStep(
-    BuildContext context,
-    PhoneticsTrainerState state,
-    dynamic exercise,
-  ) {
+class _MasteryHeaderCard extends StatelessWidget {
+  final PhoneticExercise exercise;
+  final PhoneticMastery? mastery;
+
+  const _MasteryHeaderCard({
+    required this.exercise,
+    this.mastery,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final score = mastery?.masteryScore ?? 0.0;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Card(
+        elevation: 0,
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.5),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    exercise.title,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primaryContainer,
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: Text(
+                      exercise.ipa,
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: theme.colorScheme.onPrimaryContainer,
+                      ),
+                    ),
+                  ),
+                  const Spacer(),
+                  Text(
+                    '${score.toStringAsFixed(0)}% мастерство',
+                    style: theme.textTheme.labelMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              LinearProgressIndicator(
+                value: (score / 100.0).clamp(0.0, 1.0),
+                minHeight: 6,
+                borderRadius: BorderRadius.circular(4),
+              ),
+              const SizedBox(height: 6),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '👂 Слух: ${(mastery?.earAccuracyPercent ?? 0.0).toStringAsFixed(0)}% (${mastery?.earCorrect ?? 0}/${mastery?.earAttempts ?? 0})',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                  Text(
+                    '🎙️ Речь: ${(mastery?.mouthAccuracyAverage ?? 0.0).toStringAsFixed(0)}% (${mastery?.mouthAttempts ?? 0} попыток)',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _StepSegmentedBar extends StatelessWidget {
+  final TrainerStep currentStep;
+
+  const _StepSegmentedBar({required this.currentStep});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      child: SegmentedButton<TrainerStep>(
+        segments: const [
+          ButtonSegment(
+            value: TrainerStep.theory,
+            label: Text('Теория'),
+            icon: Icon(Icons.school_rounded, size: 16),
+          ),
+          ButtonSegment(
+            value: TrainerStep.ear,
+            label: Text('Слух'),
+            icon: Icon(Icons.hearing_rounded, size: 16),
+          ),
+          ButtonSegment(
+            value: TrainerStep.mouth,
+            label: Text('Речь'),
+            icon: Icon(Icons.mic_rounded, size: 16),
+          ),
+          ButtonSegment(
+            value: TrainerStep.dialect,
+            label: Text('Контраст'),
+            icon: Icon(Icons.compare_arrows_rounded, size: 16),
+          ),
+        ],
+        selected: {currentStep},
+        onSelectionChanged: (set) {
+          context.read<PhoneticsTrainerCubit>().setStep(set.first);
+        },
+      ),
+    );
+  }
+}
+
+class _TheorySection extends StatelessWidget {
+  final PhoneticExercise exercise;
+
+  const _TheorySection({required this.exercise});
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cubit = context.read<PhoneticsTrainerCubit>();
 
@@ -250,7 +286,7 @@ class PhoneticsTrainerScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  exercise.tipRu as String,
+                  exercise.tipRu,
                   style: theme.textTheme.bodyMedium?.copyWith(height: 1.4),
                 ),
                 const SizedBox(height: 8),
@@ -266,7 +302,7 @@ class PhoneticsTrainerScreen extends StatelessWidget {
                       const SizedBox(width: 8),
                       Expanded(
                         child: Text(
-                          exercise.tipPt as String,
+                          exercise.tipPt,
                           style: theme.textTheme.bodySmall?.copyWith(fontStyle: FontStyle.italic),
                         ),
                       ),
@@ -283,7 +319,7 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           style: theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
-        ...exercise.contrastPairs.map<Widget>((pair) {
+        ...exercise.contrastPairs.map((pair) {
           return Card(
             margin: const EdgeInsets.only(bottom: 8),
             child: ListTile(
@@ -327,8 +363,15 @@ class PhoneticsTrainerScreen extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildEarStep(BuildContext context, PhoneticsTrainerState state) {
+class _EarSection extends StatelessWidget {
+  final PhoneticsTrainerState state;
+
+  const _EarSection({required this.state});
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cubit = context.read<PhoneticsTrainerCubit>();
     final pair = state.currentPair;
@@ -357,8 +400,6 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 8),
-
-        // Big Audio Challenge Button
         Card(
           color: theme.colorScheme.primaryContainer.withValues(alpha: 0.3),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -392,10 +433,7 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-
-        // Word A and Word B Choices
-        _buildChoiceButton(
-          context: context,
+        _ChoiceCard(
           word: pair.wordA,
           ipa: pair.ipaA,
           meaning: pair.meaningARu,
@@ -405,8 +443,7 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           onTap: () => cubit.answerEarChoice(pair.wordA),
         ),
         const SizedBox(height: 12),
-        _buildChoiceButton(
-          context: context,
+        _ChoiceCard(
           word: pair.wordB,
           ipa: pair.ipaB,
           meaning: pair.meaningBRu,
@@ -415,7 +452,6 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           isAnswered: isAnswered,
           onTap: () => cubit.answerEarChoice(pair.wordB),
         ),
-
         if (isAnswered) ...[
           const SizedBox(height: 16),
           Card(
@@ -477,17 +513,29 @@ class PhoneticsTrainerScreen extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildChoiceButton({
-    required BuildContext context,
-    required String word,
-    required String ipa,
-    required String meaning,
-    required bool isSelected,
-    required bool isTarget,
-    required bool isAnswered,
-    required VoidCallback onTap,
-  }) {
+class _ChoiceCard extends StatelessWidget {
+  final String word;
+  final String ipa;
+  final String meaning;
+  final bool isSelected;
+  final bool isTarget;
+  final bool isAnswered;
+  final VoidCallback onTap;
+
+  const _ChoiceCard({
+    required this.word,
+    required this.ipa,
+    required this.meaning,
+    required this.isSelected,
+    required this.isTarget,
+    required this.isAnswered,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     Color? borderColor;
     Color? backgroundColor;
@@ -546,8 +594,15 @@ class PhoneticsTrainerScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildMouthStep(BuildContext context, PhoneticsTrainerState state) {
+class _MouthSection extends StatelessWidget {
+  final PhoneticsTrainerState state;
+
+  const _MouthSection({required this.state});
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cubit = context.read<PhoneticsTrainerCubit>();
     final target = state.targetWord;
@@ -584,8 +639,6 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
-
-        // Microphone Waveform & Button
         Center(
           child: Column(
             children: [
@@ -634,7 +687,6 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 20),
-
         if (state.spokenText != null && state.spokenText!.isNotEmpty) ...[
           Text(
             'Распознано: "${state.spokenText}"',
@@ -643,7 +695,6 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           ),
           const SizedBox(height: 12),
         ],
-
         if (state.mouthScore != null) ...[
           Card(
             color: state.mouthScore! >= 70
@@ -685,12 +736,15 @@ class PhoneticsTrainerScreen extends StatelessWidget {
       ],
     );
   }
+}
 
-  Widget _buildDialectStep(
-    BuildContext context,
-    PhoneticsTrainerState state,
-    dynamic exercise,
-  ) {
+class _DialectSection extends StatelessWidget {
+  final PhoneticExercise exercise;
+
+  const _DialectSection({required this.exercise});
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cubit = context.read<PhoneticsTrainerCubit>();
     final dialect = exercise.dialectComparison;
@@ -718,8 +772,6 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-
-        // Brazilian Portuguese Card
         Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: Padding(
@@ -752,8 +804,6 @@ class PhoneticsTrainerScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 12),
-
-        // European Portuguese Card
         Card(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
           child: Padding(

@@ -22,7 +22,16 @@ import 'features/listening/presentation/screens/listening_screen.dart';
 import 'features/phonetics/data/repositories/phonetics_repository_impl.dart';
 import 'features/phonetics/domain/repositories/phonetics_repository.dart';
 import 'features/phonetics/presentation/cubit/phonetics_trainer_cubit.dart';
+import 'features/progress/data/repositories/progress_repository_impl.dart';
+import 'features/progress/domain/repositories/progress_repository.dart';
+import 'features/progress/presentation/cubit/progress_cubit.dart';
 import 'features/progress/presentation/screens/progress_screen.dart';
+import 'features/slang/data/repositories/slang_repository_impl.dart';
+import 'features/slang/domain/repositories/slang_repository.dart';
+import 'features/slang/presentation/cubit/slang_cubit.dart';
+import 'features/stories/data/repositories/stories_repository_impl.dart';
+import 'features/stories/domain/repositories/stories_repository.dart';
+import 'features/stories/presentation/cubit/stories_cubit.dart';
 import 'features/srs/data/repositories/srs_repository_impl.dart';
 import 'features/srs/presentation/cubit/srs_cubit.dart';
 import 'features/srs/presentation/screens/srs_screen.dart';
@@ -51,6 +60,9 @@ void main() async {
   final listeningRepository = ListeningRepositoryImpl(database);
   final dictionaryRepository = DictionaryRepositoryImpl(database);
   final phoneticsRepository = PhoneticsRepositoryImpl(database: database);
+  final progressRepository = ProgressRepositoryImpl(database);
+  final slangRepository = SlangRepositoryImpl(database);
+  final storiesRepository = StoriesRepositoryImpl(database);
 
   runApp(
     MultiRepositoryProvider(
@@ -64,6 +76,9 @@ void main() async {
         RepositoryProvider<ListeningRepository>.value(value: listeningRepository),
         RepositoryProvider<DictionaryRepository>.value(value: dictionaryRepository),
         RepositoryProvider<PhoneticsRepository>.value(value: phoneticsRepository),
+        RepositoryProvider<ProgressRepository>.value(value: progressRepository),
+        RepositoryProvider<SlangRepository>.value(value: slangRepository),
+        RepositoryProvider<StoriesRepository>.value(value: storiesRepository),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -104,6 +119,21 @@ void main() async {
               audioService: hybridAudio,
               speechService: speechService,
             )..loadTrainer(),
+          ),
+          BlocProvider<ProgressCubit>(
+            create: (_) => ProgressCubit(
+              repository: progressRepository,
+            ),
+          ),
+          BlocProvider<SlangCubit>(
+            create: (_) => SlangCubit(
+              repository: slangRepository,
+            ),
+          ),
+          BlocProvider<StoriesCubit>(
+            create: (_) => StoriesCubit(
+              repository: storiesRepository,
+            ),
           ),
         ],
         child: const NexusPortugueseApp(),

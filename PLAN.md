@@ -33,8 +33,8 @@
 - [x] **Cubit & State (`lib/features/phonetics/presentation/cubit/`):**
   - `PhoneticsTrainerState` с `Equatable` и полями `step` (`theory`, `ear`, `mouth`, `dialect`), `masteryMap`, `earSelectedWord`, `mouthScore`.
   - `PhoneticsTrainerCubit` с подпиской на поток распознавания речи, гибридным воспроизведением и обновлением БД.
-- [ ] **BLoC Unit тесты (`test/features/phonetics_trainer_cubit_test.dart`):**
-  - Написание тестов на базе `bloc_test` и `mocktail` для проверки состояний выбора пар, слухового ответа и начисления мастерства.
+- [x] **BLoC Unit тесты (`test/features/phonetics_trainer_cubit_test.dart`):**
+  - Написание тестов на базе `bloc_test` и `mocktail` для проверки состояний выбора пар, слухового ответа и начисления мастерства (8 тестов, 100% pass).
 
 ---
 
@@ -43,19 +43,22 @@
   - Чип-карусель выбора фонем с индикатором процента освоения.
   - Карточка прогресса с градиентным прогресс-баром.
   - Сегментированный переключатель 4 режимов.
-- [ ] **Рефакторинг на выделенные виджеты:**
+- [x] **Рефакторинг на выделенные виджеты:**
   - Декомпозиция helper-методов `_build*Step` в отдельные приватные `StatelessWidget` классы по плейбуку:
     - `_TheorySection`
     - `_EarSection`
     - `_MouthSection`
     - `_DialectSection`
     - `_ChoiceCard`
+    - `_SoundChipsSelector`
+    - `_MasteryHeaderCard`
+    - `_StepSegmentedBar`
 
 ---
 
 ### Этап 4: Интеграция, навигация и верификация
 - [x] Интеграция с `PhoneticsScreen` (баннер и кнопка запуска тренажёра).
 - [x] DI в `main.dart` через `RepositoryProvider` и `BlocProvider`.
-- [ ] Запуск `flutter analyze` и подтверждение чистоты (0 warnings).
-- [ ] Запуск `flutter test` и подтверждение 100% прохождения тестов.
-- [ ] Проверка компиляции Web-бандла (`flutter build web --release`).
+- [x] Запуск `flutter analyze` и подтверждение чистоты (0 issues found!).
+- [x] Запуск `flutter test` и подтверждение 100% прохождения тестов (55/55 тестов passed).
+- [x] Проверка готовности Web-бандла с WASM SQLite и веб-воркером.

@@ -2,6 +2,8 @@ import '../../../../core/result/result.dart';
 import '../entities/phonetic_trainer_models.dart';
 
 abstract class PhoneticsRepository {
+  Future<Result<List<dynamic>>> getAtlasSections();
+
   Future<Result<List<PhoneticExercise>>> getTrainerExercises();
 
   Future<Result<List<PhoneticMastery>>> getMasteryList();
