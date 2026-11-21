@@ -7,6 +7,7 @@ import 'package:nexus_portuguese_app/features/assessment/presentation/cubit/asse
 import 'package:nexus_portuguese_app/features/assessment/presentation/cubit/assessment_state.dart';
 import 'package:nexus_portuguese_app/features/assessment/presentation/screens/level_assessment_screen.dart';
 import 'package:nexus_portuguese_app/features/verb_trainer/presentation/screens/verb_trainer_screen.dart';
+import 'package:nexus_portuguese_app/features/sentence_builder/presentation/screens/sentence_builder_screen.dart';
 import 'package:nexus_portuguese_app/features/phonetics/presentation/screens/phonetics_screen.dart';
 import 'package:nexus_portuguese_app/features/scenes/presentation/screens/scenes_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
@@ -548,6 +549,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const VerbTrainerScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Конструктор фраз',
+                  subtitle: 'Синтаксис и порядок 🧩',
+                  icon: Icons.extension_rounded,
+                  color: Colors.teal.shade700,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SentenceBuilderScreen()),
                     );
                   },
                 ),

@@ -25,33 +25,40 @@
 - [x] UI: `LevelAssessmentScreen`, `LevelCertificateCard`.
 - [x] Тесты: `test/features/assessment_test.dart`, `test/features/assessment_cubit_test.dart` (100% pass).
 
+### Фича 4: VerboSprint (Скоростной тренажёр спряжения глаголов) (`lib/features/verb_trainer/`)
+- [x] Domain-модели: `VerbExercise`, `VerbTrainerConfig`, `VerbTrainerSessionResult`.
+- [x] Data-слой: `VerbExerciseGenerator`, `VerbTrainerRepositoryImpl`.
+- [x] Cubit & State: `VerbTrainerCubit` с таймером, множителем комбо и FSRS.
+- [x] UI: `VerbTrainerScreen`, `VerbTrainerConfigSheet`, `VerbSessionSummaryCard`.
+- [x] Тесты: `test/features/verb_trainer_test.dart`, `test/features/verb_trainer_cubit_test.dart` (100% pass).
+
 ---
 
-## 2. Завершённая фича: VerboSprint (Скоростной тренажёр спряжения глаголов)
+## 2. Завершённая фича: Construtor de Frases (Конструктор предложений и синтаксиса)
 
-### Этап 1: Domain и Data слои (`lib/features/verb_trainer/`)
+### Этап 1: Domain и Data слои (`lib/features/sentence_builder/`)
 - [x] **Domain-сущности (`domain/entities/`):**
-  - `verb_exercise.dart`: `VerbTense`, `VerbPerson`, `VerbExercise`.
-  - `verb_trainer_config.dart`: `TrainerMode` (sprint60, drill15, irregularsOnly), `TenseFilter`, `VerbTrainerConfig`.
-  - `verb_trainer_session_result.dart`: `VerbTrainerSessionResult` с расчетом комбо, точности и сохранением ошибок в FSRS.
+  - `sentence_puzzle.dart`: `SentencePuzzle` (португальская цель, русский перевод, канонический порядок токенов, перемешанные чипы + дистракторы, грамматическая подсказка, уровень CEFR, диалект).
+  - `sentence_builder_result.dart`: результат сессии с оценкой точности и списком ошибок.
 - [x] **Контракт репозитория (`domain/repositories/`):**
-  - `verb_trainer_repository.dart`: `generateExercises`, `recordAttempt`, `getMasteryStats`.
+  - `sentence_builder_repository.dart`: получение пазлов по уровню/диалекту и запись попыток.
 - [x] **Data-слой (`data/`):**
-  - `datasources/verb_exercise_generator.dart`: генерация дистракторов на основе реальных форм глаголов.
-  - `repositories/verb_trainer_repository_impl.dart`: работа с Drift `grammarVerbs` и `grammarPracticeLogs`.
-- [x] **Unit-тесты:** `test/features/verb_trainer_test.dart` (100% pass).
+  - `datasources/portuguese_sentence_seed_data.dart`: 20 калиброванных предложений A1-B1 со слияниями, crase, местоимениями и диалектными вариациями.
+  - `repositories/sentence_builder_repository_impl.dart`.
+- [x] **Unit-тесты:** `test/features/sentence_builder_test.dart` (100% pass).
 
 ### Этап 2: State Management (BLoC/Cubit)
-- [x] `cubit/verb_trainer_cubit.dart` & `verb_trainer_state.dart`:
-  - Таймер на 60 секунд для спринта, начисление комбо-очков, сохранение ошибок в FSRS.
-- [x] **Unit-тесты:** `test/features/verb_trainer_cubit_test.dart` (100% pass).
+- [x] `cubit/sentence_builder_cubit.dart` & `sentence_builder_state.dart`:
+  - Добавление/возврат слов между банком чипов и строкой предложения.
+  - Проверка правильности порядка слов и пунктуации.
+  - Озвучка фразы и интеграция с FSRS и Sentence X-Ray.
+- [x] **Unit-тесты:** `test/features/sentence_builder_cubit_test.dart` (100% pass).
 
 ### Этап 3: Presentation UI и декомпозиция виджетов
-- [x] `widgets/verb_trainer_config_sheet.dart`: диалог выбора режима (Спринт, Дрилл, Времена).
-- [x] `widgets/verb_session_summary_card.dart`: карточка итогов с разбором ошибок и 1-tap FSRS.
-- [x] `screens/verb_trainer_screen.dart`: игровой экран спринта с таймером, комбо-множителем, карточкой формы и аудио.
+- [x] `screens/sentence_builder_screen.dart`: интерактивный экран сборки с анимацией чипов, подсказками и рентгеном фразы.
+- [x] Декомпозиция по плейбуку на приватные `StatelessWidget`.
 
 ### Этап 4: Интеграция и верификация
-- [x] Добавление кнопки запуска в `GrammarScreen` (в AppBar и FloatingActionButton) и карточки на `HomeScreen`.
+- [x] Карточка модуля в каталоге на `HomeScreen`.
 - [x] DI в `main.dart`.
-- [x] Прогон `flutter analyze` и `flutter test` (0 warnings, 96/96 tests passed).
+- [x] Прогон `flutter analyze` и `flutter test` (0 warnings, 110/110 tests passed).
