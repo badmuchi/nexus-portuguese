@@ -4,6 +4,7 @@ import '../../../../core/audio/hybrid_audio_playback_service.dart';
 import '../../../../core/settings/app_settings_storage.dart';
 import 'package:nexus_portuguese_app/features/srs/data/repositories/srs_repository_impl.dart';
 import 'package:nexus_portuguese_app/features/phonetics/presentation/screens/phonetics_screen.dart';
+import 'package:nexus_portuguese_app/features/scenes/presentation/screens/scenes_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
 import 'package:nexus_portuguese_app/features/speech_lab/presentation/screens/speech_lab_screen.dart';
 import 'package:nexus_portuguese_app/features/stories/presentation/screens/stories_screen.dart';
@@ -419,6 +420,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const SlangScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Сцены жизни',
+                  subtitle: 'Кафе, пляж, метро',
+                  icon: Icons.theater_comedy_rounded,
+                  color: Colors.teal.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ScenesCatalogScreen()),
                     );
                   },
                 ),

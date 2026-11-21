@@ -26,6 +26,9 @@ import 'features/progress/data/repositories/progress_repository_impl.dart';
 import 'features/progress/domain/repositories/progress_repository.dart';
 import 'features/progress/presentation/cubit/progress_cubit.dart';
 import 'features/progress/presentation/screens/progress_screen.dart';
+import 'features/scenes/data/repositories/scenes_repository_impl.dart';
+import 'features/scenes/domain/repositories/scenes_repository.dart';
+import 'features/scenes/presentation/cubit/scenes_cubit.dart';
 import 'features/slang/data/repositories/slang_repository_impl.dart';
 import 'features/slang/domain/repositories/slang_repository.dart';
 import 'features/slang/presentation/cubit/slang_cubit.dart';
@@ -63,6 +66,7 @@ void main() async {
   final progressRepository = ProgressRepositoryImpl(database);
   final slangRepository = SlangRepositoryImpl(database);
   final storiesRepository = StoriesRepositoryImpl(database);
+  final scenesRepository = ScenesRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -79,6 +83,7 @@ void main() async {
         RepositoryProvider<ProgressRepository>.value(value: progressRepository),
         RepositoryProvider<SlangRepository>.value(value: slangRepository),
         RepositoryProvider<StoriesRepository>.value(value: storiesRepository),
+        RepositoryProvider<ScenesRepository>.value(value: scenesRepository),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -134,6 +139,13 @@ void main() async {
             create: (_) => StoriesCubit(
               repository: storiesRepository,
             ),
+          ),
+          BlocProvider<ScenesCubit>(
+            create: (_) => ScenesCubit(
+              repository: scenesRepository,
+              audioService: hybridAudio,
+              srsRepository: srsRepository,
+            )..loadScenes(),
           ),
         ],
         child: const NexusPortugueseApp(),

@@ -5669,6 +5669,348 @@ class PhoneticMasteryEntriesCompanion
   }
 }
 
+class $SceneProgressEntriesTable extends SceneProgressEntries
+    with TableInfo<$SceneProgressEntriesTable, SceneProgressRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $SceneProgressEntriesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _sceneIdMeta =
+      const VerificationMeta('sceneId');
+  @override
+  late final GeneratedColumn<String> sceneId = GeneratedColumn<String>(
+      'scene_id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _completedChallengesCountMeta =
+      const VerificationMeta('completedChallengesCount');
+  @override
+  late final GeneratedColumn<int> completedChallengesCount =
+      GeneratedColumn<int>('completed_challenges_count', aliasedName, false,
+          type: DriftSqlType.int,
+          requiredDuringInsert: false,
+          defaultValue: const Constant(0));
+  static const VerificationMeta _totalChallengesCountMeta =
+      const VerificationMeta('totalChallengesCount');
+  @override
+  late final GeneratedColumn<int> totalChallengesCount = GeneratedColumn<int>(
+      'total_challenges_count', aliasedName, false,
+      type: DriftSqlType.int,
+      requiredDuringInsert: false,
+      defaultValue: const Constant(0));
+  static const VerificationMeta _isCompletedMeta =
+      const VerificationMeta('isCompleted');
+  @override
+  late final GeneratedColumn<bool> isCompleted = GeneratedColumn<bool>(
+      'is_completed', aliasedName, false,
+      type: DriftSqlType.bool,
+      requiredDuringInsert: false,
+      defaultConstraints: GeneratedColumn.constraintIsAlways(
+          'CHECK ("is_completed" IN (0, 1))'),
+      defaultValue: const Constant(false));
+  static const VerificationMeta _lastVisitedAtMeta =
+      const VerificationMeta('lastVisitedAt');
+  @override
+  late final GeneratedColumn<DateTime> lastVisitedAt =
+      GeneratedColumn<DateTime>('last_visited_at', aliasedName, false,
+          type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [
+        sceneId,
+        completedChallengesCount,
+        totalChallengesCount,
+        isCompleted,
+        lastVisitedAt
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'scene_progress_entries';
+  @override
+  VerificationContext validateIntegrity(Insertable<SceneProgressRow> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('scene_id')) {
+      context.handle(_sceneIdMeta,
+          sceneId.isAcceptableOrUnknown(data['scene_id']!, _sceneIdMeta));
+    } else if (isInserting) {
+      context.missing(_sceneIdMeta);
+    }
+    if (data.containsKey('completed_challenges_count')) {
+      context.handle(
+          _completedChallengesCountMeta,
+          completedChallengesCount.isAcceptableOrUnknown(
+              data['completed_challenges_count']!,
+              _completedChallengesCountMeta));
+    }
+    if (data.containsKey('total_challenges_count')) {
+      context.handle(
+          _totalChallengesCountMeta,
+          totalChallengesCount.isAcceptableOrUnknown(
+              data['total_challenges_count']!, _totalChallengesCountMeta));
+    }
+    if (data.containsKey('is_completed')) {
+      context.handle(
+          _isCompletedMeta,
+          isCompleted.isAcceptableOrUnknown(
+              data['is_completed']!, _isCompletedMeta));
+    }
+    if (data.containsKey('last_visited_at')) {
+      context.handle(
+          _lastVisitedAtMeta,
+          lastVisitedAt.isAcceptableOrUnknown(
+              data['last_visited_at']!, _lastVisitedAtMeta));
+    } else if (isInserting) {
+      context.missing(_lastVisitedAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {sceneId};
+  @override
+  SceneProgressRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return SceneProgressRow(
+      sceneId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}scene_id'])!,
+      completedChallengesCount: attachedDatabase.typeMapping.read(
+          DriftSqlType.int,
+          data['${effectivePrefix}completed_challenges_count'])!,
+      totalChallengesCount: attachedDatabase.typeMapping.read(
+          DriftSqlType.int, data['${effectivePrefix}total_challenges_count'])!,
+      isCompleted: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_completed'])!,
+      lastVisitedAt: attachedDatabase.typeMapping.read(
+          DriftSqlType.dateTime, data['${effectivePrefix}last_visited_at'])!,
+    );
+  }
+
+  @override
+  $SceneProgressEntriesTable createAlias(String alias) {
+    return $SceneProgressEntriesTable(attachedDatabase, alias);
+  }
+}
+
+class SceneProgressRow extends DataClass
+    implements Insertable<SceneProgressRow> {
+  final String sceneId;
+  final int completedChallengesCount;
+  final int totalChallengesCount;
+  final bool isCompleted;
+  final DateTime lastVisitedAt;
+  const SceneProgressRow(
+      {required this.sceneId,
+      required this.completedChallengesCount,
+      required this.totalChallengesCount,
+      required this.isCompleted,
+      required this.lastVisitedAt});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['scene_id'] = Variable<String>(sceneId);
+    map['completed_challenges_count'] = Variable<int>(completedChallengesCount);
+    map['total_challenges_count'] = Variable<int>(totalChallengesCount);
+    map['is_completed'] = Variable<bool>(isCompleted);
+    map['last_visited_at'] = Variable<DateTime>(lastVisitedAt);
+    return map;
+  }
+
+  SceneProgressEntriesCompanion toCompanion(bool nullToAbsent) {
+    return SceneProgressEntriesCompanion(
+      sceneId: Value(sceneId),
+      completedChallengesCount: Value(completedChallengesCount),
+      totalChallengesCount: Value(totalChallengesCount),
+      isCompleted: Value(isCompleted),
+      lastVisitedAt: Value(lastVisitedAt),
+    );
+  }
+
+  factory SceneProgressRow.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return SceneProgressRow(
+      sceneId: serializer.fromJson<String>(json['sceneId']),
+      completedChallengesCount:
+          serializer.fromJson<int>(json['completedChallengesCount']),
+      totalChallengesCount:
+          serializer.fromJson<int>(json['totalChallengesCount']),
+      isCompleted: serializer.fromJson<bool>(json['isCompleted']),
+      lastVisitedAt: serializer.fromJson<DateTime>(json['lastVisitedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'sceneId': serializer.toJson<String>(sceneId),
+      'completedChallengesCount':
+          serializer.toJson<int>(completedChallengesCount),
+      'totalChallengesCount': serializer.toJson<int>(totalChallengesCount),
+      'isCompleted': serializer.toJson<bool>(isCompleted),
+      'lastVisitedAt': serializer.toJson<DateTime>(lastVisitedAt),
+    };
+  }
+
+  SceneProgressRow copyWith(
+          {String? sceneId,
+          int? completedChallengesCount,
+          int? totalChallengesCount,
+          bool? isCompleted,
+          DateTime? lastVisitedAt}) =>
+      SceneProgressRow(
+        sceneId: sceneId ?? this.sceneId,
+        completedChallengesCount:
+            completedChallengesCount ?? this.completedChallengesCount,
+        totalChallengesCount: totalChallengesCount ?? this.totalChallengesCount,
+        isCompleted: isCompleted ?? this.isCompleted,
+        lastVisitedAt: lastVisitedAt ?? this.lastVisitedAt,
+      );
+  SceneProgressRow copyWithCompanion(SceneProgressEntriesCompanion data) {
+    return SceneProgressRow(
+      sceneId: data.sceneId.present ? data.sceneId.value : this.sceneId,
+      completedChallengesCount: data.completedChallengesCount.present
+          ? data.completedChallengesCount.value
+          : this.completedChallengesCount,
+      totalChallengesCount: data.totalChallengesCount.present
+          ? data.totalChallengesCount.value
+          : this.totalChallengesCount,
+      isCompleted:
+          data.isCompleted.present ? data.isCompleted.value : this.isCompleted,
+      lastVisitedAt: data.lastVisitedAt.present
+          ? data.lastVisitedAt.value
+          : this.lastVisitedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SceneProgressRow(')
+          ..write('sceneId: $sceneId, ')
+          ..write('completedChallengesCount: $completedChallengesCount, ')
+          ..write('totalChallengesCount: $totalChallengesCount, ')
+          ..write('isCompleted: $isCompleted, ')
+          ..write('lastVisitedAt: $lastVisitedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(sceneId, completedChallengesCount,
+      totalChallengesCount, isCompleted, lastVisitedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is SceneProgressRow &&
+          other.sceneId == this.sceneId &&
+          other.completedChallengesCount == this.completedChallengesCount &&
+          other.totalChallengesCount == this.totalChallengesCount &&
+          other.isCompleted == this.isCompleted &&
+          other.lastVisitedAt == this.lastVisitedAt);
+}
+
+class SceneProgressEntriesCompanion extends UpdateCompanion<SceneProgressRow> {
+  final Value<String> sceneId;
+  final Value<int> completedChallengesCount;
+  final Value<int> totalChallengesCount;
+  final Value<bool> isCompleted;
+  final Value<DateTime> lastVisitedAt;
+  final Value<int> rowid;
+  const SceneProgressEntriesCompanion({
+    this.sceneId = const Value.absent(),
+    this.completedChallengesCount = const Value.absent(),
+    this.totalChallengesCount = const Value.absent(),
+    this.isCompleted = const Value.absent(),
+    this.lastVisitedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  SceneProgressEntriesCompanion.insert({
+    required String sceneId,
+    this.completedChallengesCount = const Value.absent(),
+    this.totalChallengesCount = const Value.absent(),
+    this.isCompleted = const Value.absent(),
+    required DateTime lastVisitedAt,
+    this.rowid = const Value.absent(),
+  })  : sceneId = Value(sceneId),
+        lastVisitedAt = Value(lastVisitedAt);
+  static Insertable<SceneProgressRow> custom({
+    Expression<String>? sceneId,
+    Expression<int>? completedChallengesCount,
+    Expression<int>? totalChallengesCount,
+    Expression<bool>? isCompleted,
+    Expression<DateTime>? lastVisitedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (sceneId != null) 'scene_id': sceneId,
+      if (completedChallengesCount != null)
+        'completed_challenges_count': completedChallengesCount,
+      if (totalChallengesCount != null)
+        'total_challenges_count': totalChallengesCount,
+      if (isCompleted != null) 'is_completed': isCompleted,
+      if (lastVisitedAt != null) 'last_visited_at': lastVisitedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  SceneProgressEntriesCompanion copyWith(
+      {Value<String>? sceneId,
+      Value<int>? completedChallengesCount,
+      Value<int>? totalChallengesCount,
+      Value<bool>? isCompleted,
+      Value<DateTime>? lastVisitedAt,
+      Value<int>? rowid}) {
+    return SceneProgressEntriesCompanion(
+      sceneId: sceneId ?? this.sceneId,
+      completedChallengesCount:
+          completedChallengesCount ?? this.completedChallengesCount,
+      totalChallengesCount: totalChallengesCount ?? this.totalChallengesCount,
+      isCompleted: isCompleted ?? this.isCompleted,
+      lastVisitedAt: lastVisitedAt ?? this.lastVisitedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (sceneId.present) {
+      map['scene_id'] = Variable<String>(sceneId.value);
+    }
+    if (completedChallengesCount.present) {
+      map['completed_challenges_count'] =
+          Variable<int>(completedChallengesCount.value);
+    }
+    if (totalChallengesCount.present) {
+      map['total_challenges_count'] = Variable<int>(totalChallengesCount.value);
+    }
+    if (isCompleted.present) {
+      map['is_completed'] = Variable<bool>(isCompleted.value);
+    }
+    if (lastVisitedAt.present) {
+      map['last_visited_at'] = Variable<DateTime>(lastVisitedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('SceneProgressEntriesCompanion(')
+          ..write('sceneId: $sceneId, ')
+          ..write('completedChallengesCount: $completedChallengesCount, ')
+          ..write('totalChallengesCount: $totalChallengesCount, ')
+          ..write('isCompleted: $isCompleted, ')
+          ..write('lastVisitedAt: $lastVisitedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -5690,6 +6032,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $SlangEntriesTable slangEntries = $SlangEntriesTable(this);
   late final $PhoneticMasteryEntriesTable phoneticMasteryEntries =
       $PhoneticMasteryEntriesTable(this);
+  late final $SceneProgressEntriesTable sceneProgressEntries =
+      $SceneProgressEntriesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -5706,7 +6050,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         dictionaryEntries,
         stories,
         slangEntries,
-        phoneticMasteryEntries
+        phoneticMasteryEntries,
+        sceneProgressEntries
       ];
 }
 
@@ -8549,6 +8894,195 @@ typedef $$PhoneticMasteryEntriesTableProcessedTableManager
         ),
         PhoneticMasteryRow,
         PrefetchHooks Function()>;
+typedef $$SceneProgressEntriesTableCreateCompanionBuilder
+    = SceneProgressEntriesCompanion Function({
+  required String sceneId,
+  Value<int> completedChallengesCount,
+  Value<int> totalChallengesCount,
+  Value<bool> isCompleted,
+  required DateTime lastVisitedAt,
+  Value<int> rowid,
+});
+typedef $$SceneProgressEntriesTableUpdateCompanionBuilder
+    = SceneProgressEntriesCompanion Function({
+  Value<String> sceneId,
+  Value<int> completedChallengesCount,
+  Value<int> totalChallengesCount,
+  Value<bool> isCompleted,
+  Value<DateTime> lastVisitedAt,
+  Value<int> rowid,
+});
+
+class $$SceneProgressEntriesTableFilterComposer
+    extends Composer<_$AppDatabase, $SceneProgressEntriesTable> {
+  $$SceneProgressEntriesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get sceneId => $composableBuilder(
+      column: $table.sceneId, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get completedChallengesCount => $composableBuilder(
+      column: $table.completedChallengesCount,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get totalChallengesCount => $composableBuilder(
+      column: $table.totalChallengesCount,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<bool> get isCompleted => $composableBuilder(
+      column: $table.isCompleted, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get lastVisitedAt => $composableBuilder(
+      column: $table.lastVisitedAt, builder: (column) => ColumnFilters(column));
+}
+
+class $$SceneProgressEntriesTableOrderingComposer
+    extends Composer<_$AppDatabase, $SceneProgressEntriesTable> {
+  $$SceneProgressEntriesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get sceneId => $composableBuilder(
+      column: $table.sceneId, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get completedChallengesCount => $composableBuilder(
+      column: $table.completedChallengesCount,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get totalChallengesCount => $composableBuilder(
+      column: $table.totalChallengesCount,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<bool> get isCompleted => $composableBuilder(
+      column: $table.isCompleted, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get lastVisitedAt => $composableBuilder(
+      column: $table.lastVisitedAt,
+      builder: (column) => ColumnOrderings(column));
+}
+
+class $$SceneProgressEntriesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $SceneProgressEntriesTable> {
+  $$SceneProgressEntriesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get sceneId =>
+      $composableBuilder(column: $table.sceneId, builder: (column) => column);
+
+  GeneratedColumn<int> get completedChallengesCount => $composableBuilder(
+      column: $table.completedChallengesCount, builder: (column) => column);
+
+  GeneratedColumn<int> get totalChallengesCount => $composableBuilder(
+      column: $table.totalChallengesCount, builder: (column) => column);
+
+  GeneratedColumn<bool> get isCompleted => $composableBuilder(
+      column: $table.isCompleted, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get lastVisitedAt => $composableBuilder(
+      column: $table.lastVisitedAt, builder: (column) => column);
+}
+
+class $$SceneProgressEntriesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $SceneProgressEntriesTable,
+    SceneProgressRow,
+    $$SceneProgressEntriesTableFilterComposer,
+    $$SceneProgressEntriesTableOrderingComposer,
+    $$SceneProgressEntriesTableAnnotationComposer,
+    $$SceneProgressEntriesTableCreateCompanionBuilder,
+    $$SceneProgressEntriesTableUpdateCompanionBuilder,
+    (
+      SceneProgressRow,
+      BaseReferences<_$AppDatabase, $SceneProgressEntriesTable,
+          SceneProgressRow>
+    ),
+    SceneProgressRow,
+    PrefetchHooks Function()> {
+  $$SceneProgressEntriesTableTableManager(
+      _$AppDatabase db, $SceneProgressEntriesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$SceneProgressEntriesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$SceneProgressEntriesTableOrderingComposer(
+                  $db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$SceneProgressEntriesTableAnnotationComposer(
+                  $db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> sceneId = const Value.absent(),
+            Value<int> completedChallengesCount = const Value.absent(),
+            Value<int> totalChallengesCount = const Value.absent(),
+            Value<bool> isCompleted = const Value.absent(),
+            Value<DateTime> lastVisitedAt = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              SceneProgressEntriesCompanion(
+            sceneId: sceneId,
+            completedChallengesCount: completedChallengesCount,
+            totalChallengesCount: totalChallengesCount,
+            isCompleted: isCompleted,
+            lastVisitedAt: lastVisitedAt,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String sceneId,
+            Value<int> completedChallengesCount = const Value.absent(),
+            Value<int> totalChallengesCount = const Value.absent(),
+            Value<bool> isCompleted = const Value.absent(),
+            required DateTime lastVisitedAt,
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              SceneProgressEntriesCompanion.insert(
+            sceneId: sceneId,
+            completedChallengesCount: completedChallengesCount,
+            totalChallengesCount: totalChallengesCount,
+            isCompleted: isCompleted,
+            lastVisitedAt: lastVisitedAt,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (
+                    e.readTable<$SceneProgressEntriesTable, SceneProgressRow>(
+                        table),
+                    BaseReferences<_$AppDatabase, $SceneProgressEntriesTable,
+                        SceneProgressRow>(db, table, e)
+                  ))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$SceneProgressEntriesTableProcessedTableManager
+    = ProcessedTableManager<
+        _$AppDatabase,
+        $SceneProgressEntriesTable,
+        SceneProgressRow,
+        $$SceneProgressEntriesTableFilterComposer,
+        $$SceneProgressEntriesTableOrderingComposer,
+        $$SceneProgressEntriesTableAnnotationComposer,
+        $$SceneProgressEntriesTableCreateCompanionBuilder,
+        $$SceneProgressEntriesTableUpdateCompanionBuilder,
+        (
+          SceneProgressRow,
+          BaseReferences<_$AppDatabase, $SceneProgressEntriesTable,
+              SceneProgressRow>
+        ),
+        SceneProgressRow,
+        PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -8579,4 +9113,6 @@ class $AppDatabaseManager {
   $$PhoneticMasteryEntriesTableTableManager get phoneticMasteryEntries =>
       $$PhoneticMasteryEntriesTableTableManager(
           _db, _db.phoneticMasteryEntries);
+  $$SceneProgressEntriesTableTableManager get sceneProgressEntries =>
+      $$SceneProgressEntriesTableTableManager(_db, _db.sceneProgressEntries);
 }

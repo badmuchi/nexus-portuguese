@@ -179,6 +179,18 @@ class PhoneticMasteryEntries extends Table {
   Set<Column> get primaryKey => {soundId};
 }
 
+@DataClassName('SceneProgressRow')
+class SceneProgressEntries extends Table {
+  TextColumn get sceneId => text()();
+  IntColumn get completedChallengesCount => integer().withDefault(const Constant(0))();
+  IntColumn get totalChallengesCount => integer().withDefault(const Constant(0))();
+  BoolColumn get isCompleted => boolean().withDefault(const Constant(false))();
+  DateTimeColumn get lastVisitedAt => dateTime()();
+
+  @override
+  Set<Column> get primaryKey => {sceneId};
+}
+
 @DriftDatabase(tables: [
   DialogueNodes,
   DialogueHistoryEntries,
@@ -192,6 +204,7 @@ class PhoneticMasteryEntries extends Table {
   Stories,
   SlangEntries,
   PhoneticMasteryEntries,
+  SceneProgressEntries,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? e])
@@ -206,7 +219,7 @@ class AppDatabase extends _$AppDatabase {
         );
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -214,6 +227,9 @@ class AppDatabase extends _$AppDatabase {
         onUpgrade: (m, from, to) async {
           if (from < 2) {
             await m.createTable(phoneticMasteryEntries);
+          }
+          if (from < 3) {
+            await m.createTable(sceneProgressEntries);
           }
         },
       );
@@ -570,6 +586,32 @@ class AppDatabase extends _$AppDatabase {
         mouthAttempts: Value(totalMouthAttempts),
         mouthScoreSum: Value(totalMouthScoreSum),
         lastPracticedAt: Value(DateTime.now()),
+      ),
+    );
+  }
+
+  // --- Portuguese Life Scenes queries ---
+  Future<List<SceneProgressRow>> getAllSceneProgress() {
+    return select(sceneProgressEntries).get();
+  }
+
+  Future<SceneProgressRow?> getSceneProgress(String sceneId) {
+    return (select(sceneProgressEntries)..where((t) => t.sceneId.equals(sceneId))).getSingleOrNull();
+  }
+
+  Future<void> upsertSceneProgress({
+    required String sceneId,
+    required int completedCount,
+    required int totalCount,
+    required bool isCompleted,
+  }) {
+    return into(sceneProgressEntries).insertOnConflictUpdate(
+      SceneProgressEntriesCompanion(
+        sceneId: Value(sceneId),
+        completedChallengesCount: Value(completedCount),
+        totalChallengesCount: Value(totalCount),
+        isCompleted: Value(isCompleted),
+        lastVisitedAt: Value(DateTime.now()),
       ),
     );
   }
