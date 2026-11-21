@@ -6,6 +6,7 @@ import 'package:nexus_portuguese_app/features/srs/data/repositories/srs_reposito
 import 'package:nexus_portuguese_app/features/assessment/presentation/cubit/assessment_cubit.dart';
 import 'package:nexus_portuguese_app/features/assessment/presentation/cubit/assessment_state.dart';
 import 'package:nexus_portuguese_app/features/assessment/presentation/screens/level_assessment_screen.dart';
+import 'package:nexus_portuguese_app/features/verb_trainer/presentation/screens/verb_trainer_screen.dart';
 import 'package:nexus_portuguese_app/features/phonetics/presentation/screens/phonetics_screen.dart';
 import 'package:nexus_portuguese_app/features/scenes/presentation/screens/scenes_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
@@ -534,6 +535,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const LevelAssessmentScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'VerboSprint',
+                  subtitle: 'Спринт спряжений ⚡️',
+                  icon: Icons.bolt_rounded,
+                  color: Colors.amber.shade900,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const VerbTrainerScreen()),
                     );
                   },
                 ),

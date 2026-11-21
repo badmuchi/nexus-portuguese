@@ -17,37 +17,41 @@
 - [x] UI: `ScenesCatalogScreen`, `SceneDetailScreen`, `SceneWordCard`, `SceneChallengeCard`, `ScenePhraseTile`.
 - [x] Тесты: `test/features/scenes_test.dart`, `test/features/scenes_cubit_test.dart` (100% pass).
 
+### Фича 3: Diagnóstico CEFR (Тест на определение уровня A1–B2) (`lib/features/assessment/`)
+- [x] Drift: таблица `AssessmentResultEntries` (схема v4).
+- [x] Domain-модели: `CefrLevel`, `SkillFocus`, `LevelQuizQuestion`, `LevelQuizResult`.
+- [x] Data-слой: 15 калиброванных вопросов, `AssessmentRepositoryImpl`.
+- [x] Cubit & State: `AssessmentCubit`, вычисление профиля навыков и 1-tap FSRS.
+- [x] UI: `LevelAssessmentScreen`, `LevelCertificateCard`.
+- [x] Тесты: `test/features/assessment_test.dart`, `test/features/assessment_cubit_test.dart` (100% pass).
+
 ---
 
-## 2. Текущая фича: Diagnóstico CEFR (Тест на определение уровня A1–B2)
+## 2. Завершённая фича: VerboSprint (Скоростной тренажёр спряжения глаголов)
 
-### Этап 1: Domain и Data слои (Схема v4)
-- [x] **Схема локальной БД Drift (`lib/core/database/`):**
-  - Таблица `AssessmentResultEntries` (`id`, `determinedLevel`, `levelTitleRu`, `scorePercentage`, `totalQuestions`, `correctAnswers`, `skillScoresJson`, `mistakesJson`, `completedAt`).
-  - Миграция схемы до `schemaVersion = 4`.
-  - Кодогенерация через `build_runner`.
-  - DAO-запросы: `getLatestAssessmentResult()`, `insertAssessmentResult()`.
-- [x] **Domain-сущности (`lib/features/assessment/domain/`):**
-  - `entities/level_quiz_question.dart`: `CefrLevel`, `SkillFocus`, `LevelQuizQuestion`.
-  - `entities/level_quiz_result.dart`: `LevelQuizResult` с вычислением уровня (A1-B2), скилл-радара, списка ошибок и рекомендаций.
-  - `repositories/assessment_repository.dart`: Контракт с `Result<T>`.
-- [x] **Data-слой (`lib/features/assessment/data/`):**
-  - `datasources/portuguese_assessment_seed_data.dart`: 15 калиброванных тестовых вопросов (грамматика, crase, PT-BR vs PT-PT, аудирование, лексика).
-  - `repositories/assessment_repository_impl.dart`: Реализация `AssessmentRepository` с сохранением в Drift.
-- [x] **Unit-тесты:** `test/features/assessment_test.dart`.
+### Этап 1: Domain и Data слои (`lib/features/verb_trainer/`)
+- [x] **Domain-сущности (`domain/entities/`):**
+  - `verb_exercise.dart`: `VerbTense`, `VerbPerson`, `VerbExercise`.
+  - `verb_trainer_config.dart`: `TrainerMode` (sprint60, drill15, irregularsOnly), `TenseFilter`, `VerbTrainerConfig`.
+  - `verb_trainer_session_result.dart`: `VerbTrainerSessionResult` с расчетом комбо, точности и сохранением ошибок в FSRS.
+- [x] **Контракт репозитория (`domain/repositories/`):**
+  - `verb_trainer_repository.dart`: `generateExercises`, `recordAttempt`, `getMasteryStats`.
+- [x] **Data-слой (`data/`):**
+  - `datasources/verb_exercise_generator.dart`: генерация дистракторов на основе реальных форм глаголов.
+  - `repositories/verb_trainer_repository_impl.dart`: работа с Drift `grammarVerbs` и `grammarPracticeLogs`.
+- [x] **Unit-тесты:** `test/features/verb_trainer_test.dart` (100% pass).
 
 ### Этап 2: State Management (BLoC/Cubit)
-- [x] `cubit/assessment_cubit.dart` и `assessment_state.dart`:
-  - Состояния: загрузка, активный вопрос, показ объяснения, завершённый сертификат, добавление ошибок в FSRS.
-  - Unit-тесты: `test/features/assessment_cubit_test.dart` (100% pass).
+- [x] `cubit/verb_trainer_cubit.dart` & `verb_trainer_state.dart`:
+  - Таймер на 60 секунд для спринта, начисление комбо-очков, сохранение ошибок в FSRS.
+- [x] **Unit-тесты:** `test/features/verb_trainer_cubit_test.dart` (100% pass).
 
-### Этап 3: Presentation UI
-- [x] `widgets/level_certificate_card.dart`:
-  - Карточка-сертификат Material 3 с бэйджем уровня, разбивкой навыков и кнопкой «Добавить ошибки в FSRS».
-- [x] `screens/level_assessment_screen.dart`:
-  - Интерактивный квиз с аудио, выбором вариантов, объяснениями и переходом к результату.
+### Этап 3: Presentation UI и декомпозиция виджетов
+- [x] `widgets/verb_trainer_config_sheet.dart`: диалог выбора режима (Спринт, Дрилл, Времена).
+- [x] `widgets/verb_session_summary_card.dart`: карточка итогов с разбором ошибок и 1-tap FSRS.
+- [x] `screens/verb_trainer_screen.dart`: игровой экран спринта с таймером, комбо-множителем, карточкой формы и аудио.
 
 ### Этап 4: Интеграция и верификация
-- [x] Регистрация в `main.dart` (`MultiRepositoryProvider`, `MultiBlocProvider`).
-- [x] Добавление баннера и карточки модуля в `HomeScreen`.
-- [x] Запуск `flutter analyze` и `flutter test` (0 warnings, 82/82 tests passed).
+- [x] Добавление кнопки запуска в `GrammarScreen` (в AppBar и FloatingActionButton) и карточки на `HomeScreen`.
+- [x] DI в `main.dart`.
+- [x] Прогон `flutter analyze` и `flutter test` (0 warnings, 96/96 tests passed).

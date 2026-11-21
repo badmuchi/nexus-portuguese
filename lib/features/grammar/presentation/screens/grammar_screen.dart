@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nexus_portuguese_app/features/verb_trainer/presentation/screens/verb_trainer_screen.dart';
 import '../cubit/grammar_cubit.dart';
 import '../cubit/grammar_state.dart';
 
@@ -26,6 +27,18 @@ class _GrammarScreenState extends State<GrammarScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Грамматика'),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.bolt_rounded, color: Colors.amber),
+              tooltip: 'VerboSprint: Тренажёр спряжений',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => const VerbTrainerScreen()),
+                );
+              },
+            ),
+          ],
           bottom: const TabBar(
             isScrollable: true,
             tabAlignment: TabAlignment.start,
@@ -35,6 +48,16 @@ class _GrammarScreenState extends State<GrammarScreen> {
               Tab(icon: Icon(Icons.compare_arrows_rounded), text: 'Ser vs Estar'),
             ],
           ),
+        ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const VerbTrainerScreen()),
+            );
+          },
+          icon: const Icon(Icons.bolt_rounded),
+          label: const Text('Спринт глаголов ⚡️'),
         ),
         body: BlocBuilder<GrammarCubit, GrammarState>(
           builder: (context, state) {

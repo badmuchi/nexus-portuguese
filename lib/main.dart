@@ -9,6 +9,9 @@ import 'core/settings/app_settings_storage.dart';
 import 'features/assessment/data/repositories/assessment_repository_impl.dart';
 import 'features/assessment/domain/repositories/assessment_repository.dart';
 import 'features/assessment/presentation/cubit/assessment_cubit.dart';
+import 'features/verb_trainer/data/repositories/verb_trainer_repository_impl.dart';
+import 'features/verb_trainer/domain/repositories/verb_trainer_repository.dart';
+import 'features/verb_trainer/presentation/cubit/verb_trainer_cubit.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -71,6 +74,7 @@ void main() async {
   final storiesRepository = StoriesRepositoryImpl(database);
   final scenesRepository = ScenesRepositoryImpl(database: database);
   final assessmentRepository = AssessmentRepositoryImpl(database: database);
+  final verbTrainerRepository = VerbTrainerRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -89,6 +93,7 @@ void main() async {
         RepositoryProvider<StoriesRepository>.value(value: storiesRepository),
         RepositoryProvider<ScenesRepository>.value(value: scenesRepository),
         RepositoryProvider<AssessmentRepository>.value(value: assessmentRepository),
+        RepositoryProvider<VerbTrainerRepository>.value(value: verbTrainerRepository),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -158,6 +163,13 @@ void main() async {
               audioService: hybridAudio,
               srsRepository: srsRepository,
             )..loadAssessment(),
+          ),
+          BlocProvider<VerbTrainerCubit>(
+            create: (_) => VerbTrainerCubit(
+              repository: verbTrainerRepository,
+              audioService: hybridAudio,
+              srsRepository: srsRepository,
+            ),
           ),
         ],
         child: const NexusPortugueseApp(),
