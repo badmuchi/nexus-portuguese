@@ -21,6 +21,7 @@ import 'package:nexus_portuguese_app/features/music_lab/presentation/screens/mus
 import 'package:nexus_portuguese_app/features/chat_simulator/presentation/screens/chat_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/survival_guide/presentation/screens/survival_guide_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/career/presentation/screens/career_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/gastronomy/presentation/screens/gastronomy_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -682,6 +683,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const CareerCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Гастрономия & Кухня',
+                  subtitle: 'Рецепты и таймер 🍳',
+                  icon: Icons.soup_kitchen_rounded,
+                  color: Colors.deepOrange.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const GastronomyCatalogScreen()),
                     );
                   },
                 ),

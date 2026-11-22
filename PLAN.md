@@ -101,9 +101,16 @@
 - [x] UI: `CareerCatalogScreen`, `InterviewSimulatorScreen`, `InterviewScenarioCard`, `BusinessPhraseTile` (копирование, озвучка, 1-tap FSRS), `CvGuideCard`, `InterviewDialogView` с бейджами +10 pts и анализом ответа.
 - [x] Тесты: `test/features/career_test.dart`, `test/features/career_cubit_test.dart` (240/240 тестов pass, `flutter analyze` 0 warnings).
 
+### Фича 15: Cozinha Lusófona & Gastronomia (`lib/features/gastronomy/`)
+- [x] Domain-модели: `RecipeEntity`, `RecipeIngredient`, `RecipeStepEntity`, `CulinaryTermEntity`, `CulinaryTermType` (cookingVerb, utensil, measurement, dialectFood).
+- [x] Data-слой: 6 аутентичных рецептов (Pastel de Nata [Lisboa], Pão de Queijo [Minas Gerais], Bacalhau à Brás [Lisboa], Moqueca Baiana [Bahia], Caldo Verde [Minho], Feijoada Completa [Rio de Janeiro]), 16 терминов кулинарной лексики и контрастов (chávena vs xícara, fiambre vs presunto, frigorífico vs geladeira, varinha mágica vs mixer), `GastronomyRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `GastronomyCatalogCubit` (поиск, фильтры диалектов BR/PT, сложности Fácil/Médio/Avançado, типов лексики), `RecipeCookCubit` (пошаговый интерактивный кулинарный режим, интерактивный таймер варки/запекания, чек-лист ингредиентов, озвучка шагов через TTS).
+- [x] UI: `GastronomyCatalogScreen`, `RecipeDetailScreen`, `RecipeCookingScreen`, `RecipeCard`, `CulinaryTermTile` (копирование, озвучка, 1-tap FSRS), `RecipeIngredientsView` (чек-лист и экспорт в FSRS), `RecipeStepView` (с таймером, глаголами готовки и звуковым алертом).
+- [x] Тесты: `test/features/gastronomy_test.dart`, `test/features/gastronomy_cubit_test.dart` (263/263 тестов pass, `flutter analyze` 0 warnings).
+
 ---
 
 ## 2. Предлагаемые следующие шаги
-- [ ] **Опция 1: «Cozinha Lusófona & Gastronomia» (Кулинарная лаборатория и рецепты Lusofonia)** — интерактивные пошаговые рецепты (*Pastel de Nata, Feijoada, Bacalhau à Brás, Pão de Queijo, Caldo Verde, Moqueca*), глаголы приготовления (*picar, refogar, ferver, assar, temperar*), кухонная утварь, встроенный кулинарный таймер и квиз по ингредиентам с озвучкой.
-- [ ] **Опция 2: «Clube de Cinema & Telenovelas» (Синематека и диалоги из культовых фильмов)** — разбор сцен и диалогов из культового кино (*Cidade de Deus, Central do Brasil, O Auto da Compadecida, Capitães da Areia*), сленг экрана, интонационные акценты и анализ скрытых культурных подтекстов.
-- [ ] **Опция 3: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes*) vs Бразилии (*chute, drible, goleiro*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
+- [ ] **Опция 1: «Clube de Cinema & Telenovelas» (Синематека и диалоги из культовых фильмов)** — разбор сцен и диалогов из культового кино (*Cidade de Deus, Central do Brasil, O Auto da Compadecida, Glória, Capitães da Areia*), сленг экрана, интонационные акценты и анализ скрытых культурных подтекстов.
+- [ ] **Опция 2: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes*) vs Бразилии (*chute, drible, goleiro*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
+- [ ] **Опция 3: «Expresso Literário & Poesia» (Литературная гостиная и великие авторы)** — интерактивный разбор произведений (*Fernando Pessoa, Clarice Lispector, Machado de Assis, Luís de Camões*), поэтический синтаксис, метафоры и выразительное чтение под музыку.
