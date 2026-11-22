@@ -15,6 +15,7 @@ import 'package:nexus_portuguese_app/features/speech_lab/presentation/screens/sp
 import 'package:nexus_portuguese_app/features/stories/presentation/screens/stories_screen.dart';
 import 'package:nexus_portuguese_app/features/auditorio/presentation/screens/auditorio_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/diary/presentation/screens/diary_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/duels/presentation/screens/duels_lobby_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -598,6 +599,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const DiaryCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Арена дуэлей',
+                  subtitle: 'PT-BR vs PT-PT ⚔️',
+                  icon: Icons.sports_kabaddi_rounded,
+                  color: Colors.deepOrange.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const DuelsLobbyScreen()),
                     );
                   },
                 ),

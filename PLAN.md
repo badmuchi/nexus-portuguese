@@ -47,13 +47,27 @@
 
 ### Фича 7: Auditório & Shadowing (Микро-подкасты и теневой повтор) (`lib/features/auditorio/`)
 - [x] Domain-сущности: `PodcastTrack`, `TranscriptSnippet`, `ShadowingEvaluationEntity`.
-- [x] Data-слой: 6 культурных микро-подкастов (`AuditorioSeedData`: Pastéis de Belém, Garota de Ipanema, Elétrico 28, Festa Junina, O Mercado da Ribeira, Histórias do Sertão), `AuditorioRepositoryImpl` с логированием в Drift.
-- [x] Cubit & State: `AuditorioCatalogCubit` с фильтрами по диалектам (PT-BR / PT-PT), уровням CEFR и поиском; `PodcastPlayerCubit` с управлением воспроизведением, скоростью (0.75x, 1.0x, 1.25x), зацикливанием фразы и акустической оценкой через `PronunciationAccuracyEvaluator`.
-- [x] UI: `AuditorioCatalogScreen`, `PodcastPlayerScreen`, `PodcastCard`, `TranscriptSnippetTile`, `WordLookupDialog` с 1-tap FSRS сохранением, `SentenceXRaySheet` интеграция, `ShadowingRecorderSheet`.
-- [x] Тесты: `test/features/auditorio_test.dart`, `test/features/auditorio_cubit_test.dart` (131/131 тестов pass, `flutter analyze` 0 warnings).
+- [x] Data-слой: 6 культурных микро-подкастов (`AuditorioSeedData`), `AuditorioRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `AuditorioCatalogCubit`, `PodcastPlayerCubit` (скорость 0.75x–1.25x, зацикливание фразы, распознавание и обратная связь по словам).
+- [x] UI: `AuditorioCatalogScreen`, `PodcastPlayerScreen`, синхронная транскрипция, быстрый тултип слова, 1-tap FSRS.
+- [x] Тесты: `test/features/auditorio_test.dart`, `test/features/auditorio_cubit_test.dart` (100% pass).
+
+### Фича 8: Diário de Bordo (Интерактивный дневник с AI-анализатором) (`lib/features/diary/`)
+- [x] Drift: таблица `DiaryEntries` (схема v5 с миграцией).
+- [x] Domain & Service: `PortugueseDiaryAnalyzer` (детекция PT-BR vs PT-PT, поиск пропущенной диакритики `ã/õ/ç/á/ê`, слияний предлогов `de o -> do`, ловушек рода, подсчет слов и оценка CEFR).
+- [x] Cubit & State: `DiaryCubit`, темы дня (`DiaryPromptsSeed`), голосовой ввод.
+- [x] UI: `DiaryCatalogScreen`, `DiaryEditorScreen`, `PortugueseDiacriticsBar`, `DiaryAnalysisSheet`.
+- [x] Тесты: `test/features/diary_test.dart`, `test/features/diary_cubit_test.dart` (100% pass).
+
+### Фича 9: Arena de Duelos Culturais (Баттл диалектов: PT-BR vs PT-PT) (`lib/features/duels/`)
+- [x] Domain-модели: `DuelQuestion`, `DuelCategory` (vocabulario, gramatica, falsosAmigos, girias), `DuelSessionResultEntity`.
+- [x] Data-слой: 20 калиброванных вопросов-ловушек (`DuelQuestionsSeed`), `DuelsRepositoryImpl`.
+- [x] Cubit & State: `DuelsCubit` с таймером 15 сек, комбо-множителем (2x, 3x), озвучкой обоих диалектов и титулами.
+- [x] UI: `DuelsLobbyScreen`, `DuelGameplayScreen`, `DuelOptionButton`, `DialectComparisonCard`, `DuelResultScreen`.
+- [x] Тесты: `test/features/duels_test.dart`, `test/features/duels_cubit_test.dart` (159/159 тестов pass, `flutter analyze` 0 warnings).
 
 ---
 
 ## 2. Предлагаемые следующие шаги
-- [ ] **Опция А: «Arena de Duelos Culturais» (Викторина-баттл диалектов: PT-BR vs PT-PT)** — интерактивный квиз на выявление региональных различий (*ônibus* vs *autocarro*, *estou fazendo* vs *estou a fazer*, сленг carioca vs tripeiro).
-- [ ] **Опция Б: «Diário de Bordo» (Голосовой и текстовый интерактивный дневник с AI-фидбеком и исправлением грамматики)** — практика свободного письма/речи с автоматическим анализом ошибок и сохранением в FSRS.
+- [ ] **Опция А: «Laboratório de Expressões Idiomáticas» (Лаборатория португальских идиом и поговорок с визуальными метафорами и интерактивным контекстом)** — *«Pagar o pato»*, *«Tirar o cavalinho da chuva»*, *«Falar pelos cotovelos»*, *«Muitos anos a virar frangos»*.
+- [ ] **Опция Б: «Trilha Sonora da Língua» (Караоке и разбор песен: Bossa Nova, Fado, Samba, MPB с синхронным текстом и грамматикой)** — песни с переводом, подстрочником и культурными комментариями.
