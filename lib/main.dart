@@ -39,6 +39,8 @@ import 'features/travel_guide/data/repositories/travel_guide_repository_impl.dar
 import 'features/travel_guide/domain/repositories/travel_guide_repository.dart';
 import 'features/literature/data/repositories/literature_repository_impl.dart';
 import 'features/literature/domain/repositories/literature_repository.dart';
+import 'features/football/data/repositories/football_repository_impl.dart';
+import 'features/football/domain/repositories/football_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -115,6 +117,7 @@ void main() async {
   final cinemaRepository = CinemaRepositoryImpl(database: database);
   final travelGuideRepository = TravelGuideRepositoryImpl(database: database);
   final literatureRepository = LiteratureRepositoryImpl(database: database);
+  final footballRepository = FootballRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -148,6 +151,7 @@ void main() async {
         RepositoryProvider<CinemaRepository>.value(value: cinemaRepository),
         RepositoryProvider<TravelGuideRepository>.value(value: travelGuideRepository),
         RepositoryProvider<LiteratureRepository>.value(value: literatureRepository),
+        RepositoryProvider<FootballRepository>.value(value: footballRepository),
       ],
       child: MultiBlocProvider(
         providers: [

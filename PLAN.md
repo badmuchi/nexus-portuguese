@@ -133,5 +133,16 @@
 
 ---
 
-## 2. Очередь разработки (по приоритету 3-2-1)
-- [ ] **В разработке (следующая) — Опция 1: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes, fora-de-jogo*) vs Бразилии (*chute, drible, goleiro, impedimento*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
+### Фича 19: Gira do Futebol & Torcida (`lib/features/football/`)
+- [x] Domain-модели: `FootballMatchEntity`, `MatchMomentEntity`, `FootballTermEntity`, `FootballTermCategory` (positions, rules, movesAndSkills, slangAndJargon), `FanChantEntity`, `FootballQuizQuestion`.
+- [x] Data-слой: 4 сценария матчей (Fla-Flu no Maracanã [Rio, PT-BR], O Clássico Benfica vs Porto [Lisboa, PT-PT], Final da Libertadores [Montevidéu, PT-BR], Seleção das Quinas na Eurocopa [Lisboa, PT-PT]) (`FootballSeedData`), 16 футбольных терминов со скрупулёзным сравнением PT-PT vs PT-BR (guarda-redes vs goleiro, fora-de-jogo vs impedimento, pontapé de canto vs escanteio, baliza vs trave, finta vs drible, remate vs chute, relvado vs gramado, equipa vs time, camisola vs camisa, adeptos vs torcedores, cueca vs caneta, mister vs professor), 6 легендарных кричалок торсид, 8 вопросов викторины «Quiz da Pelada», `FootballRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `FootballCatalogCubit` (поиск, фильтры диалектов BR/PT, категорий терминов, вкладки), `MatchSimulatorCubit` (симулятор комментатора матча в реальном времени с табло счёта, бегущими минутами, экспрессивной озвучкой через TTS на скорости 1.05x и разбором диалектных контрастов момента), `FootballQuizCubit` (викторина футбольного сленга с подсчётом баллов и трофеем).
+- [x] UI: `FootballCatalogScreen`, `MatchSimulatorScreen`, `FootballQuizScreen`, `FootballMatchCard`, `FootballTermCard` (парная карточка сравнения PT/BR, озвучка и 1-tap FSRS), `FanChantCard`.
+- [x] Тесты: `test/features/football_test.dart`, `test/features/football_cubit_test.dart` (368/368 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
+## 2. Предлагаемые следующие шаги
+- [ ] **Опция 1: «Humor Lusófono & Piadas de Boteco» (Юмор, анекдоты и культурные мемы)** — классические португальские и бразильские шутки (*piadas de Manuel e Maria*, бразильские мемы, игра слов и каламбуры), ирония, сарказм и двойные смыслы в живой разговорной речи.
+- [ ] **Опция 2: «Rádio Novela & Podcast Drama» (Драматические радиопостановки)** — интерактивные аудиоспектакли с атмосферными звуками (шум океана, дождь, уличный шум Лиссабона и Рио), ветвящиеся диалоги актеров с яркими региональными акцентами.
+- [ ] **Опция 3: «Bazar & Feira Livre» (Интерактивный рынок и искусство торга)** — колоритные базары (Feira da Ladra в Лиссабоне, Mercado Municipal в Сан-Паулу, Feira de São Cristóvão), единицы веса (*quilo, dúzia, meio quilo*), торг, цены и зазывания торговцев.

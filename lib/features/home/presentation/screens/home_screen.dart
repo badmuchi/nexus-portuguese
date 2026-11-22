@@ -25,6 +25,7 @@ import 'package:nexus_portuguese_app/features/gastronomy/presentation/screens/ga
 import 'package:nexus_portuguese_app/features/cinema/presentation/screens/cinema_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/travel_guide/presentation/screens/travel_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/literature/presentation/screens/literature_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/football/presentation/screens/football_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -738,6 +739,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const LiteratureCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Футбол & Торсида',
+                  subtitle: 'Матчи, сленг и кричалки ⚽',
+                  icon: Icons.sports_soccer_rounded,
+                  color: Colors.green.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const FootballCatalogScreen()),
                     );
                   },
                 ),
