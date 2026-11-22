@@ -19,6 +19,7 @@ import 'package:nexus_portuguese_app/features/duels/presentation/screens/duels_l
 import 'package:nexus_portuguese_app/features/idioms/presentation/screens/idioms_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/music_lab/presentation/screens/music_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/chat_simulator/presentation/screens/chat_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/survival_guide/presentation/screens/survival_guide_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -654,6 +655,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const ChatCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Гид выживания',
+                  subtitle: 'NIF, аренда и SOS 🧭',
+                  icon: Icons.explore_rounded,
+                  color: Colors.blue.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const SurvivalGuideCatalogScreen()),
                     );
                   },
                 ),
