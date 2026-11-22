@@ -115,9 +115,15 @@
 - [x] UI: `CinemaCatalogScreen`, `ScenePlayerScreen`, `MovieSceneCard`, `CinemaDialogueBubble` (подсветка сленга и культурного подтекста, озвучка, 1-tap FSRS), `CinemaQuoteCard`, `ScenePlaybackControls` (дубляж, автопроигрывание, перемотка).
 - [x] Тесты: `test/features/cinema_test.dart`, `test/features/cinema_cubit_test.dart` (286/286 тестов pass, `flutter analyze` 0 warnings).
 
+### Фича 17: Viagem & Geografia Lusófona (`lib/features/travel_guide/`)
+- [x] Domain-модели: `LusophoneCountryEntity`, `CountryLinguisticFeature`, `TravelPhraseEntity`, `TravelPhraseCategory` (airportCustoms, transport, hotelLodging, restaurantDining, emergencies, localCourtesies), `GeographyQuizQuestion`.
+- [x] Data-слой: 9 стран и территорий CPLP (Португалия, Бразилия, Ангола, Мозамбик, Кабо-Верде, Сан-Томе и Принсипи, Гвинея-Бисау, Восточный Тимор, Макао) с культурным обзором, столицами, валютами, национальными блюдами и местными диалектизмами (`TravelGuideSeedData`), 18 практических фраз для путешествий, 8 географических вопросов викторины, `TravelGuideRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `TravelCatalogCubit` (поиск, фильтры континентов, категорий фраз, диалектов BR/PT), `GeographyQuizCubit` (викторина "Passaporte Lusófono", подсчёт баллов, коллекция штампов в паспорте, озвучка вопросов через TTS).
+- [x] UI: `TravelCatalogScreen`, `CountryDetailScreen`, `GeographyQuizScreen`, `CountryCard`, `TravelPhraseTile` (озвучка, копирование, 1-tap FSRS), `PassportStampBadge`.
+- [x] Тесты: `test/features/travel_guide_test.dart`, `test/features/travel_guide_cubit_test.dart` (312/312 тестов pass, `flutter analyze` 0 warnings).
+
 ---
 
-## 2. Предлагаемые следующие шаги
+## 2. Очередь разработки (по приоритету 3-2-1)
+- [ ] **В разработке (следующая) — Опция 2: «Expresso Literário & Poesia» (Литературная гостиная и великие авторы)** — интерактивный разбор шедевров (*Fernando Pessoa и его гетеронимы, Clarice Lispector, Machado de Assis, Luís de Camões*), глубокий поэтический синтаксис, метафоры, выразительное чтение под музыку и 1-tap FSRS.
 - [ ] **Опция 1: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes, fora-de-jogo*) vs Бразилии (*chute, drible, goleiro, impedimento*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
-- [ ] **Опция 2: «Expresso Literário & Poesia» (Литературная гостиная и великие авторы)** — интерактивный разбор шедевров (*Fernando Pessoa и его гетеронимы, Clarice Lispector, Machado de Assis, Luís de Camões*), глубокий поэтический синтаксис, метафоры и выразительное чтение под музыку.
-- [ ] **Опция 3: «Viagem & Geografia Lusófona» (Интерактивный атлас лузофонии)** — путешествие по 9 странам португальского языка (Бразилия, Португалия, Ангола, Мозамбик, Кабо-Верде, Сан-Томе, Гвинея-Бисау, Тимор-Лешти, Макао), региональные диалекты, достопримечательности и географический квиз.

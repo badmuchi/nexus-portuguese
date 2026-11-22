@@ -23,6 +23,7 @@ import 'package:nexus_portuguese_app/features/survival_guide/presentation/screen
 import 'package:nexus_portuguese_app/features/career/presentation/screens/career_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/gastronomy/presentation/screens/gastronomy_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/cinema/presentation/screens/cinema_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/travel_guide/presentation/screens/travel_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -710,6 +711,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const CinemaCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Атлас & Путеводитель',
+                  subtitle: '9 стран CPLP и фразы 🧭',
+                  icon: Icons.public_rounded,
+                  color: Colors.teal.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const TravelCatalogScreen()),
                     );
                   },
                 ),
