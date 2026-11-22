@@ -20,6 +20,7 @@ import 'package:nexus_portuguese_app/features/idioms/presentation/screens/idioms
 import 'package:nexus_portuguese_app/features/music_lab/presentation/screens/music_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/chat_simulator/presentation/screens/chat_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/survival_guide/presentation/screens/survival_guide_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/career/presentation/screens/career_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -668,6 +669,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const SurvivalGuideCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Карьера & Интервью',
+                  subtitle: 'STAR, резюме и оффер 💼',
+                  icon: Icons.work_rounded,
+                  color: Colors.indigo.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const CareerCatalogScreen()),
                     );
                   },
                 ),

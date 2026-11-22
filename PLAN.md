@@ -94,9 +94,16 @@
 - [x] UI: `SurvivalGuideCatalogScreen`, `SurvivalQuestScreen`, `SurvivalQuestCard`, `SurvivalPhraseTile` (копирование в буфер, озвучка и 1-tap FSRS), `CulturalTipCard`, `QuestStepView`.
 - [x] Тесты: `test/features/survival_guide_test.dart`, `test/features/survival_guide_cubit_test.dart` (229/229 тестов pass, `flutter analyze` 0 warnings).
 
+### Фича 14: Mercado de Trabalho, Carreira & Entrevistas (`lib/features/career/`)
+- [x] Domain-модели: `InterviewScenarioEntity`, `InterviewQuestionEntity`, `InterviewAnswerOption`, `BusinessPhraseEntity`, `CvGuideItemEntity`, `CareerCategory` (tech, sales, hospitality, marketing, general).
+- [x] Data-слой: 3 полноценных трека собеседований (Software Engineer в scale-up Лиссабона [PT-PT], Gerente de Contas B2B в Сан-Паулу [PT-BR], Rececionista в бутик-отеле Алгарве [PT-PT]), 11 деловых фраз и email-шаблонов, 3 руководства по резюме и трудовым режимам (CLT vs PJ в Бразилии, 14 зарплат и subsídio de refeição в Португалии) (`CareerSeedData`), `CareerRepositoryImpl` с сохранением результатов в Drift.
+- [x] Cubit & State: `CareerCatalogCubit` (поиск по ролям и навыкам, фильтры категорий, регионов BR/PT, типов фраз), `InterviewSimulatorCubit` (STAR-оценка ответов, подсчет баллов, озвучка реплик интервьюера с диалектом через TTS, разбор фидбэка рекрутера).
+- [x] UI: `CareerCatalogScreen`, `InterviewSimulatorScreen`, `InterviewScenarioCard`, `BusinessPhraseTile` (копирование, озвучка, 1-tap FSRS), `CvGuideCard`, `InterviewDialogView` с бейджами +10 pts и анализом ответа.
+- [x] Тесты: `test/features/career_test.dart`, `test/features/career_cubit_test.dart` (240/240 тестов pass, `flutter analyze` 0 warnings).
+
 ---
 
 ## 2. Предлагаемые следующие шаги
 - [ ] **Опция 1: «Cozinha Lusófona & Gastronomia» (Кулинарная лаборатория и рецепты Lusofonia)** — интерактивные пошаговые рецепты (*Pastel de Nata, Feijoada, Bacalhau à Brás, Pão de Queijo, Caldo Verde, Moqueca*), глаголы приготовления (*picar, refogar, ferver, assar, temperar*), кухонная утварь, встроенный кулинарный таймер и квиз по ингредиентам с озвучкой.
 - [ ] **Опция 2: «Clube de Cinema & Telenovelas» (Синематека и диалоги из культовых фильмов)** — разбор сцен и диалогов из культового кино (*Cidade de Deus, Central do Brasil, O Auto da Compadecida, Capitães da Areia*), сленг экрана, интонационные акценты и анализ скрытых культурных подтекстов.
-- [ ] **Опция 3: «Mercado de Trabalho & Entrevistas» (Симулятор собеседований и деловой португальский)** — симулятор интервью на работу в Лиссабоне и Сан-Паулу: составление CV/Currículo, типичные вопросы HR, техническое интервью, этикет деловой переписки и ловушки резюме.
+- [ ] **Опция 3: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes*) vs Бразилии (*chute, drible, goleiro*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
