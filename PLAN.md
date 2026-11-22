@@ -80,9 +80,16 @@
 - [x] UI: `SongPlayerScreen`, `MusicCatalogScreen`, вращающийся винил, `KaraokeLyricTile`, `SongQuizTile`, `MusicControlsBar`, 1-tap FSRS экспорт.
 - [x] Тесты: `test/features/music_lab_test.dart`, `test/features/music_lab_cubit_test.dart` (184/184 тестов pass, `flutter analyze` 0 warnings).
 
+### Фича 12: Simulador de Redes & WhatsApp (`lib/features/chat_simulator/`)
+- [x] Domain-модели: `ChatScenarioEntity`, `ChatMessageEntity`, `ChatAbbreviation`, `ChatUserChoiceEntity`, `ChatDialogStepEntity`.
+- [x] Data-слой: 6 ветвящихся аутентичных сценариев (Airbnb Lisboa, iFood SP, Churrasco Rio, Slack Porto, Uber Copacabana, Farmácia Cascais) (`ChatSimulatorSeedData`), `ChatSimulatorRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `ChatCatalogCubit`, `ChatConversationCubit` (ветвление реплик, таймер печати "digitando...", голосовые сообщения (voice notes) с визуальным волноводом, оценка естественности фраз).
+- [x] UI: `ChatRoomScreen`, `ChatCatalogScreen`, стилизация пузырей под WhatsApp/iMessage, `ChatTypingIndicator`, `AbbreviationDetailSheet` с 1-tap FSRS, `ChatChoicePanel`.
+- [x] Тесты: `test/features/chat_simulator_test.dart`, `test/features/chat_simulator_cubit_test.dart` (198/198 тестов pass, `flutter analyze` 0 warnings).
+
 ---
 
 ## 2. Предлагаемые следующие шаги
-- [ ] **Опция 1: «Simulador de Redes & WhatsApp» (Симулятор неформальной переписки и мессенджера)** — реалистичные чаты (Airbnb в Лиссабоне, iFood в Рио, офисный Slack, чат перед чурраско), SMS-сокращения (`vc`, `tbm`, `blz`, `mto`, `pq`, `fds`), ветвление реплик и голосовые аудиосообщения (voice notes).
-- [ ] **Опция 2: «Guia de Sobrevivência & Viagem» (Интерактивный навигатор туриста / экспата)** — интерактивные кейсы (аэропорт, NIF в Finanças / CPF в Receita Federal, аптека, аренда жилья), быстрые карточки-шпаргалки (Cheatsheets) с аудио в 1 клик, культурологическими правилами этикета и экстренным поиском.
-- [ ] **Опция 3: «Cozinha Lusófona» (Кулинарная лаборатория и рецепты Lusofonia)** — интерактивные рецепты (Pastel de Nata, Feijoada, Bacalhau à Brás, Pão de Queijo), глаголы готовки (*picar, refogar, ferver, assar, temperar*), меры веса и кухонная утварь с озвучкой и квизом по ингредиентам.
+- [ ] **Опция 1: «Guia de Sobrevivência & Burocracia Lusófona» (Интерактивный навигатор туриста & экспата)** — интерактивные пошаговые квесты: оформление NIF в Finanças / CPF в Receita Federal, аренда жилья (contrato de arrendamento, fiador), транспортные узлы (Santa Apolónia / Novo Rio), экстренная помощь и экспресс-шпаргалки с аудио в 1 клик.
+- [ ] **Опция 2: «Cozinha Lusófona & Gastronomia» (Кулинарная лаборатория и рецепты Lusofonia)** — интерактивные аутентичные рецепты (*Pastel de Nata, Feijoada, Bacalhau à Brás, Pão de Queijo, Caldo Verde, Moqueca*), глаголы приготовления (*picar, refogar, ferver, assar, temperar*), кухонная утварь, таймер готовки и квиз по ингредиентам.
+- [ ] **Опция 3: «Clube de Cinema & Telenovelas» (Синематека и диалоги из культовых фильмов)** — разбор сцен бразильского и португальского кино (*Cidade de Deus, Central do Brasil, O Auto da Compadecida*), сленг экрана, интонационные акценты и анализ скрытых культурных подтекстов.
