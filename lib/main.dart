@@ -23,6 +23,8 @@ import 'features/duels/data/repositories/duels_repository_impl.dart';
 import 'features/duels/domain/repositories/duels_repository.dart';
 import 'features/idioms/data/repositories/idioms_repository_impl.dart';
 import 'features/idioms/domain/repositories/idioms_repository.dart';
+import 'features/music_lab/data/repositories/music_repository_impl.dart';
+import 'features/music_lab/domain/repositories/music_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -91,6 +93,7 @@ void main() async {
   final diaryRepository = DiaryRepositoryImpl(database: database);
   final duelsRepository = DuelsRepositoryImpl(database: database);
   final idiomsRepository = IdiomsRepositoryImpl(database: database);
+  final musicRepository = MusicRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -116,6 +119,7 @@ void main() async {
         RepositoryProvider<DiaryRepository>.value(value: diaryRepository),
         RepositoryProvider<DuelsRepository>.value(value: duelsRepository),
         RepositoryProvider<IdiomsRepository>.value(value: idiomsRepository),
+        RepositoryProvider<MusicRepository>.value(value: musicRepository),
       ],
       child: MultiBlocProvider(
         providers: [

@@ -17,6 +17,7 @@ import 'package:nexus_portuguese_app/features/auditorio/presentation/screens/aud
 import 'package:nexus_portuguese_app/features/diary/presentation/screens/diary_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/duels/presentation/screens/duels_lobby_screen.dart';
 import 'package:nexus_portuguese_app/features/idioms/presentation/screens/idioms_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/music_lab/presentation/screens/music_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -626,6 +627,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const IdiomsCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Караоке & Музыка',
+                  subtitle: 'Босса-нова и фаду 🎶',
+                  icon: Icons.music_note_rounded,
+                  color: Colors.pink.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const MusicCatalogScreen()),
                     );
                   },
                 ),
