@@ -17,6 +17,8 @@ import 'features/sentence_builder/domain/repositories/sentence_builder_repositor
 import 'features/sentence_builder/presentation/cubit/sentence_builder_cubit.dart';
 import 'features/auditorio/data/repositories/auditorio_repository_impl.dart';
 import 'features/auditorio/domain/repositories/auditorio_repository.dart';
+import 'features/diary/data/repositories/diary_repository_impl.dart';
+import 'features/diary/domain/repositories/diary_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -82,6 +84,7 @@ void main() async {
   final verbTrainerRepository = VerbTrainerRepositoryImpl(database: database);
   const sentenceBuilderRepository = SentenceBuilderRepositoryImpl();
   final auditorioRepository = AuditorioRepositoryImpl(database: database);
+  final diaryRepository = DiaryRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -104,6 +107,7 @@ void main() async {
         RepositoryProvider<VerbTrainerRepository>.value(value: verbTrainerRepository),
         RepositoryProvider<SentenceBuilderRepository>.value(value: sentenceBuilderRepository),
         RepositoryProvider<AuditorioRepository>.value(value: auditorioRepository),
+        RepositoryProvider<DiaryRepository>.value(value: diaryRepository),
       ],
       child: MultiBlocProvider(
         providers: [

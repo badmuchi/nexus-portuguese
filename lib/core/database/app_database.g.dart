@@ -6509,6 +6509,543 @@ class AssessmentResultEntriesCompanion
   }
 }
 
+class $DiaryEntriesTable extends DiaryEntries
+    with TableInfo<$DiaryEntriesTable, DiaryEntryRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $DiaryEntriesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+      'id', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _promptQuestionPtMeta =
+      const VerificationMeta('promptQuestionPt');
+  @override
+  late final GeneratedColumn<String> promptQuestionPt = GeneratedColumn<String>(
+      'prompt_question_pt', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _promptQuestionRuMeta =
+      const VerificationMeta('promptQuestionRu');
+  @override
+  late final GeneratedColumn<String> promptQuestionRu = GeneratedColumn<String>(
+      'prompt_question_ru', aliasedName, true,
+      type: DriftSqlType.string, requiredDuringInsert: false);
+  static const VerificationMeta _contentPtMeta =
+      const VerificationMeta('contentPt');
+  @override
+  late final GeneratedColumn<String> contentPt = GeneratedColumn<String>(
+      'content_pt', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _dialectMeta =
+      const VerificationMeta('dialect');
+  @override
+  late final GeneratedColumn<String> dialect = GeneratedColumn<String>(
+      'dialect', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant('pt_BR'));
+  static const VerificationMeta _wordCountMeta =
+      const VerificationMeta('wordCount');
+  @override
+  late final GeneratedColumn<int> wordCount = GeneratedColumn<int>(
+      'word_count', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _estimatedLevelMeta =
+      const VerificationMeta('estimatedLevel');
+  @override
+  late final GeneratedColumn<String> estimatedLevel = GeneratedColumn<String>(
+      'estimated_level', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant('A1'));
+  static const VerificationMeta _feedbackSummaryRuMeta =
+      const VerificationMeta('feedbackSummaryRu');
+  @override
+  late final GeneratedColumn<String> feedbackSummaryRu =
+      GeneratedColumn<String>('feedback_summary_ru', aliasedName, false,
+          type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _correctionsJsonMeta =
+      const VerificationMeta('correctionsJson');
+  @override
+  late final GeneratedColumn<String> correctionsJson = GeneratedColumn<String>(
+      'corrections_json', aliasedName, false,
+      type: DriftSqlType.string,
+      requiredDuringInsert: false,
+      defaultValue: const Constant('[]'));
+  static const VerificationMeta _createdAtMeta =
+      const VerificationMeta('createdAt');
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+      'created_at', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns => [
+        id,
+        promptQuestionPt,
+        promptQuestionRu,
+        contentPt,
+        dialect,
+        wordCount,
+        estimatedLevel,
+        feedbackSummaryRu,
+        correctionsJson,
+        createdAt
+      ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'diary_entries';
+  @override
+  VerificationContext validateIntegrity(Insertable<DiaryEntryRow> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('prompt_question_pt')) {
+      context.handle(
+          _promptQuestionPtMeta,
+          promptQuestionPt.isAcceptableOrUnknown(
+              data['prompt_question_pt']!, _promptQuestionPtMeta));
+    }
+    if (data.containsKey('prompt_question_ru')) {
+      context.handle(
+          _promptQuestionRuMeta,
+          promptQuestionRu.isAcceptableOrUnknown(
+              data['prompt_question_ru']!, _promptQuestionRuMeta));
+    }
+    if (data.containsKey('content_pt')) {
+      context.handle(_contentPtMeta,
+          contentPt.isAcceptableOrUnknown(data['content_pt']!, _contentPtMeta));
+    } else if (isInserting) {
+      context.missing(_contentPtMeta);
+    }
+    if (data.containsKey('dialect')) {
+      context.handle(_dialectMeta,
+          dialect.isAcceptableOrUnknown(data['dialect']!, _dialectMeta));
+    }
+    if (data.containsKey('word_count')) {
+      context.handle(_wordCountMeta,
+          wordCount.isAcceptableOrUnknown(data['word_count']!, _wordCountMeta));
+    } else if (isInserting) {
+      context.missing(_wordCountMeta);
+    }
+    if (data.containsKey('estimated_level')) {
+      context.handle(
+          _estimatedLevelMeta,
+          estimatedLevel.isAcceptableOrUnknown(
+              data['estimated_level']!, _estimatedLevelMeta));
+    }
+    if (data.containsKey('feedback_summary_ru')) {
+      context.handle(
+          _feedbackSummaryRuMeta,
+          feedbackSummaryRu.isAcceptableOrUnknown(
+              data['feedback_summary_ru']!, _feedbackSummaryRuMeta));
+    } else if (isInserting) {
+      context.missing(_feedbackSummaryRuMeta);
+    }
+    if (data.containsKey('corrections_json')) {
+      context.handle(
+          _correctionsJsonMeta,
+          correctionsJson.isAcceptableOrUnknown(
+              data['corrections_json']!, _correctionsJsonMeta));
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(_createdAtMeta,
+          createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta));
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  DiaryEntryRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return DiaryEntryRow(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      promptQuestionPt: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}prompt_question_pt']),
+      promptQuestionRu: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}prompt_question_ru']),
+      contentPt: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}content_pt'])!,
+      dialect: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}dialect'])!,
+      wordCount: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}word_count'])!,
+      estimatedLevel: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}estimated_level'])!,
+      feedbackSummaryRu: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}feedback_summary_ru'])!,
+      correctionsJson: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}corrections_json'])!,
+      createdAt: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_at'])!,
+    );
+  }
+
+  @override
+  $DiaryEntriesTable createAlias(String alias) {
+    return $DiaryEntriesTable(attachedDatabase, alias);
+  }
+}
+
+class DiaryEntryRow extends DataClass implements Insertable<DiaryEntryRow> {
+  final String id;
+  final String? promptQuestionPt;
+  final String? promptQuestionRu;
+  final String contentPt;
+  final String dialect;
+  final int wordCount;
+  final String estimatedLevel;
+  final String feedbackSummaryRu;
+  final String correctionsJson;
+  final DateTime createdAt;
+  const DiaryEntryRow(
+      {required this.id,
+      this.promptQuestionPt,
+      this.promptQuestionRu,
+      required this.contentPt,
+      required this.dialect,
+      required this.wordCount,
+      required this.estimatedLevel,
+      required this.feedbackSummaryRu,
+      required this.correctionsJson,
+      required this.createdAt});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    if (!nullToAbsent || promptQuestionPt != null) {
+      map['prompt_question_pt'] = Variable<String>(promptQuestionPt);
+    }
+    if (!nullToAbsent || promptQuestionRu != null) {
+      map['prompt_question_ru'] = Variable<String>(promptQuestionRu);
+    }
+    map['content_pt'] = Variable<String>(contentPt);
+    map['dialect'] = Variable<String>(dialect);
+    map['word_count'] = Variable<int>(wordCount);
+    map['estimated_level'] = Variable<String>(estimatedLevel);
+    map['feedback_summary_ru'] = Variable<String>(feedbackSummaryRu);
+    map['corrections_json'] = Variable<String>(correctionsJson);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    return map;
+  }
+
+  DiaryEntriesCompanion toCompanion(bool nullToAbsent) {
+    return DiaryEntriesCompanion(
+      id: Value(id),
+      promptQuestionPt: promptQuestionPt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(promptQuestionPt),
+      promptQuestionRu: promptQuestionRu == null && nullToAbsent
+          ? const Value.absent()
+          : Value(promptQuestionRu),
+      contentPt: Value(contentPt),
+      dialect: Value(dialect),
+      wordCount: Value(wordCount),
+      estimatedLevel: Value(estimatedLevel),
+      feedbackSummaryRu: Value(feedbackSummaryRu),
+      correctionsJson: Value(correctionsJson),
+      createdAt: Value(createdAt),
+    );
+  }
+
+  factory DiaryEntryRow.fromJson(Map<String, dynamic> json,
+      {ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return DiaryEntryRow(
+      id: serializer.fromJson<String>(json['id']),
+      promptQuestionPt: serializer.fromJson<String?>(json['promptQuestionPt']),
+      promptQuestionRu: serializer.fromJson<String?>(json['promptQuestionRu']),
+      contentPt: serializer.fromJson<String>(json['contentPt']),
+      dialect: serializer.fromJson<String>(json['dialect']),
+      wordCount: serializer.fromJson<int>(json['wordCount']),
+      estimatedLevel: serializer.fromJson<String>(json['estimatedLevel']),
+      feedbackSummaryRu: serializer.fromJson<String>(json['feedbackSummaryRu']),
+      correctionsJson: serializer.fromJson<String>(json['correctionsJson']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'promptQuestionPt': serializer.toJson<String?>(promptQuestionPt),
+      'promptQuestionRu': serializer.toJson<String?>(promptQuestionRu),
+      'contentPt': serializer.toJson<String>(contentPt),
+      'dialect': serializer.toJson<String>(dialect),
+      'wordCount': serializer.toJson<int>(wordCount),
+      'estimatedLevel': serializer.toJson<String>(estimatedLevel),
+      'feedbackSummaryRu': serializer.toJson<String>(feedbackSummaryRu),
+      'correctionsJson': serializer.toJson<String>(correctionsJson),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+    };
+  }
+
+  DiaryEntryRow copyWith(
+          {String? id,
+          Value<String?> promptQuestionPt = const Value.absent(),
+          Value<String?> promptQuestionRu = const Value.absent(),
+          String? contentPt,
+          String? dialect,
+          int? wordCount,
+          String? estimatedLevel,
+          String? feedbackSummaryRu,
+          String? correctionsJson,
+          DateTime? createdAt}) =>
+      DiaryEntryRow(
+        id: id ?? this.id,
+        promptQuestionPt: promptQuestionPt.present
+            ? promptQuestionPt.value
+            : this.promptQuestionPt,
+        promptQuestionRu: promptQuestionRu.present
+            ? promptQuestionRu.value
+            : this.promptQuestionRu,
+        contentPt: contentPt ?? this.contentPt,
+        dialect: dialect ?? this.dialect,
+        wordCount: wordCount ?? this.wordCount,
+        estimatedLevel: estimatedLevel ?? this.estimatedLevel,
+        feedbackSummaryRu: feedbackSummaryRu ?? this.feedbackSummaryRu,
+        correctionsJson: correctionsJson ?? this.correctionsJson,
+        createdAt: createdAt ?? this.createdAt,
+      );
+  DiaryEntryRow copyWithCompanion(DiaryEntriesCompanion data) {
+    return DiaryEntryRow(
+      id: data.id.present ? data.id.value : this.id,
+      promptQuestionPt: data.promptQuestionPt.present
+          ? data.promptQuestionPt.value
+          : this.promptQuestionPt,
+      promptQuestionRu: data.promptQuestionRu.present
+          ? data.promptQuestionRu.value
+          : this.promptQuestionRu,
+      contentPt: data.contentPt.present ? data.contentPt.value : this.contentPt,
+      dialect: data.dialect.present ? data.dialect.value : this.dialect,
+      wordCount: data.wordCount.present ? data.wordCount.value : this.wordCount,
+      estimatedLevel: data.estimatedLevel.present
+          ? data.estimatedLevel.value
+          : this.estimatedLevel,
+      feedbackSummaryRu: data.feedbackSummaryRu.present
+          ? data.feedbackSummaryRu.value
+          : this.feedbackSummaryRu,
+      correctionsJson: data.correctionsJson.present
+          ? data.correctionsJson.value
+          : this.correctionsJson,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DiaryEntryRow(')
+          ..write('id: $id, ')
+          ..write('promptQuestionPt: $promptQuestionPt, ')
+          ..write('promptQuestionRu: $promptQuestionRu, ')
+          ..write('contentPt: $contentPt, ')
+          ..write('dialect: $dialect, ')
+          ..write('wordCount: $wordCount, ')
+          ..write('estimatedLevel: $estimatedLevel, ')
+          ..write('feedbackSummaryRu: $feedbackSummaryRu, ')
+          ..write('correctionsJson: $correctionsJson, ')
+          ..write('createdAt: $createdAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      id,
+      promptQuestionPt,
+      promptQuestionRu,
+      contentPt,
+      dialect,
+      wordCount,
+      estimatedLevel,
+      feedbackSummaryRu,
+      correctionsJson,
+      createdAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is DiaryEntryRow &&
+          other.id == this.id &&
+          other.promptQuestionPt == this.promptQuestionPt &&
+          other.promptQuestionRu == this.promptQuestionRu &&
+          other.contentPt == this.contentPt &&
+          other.dialect == this.dialect &&
+          other.wordCount == this.wordCount &&
+          other.estimatedLevel == this.estimatedLevel &&
+          other.feedbackSummaryRu == this.feedbackSummaryRu &&
+          other.correctionsJson == this.correctionsJson &&
+          other.createdAt == this.createdAt);
+}
+
+class DiaryEntriesCompanion extends UpdateCompanion<DiaryEntryRow> {
+  final Value<String> id;
+  final Value<String?> promptQuestionPt;
+  final Value<String?> promptQuestionRu;
+  final Value<String> contentPt;
+  final Value<String> dialect;
+  final Value<int> wordCount;
+  final Value<String> estimatedLevel;
+  final Value<String> feedbackSummaryRu;
+  final Value<String> correctionsJson;
+  final Value<DateTime> createdAt;
+  final Value<int> rowid;
+  const DiaryEntriesCompanion({
+    this.id = const Value.absent(),
+    this.promptQuestionPt = const Value.absent(),
+    this.promptQuestionRu = const Value.absent(),
+    this.contentPt = const Value.absent(),
+    this.dialect = const Value.absent(),
+    this.wordCount = const Value.absent(),
+    this.estimatedLevel = const Value.absent(),
+    this.feedbackSummaryRu = const Value.absent(),
+    this.correctionsJson = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  DiaryEntriesCompanion.insert({
+    required String id,
+    this.promptQuestionPt = const Value.absent(),
+    this.promptQuestionRu = const Value.absent(),
+    required String contentPt,
+    this.dialect = const Value.absent(),
+    required int wordCount,
+    this.estimatedLevel = const Value.absent(),
+    required String feedbackSummaryRu,
+    this.correctionsJson = const Value.absent(),
+    required DateTime createdAt,
+    this.rowid = const Value.absent(),
+  })  : id = Value(id),
+        contentPt = Value(contentPt),
+        wordCount = Value(wordCount),
+        feedbackSummaryRu = Value(feedbackSummaryRu),
+        createdAt = Value(createdAt);
+  static Insertable<DiaryEntryRow> custom({
+    Expression<String>? id,
+    Expression<String>? promptQuestionPt,
+    Expression<String>? promptQuestionRu,
+    Expression<String>? contentPt,
+    Expression<String>? dialect,
+    Expression<int>? wordCount,
+    Expression<String>? estimatedLevel,
+    Expression<String>? feedbackSummaryRu,
+    Expression<String>? correctionsJson,
+    Expression<DateTime>? createdAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (promptQuestionPt != null) 'prompt_question_pt': promptQuestionPt,
+      if (promptQuestionRu != null) 'prompt_question_ru': promptQuestionRu,
+      if (contentPt != null) 'content_pt': contentPt,
+      if (dialect != null) 'dialect': dialect,
+      if (wordCount != null) 'word_count': wordCount,
+      if (estimatedLevel != null) 'estimated_level': estimatedLevel,
+      if (feedbackSummaryRu != null) 'feedback_summary_ru': feedbackSummaryRu,
+      if (correctionsJson != null) 'corrections_json': correctionsJson,
+      if (createdAt != null) 'created_at': createdAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  DiaryEntriesCompanion copyWith(
+      {Value<String>? id,
+      Value<String?>? promptQuestionPt,
+      Value<String?>? promptQuestionRu,
+      Value<String>? contentPt,
+      Value<String>? dialect,
+      Value<int>? wordCount,
+      Value<String>? estimatedLevel,
+      Value<String>? feedbackSummaryRu,
+      Value<String>? correctionsJson,
+      Value<DateTime>? createdAt,
+      Value<int>? rowid}) {
+    return DiaryEntriesCompanion(
+      id: id ?? this.id,
+      promptQuestionPt: promptQuestionPt ?? this.promptQuestionPt,
+      promptQuestionRu: promptQuestionRu ?? this.promptQuestionRu,
+      contentPt: contentPt ?? this.contentPt,
+      dialect: dialect ?? this.dialect,
+      wordCount: wordCount ?? this.wordCount,
+      estimatedLevel: estimatedLevel ?? this.estimatedLevel,
+      feedbackSummaryRu: feedbackSummaryRu ?? this.feedbackSummaryRu,
+      correctionsJson: correctionsJson ?? this.correctionsJson,
+      createdAt: createdAt ?? this.createdAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (promptQuestionPt.present) {
+      map['prompt_question_pt'] = Variable<String>(promptQuestionPt.value);
+    }
+    if (promptQuestionRu.present) {
+      map['prompt_question_ru'] = Variable<String>(promptQuestionRu.value);
+    }
+    if (contentPt.present) {
+      map['content_pt'] = Variable<String>(contentPt.value);
+    }
+    if (dialect.present) {
+      map['dialect'] = Variable<String>(dialect.value);
+    }
+    if (wordCount.present) {
+      map['word_count'] = Variable<int>(wordCount.value);
+    }
+    if (estimatedLevel.present) {
+      map['estimated_level'] = Variable<String>(estimatedLevel.value);
+    }
+    if (feedbackSummaryRu.present) {
+      map['feedback_summary_ru'] = Variable<String>(feedbackSummaryRu.value);
+    }
+    if (correctionsJson.present) {
+      map['corrections_json'] = Variable<String>(correctionsJson.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('DiaryEntriesCompanion(')
+          ..write('id: $id, ')
+          ..write('promptQuestionPt: $promptQuestionPt, ')
+          ..write('promptQuestionRu: $promptQuestionRu, ')
+          ..write('contentPt: $contentPt, ')
+          ..write('dialect: $dialect, ')
+          ..write('wordCount: $wordCount, ')
+          ..write('estimatedLevel: $estimatedLevel, ')
+          ..write('feedbackSummaryRu: $feedbackSummaryRu, ')
+          ..write('correctionsJson: $correctionsJson, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -6534,6 +7071,7 @@ abstract class _$AppDatabase extends GeneratedDatabase {
       $SceneProgressEntriesTable(this);
   late final $AssessmentResultEntriesTable assessmentResultEntries =
       $AssessmentResultEntriesTable(this);
+  late final $DiaryEntriesTable diaryEntries = $DiaryEntriesTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -6552,7 +7090,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
         slangEntries,
         phoneticMasteryEntries,
         sceneProgressEntries,
-        assessmentResultEntries
+        assessmentResultEntries,
+        diaryEntries
       ];
 }
 
@@ -9835,6 +10374,268 @@ typedef $$AssessmentResultEntriesTableProcessedTableManager
         ),
         AssessmentResultRow,
         PrefetchHooks Function()>;
+typedef $$DiaryEntriesTableCreateCompanionBuilder = DiaryEntriesCompanion
+    Function({
+  required String id,
+  Value<String?> promptQuestionPt,
+  Value<String?> promptQuestionRu,
+  required String contentPt,
+  Value<String> dialect,
+  required int wordCount,
+  Value<String> estimatedLevel,
+  required String feedbackSummaryRu,
+  Value<String> correctionsJson,
+  required DateTime createdAt,
+  Value<int> rowid,
+});
+typedef $$DiaryEntriesTableUpdateCompanionBuilder = DiaryEntriesCompanion
+    Function({
+  Value<String> id,
+  Value<String?> promptQuestionPt,
+  Value<String?> promptQuestionRu,
+  Value<String> contentPt,
+  Value<String> dialect,
+  Value<int> wordCount,
+  Value<String> estimatedLevel,
+  Value<String> feedbackSummaryRu,
+  Value<String> correctionsJson,
+  Value<DateTime> createdAt,
+  Value<int> rowid,
+});
+
+class $$DiaryEntriesTableFilterComposer
+    extends Composer<_$AppDatabase, $DiaryEntriesTable> {
+  $$DiaryEntriesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get promptQuestionPt => $composableBuilder(
+      column: $table.promptQuestionPt,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get promptQuestionRu => $composableBuilder(
+      column: $table.promptQuestionRu,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get contentPt => $composableBuilder(
+      column: $table.contentPt, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get dialect => $composableBuilder(
+      column: $table.dialect, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<int> get wordCount => $composableBuilder(
+      column: $table.wordCount, builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get estimatedLevel => $composableBuilder(
+      column: $table.estimatedLevel,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get feedbackSummaryRu => $composableBuilder(
+      column: $table.feedbackSummaryRu,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<String> get correctionsJson => $composableBuilder(
+      column: $table.correctionsJson,
+      builder: (column) => ColumnFilters(column));
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnFilters(column));
+}
+
+class $$DiaryEntriesTableOrderingComposer
+    extends Composer<_$AppDatabase, $DiaryEntriesTable> {
+  $$DiaryEntriesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+      column: $table.id, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get promptQuestionPt => $composableBuilder(
+      column: $table.promptQuestionPt,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get promptQuestionRu => $composableBuilder(
+      column: $table.promptQuestionRu,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get contentPt => $composableBuilder(
+      column: $table.contentPt, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get dialect => $composableBuilder(
+      column: $table.dialect, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<int> get wordCount => $composableBuilder(
+      column: $table.wordCount, builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get estimatedLevel => $composableBuilder(
+      column: $table.estimatedLevel,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get feedbackSummaryRu => $composableBuilder(
+      column: $table.feedbackSummaryRu,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<String> get correctionsJson => $composableBuilder(
+      column: $table.correctionsJson,
+      builder: (column) => ColumnOrderings(column));
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+      column: $table.createdAt, builder: (column) => ColumnOrderings(column));
+}
+
+class $$DiaryEntriesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $DiaryEntriesTable> {
+  $$DiaryEntriesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get promptQuestionPt => $composableBuilder(
+      column: $table.promptQuestionPt, builder: (column) => column);
+
+  GeneratedColumn<String> get promptQuestionRu => $composableBuilder(
+      column: $table.promptQuestionRu, builder: (column) => column);
+
+  GeneratedColumn<String> get contentPt =>
+      $composableBuilder(column: $table.contentPt, builder: (column) => column);
+
+  GeneratedColumn<String> get dialect =>
+      $composableBuilder(column: $table.dialect, builder: (column) => column);
+
+  GeneratedColumn<int> get wordCount =>
+      $composableBuilder(column: $table.wordCount, builder: (column) => column);
+
+  GeneratedColumn<String> get estimatedLevel => $composableBuilder(
+      column: $table.estimatedLevel, builder: (column) => column);
+
+  GeneratedColumn<String> get feedbackSummaryRu => $composableBuilder(
+      column: $table.feedbackSummaryRu, builder: (column) => column);
+
+  GeneratedColumn<String> get correctionsJson => $composableBuilder(
+      column: $table.correctionsJson, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+}
+
+class $$DiaryEntriesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $DiaryEntriesTable,
+    DiaryEntryRow,
+    $$DiaryEntriesTableFilterComposer,
+    $$DiaryEntriesTableOrderingComposer,
+    $$DiaryEntriesTableAnnotationComposer,
+    $$DiaryEntriesTableCreateCompanionBuilder,
+    $$DiaryEntriesTableUpdateCompanionBuilder,
+    (
+      DiaryEntryRow,
+      BaseReferences<_$AppDatabase, $DiaryEntriesTable, DiaryEntryRow>
+    ),
+    DiaryEntryRow,
+    PrefetchHooks Function()> {
+  $$DiaryEntriesTableTableManager(_$AppDatabase db, $DiaryEntriesTable table)
+      : super(TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$DiaryEntriesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$DiaryEntriesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$DiaryEntriesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback: ({
+            Value<String> id = const Value.absent(),
+            Value<String?> promptQuestionPt = const Value.absent(),
+            Value<String?> promptQuestionRu = const Value.absent(),
+            Value<String> contentPt = const Value.absent(),
+            Value<String> dialect = const Value.absent(),
+            Value<int> wordCount = const Value.absent(),
+            Value<String> estimatedLevel = const Value.absent(),
+            Value<String> feedbackSummaryRu = const Value.absent(),
+            Value<String> correctionsJson = const Value.absent(),
+            Value<DateTime> createdAt = const Value.absent(),
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              DiaryEntriesCompanion(
+            id: id,
+            promptQuestionPt: promptQuestionPt,
+            promptQuestionRu: promptQuestionRu,
+            contentPt: contentPt,
+            dialect: dialect,
+            wordCount: wordCount,
+            estimatedLevel: estimatedLevel,
+            feedbackSummaryRu: feedbackSummaryRu,
+            correctionsJson: correctionsJson,
+            createdAt: createdAt,
+            rowid: rowid,
+          ),
+          createCompanionCallback: ({
+            required String id,
+            Value<String?> promptQuestionPt = const Value.absent(),
+            Value<String?> promptQuestionRu = const Value.absent(),
+            required String contentPt,
+            Value<String> dialect = const Value.absent(),
+            required int wordCount,
+            Value<String> estimatedLevel = const Value.absent(),
+            required String feedbackSummaryRu,
+            Value<String> correctionsJson = const Value.absent(),
+            required DateTime createdAt,
+            Value<int> rowid = const Value.absent(),
+          }) =>
+              DiaryEntriesCompanion.insert(
+            id: id,
+            promptQuestionPt: promptQuestionPt,
+            promptQuestionRu: promptQuestionRu,
+            contentPt: contentPt,
+            dialect: dialect,
+            wordCount: wordCount,
+            estimatedLevel: estimatedLevel,
+            feedbackSummaryRu: feedbackSummaryRu,
+            correctionsJson: correctionsJson,
+            createdAt: createdAt,
+            rowid: rowid,
+          ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (
+                    e.readTable<$DiaryEntriesTable, DiaryEntryRow>(table),
+                    BaseReferences<_$AppDatabase, $DiaryEntriesTable,
+                        DiaryEntryRow>(db, table, e)
+                  ))
+              .toList(),
+          prefetchHooksCallback: null,
+        ));
+}
+
+typedef $$DiaryEntriesTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $DiaryEntriesTable,
+    DiaryEntryRow,
+    $$DiaryEntriesTableFilterComposer,
+    $$DiaryEntriesTableOrderingComposer,
+    $$DiaryEntriesTableAnnotationComposer,
+    $$DiaryEntriesTableCreateCompanionBuilder,
+    $$DiaryEntriesTableUpdateCompanionBuilder,
+    (
+      DiaryEntryRow,
+      BaseReferences<_$AppDatabase, $DiaryEntriesTable, DiaryEntryRow>
+    ),
+    DiaryEntryRow,
+    PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -9870,4 +10671,6 @@ class $AppDatabaseManager {
   $$AssessmentResultEntriesTableTableManager get assessmentResultEntries =>
       $$AssessmentResultEntriesTableTableManager(
           _db, _db.assessmentResultEntries);
+  $$DiaryEntriesTableTableManager get diaryEntries =>
+      $$DiaryEntriesTableTableManager(_db, _db.diaryEntries);
 }

@@ -204,6 +204,23 @@ class AssessmentResultEntries extends Table {
   DateTimeColumn get completedAt => dateTime()();
 }
 
+@DataClassName('DiaryEntryRow')
+class DiaryEntries extends Table {
+  TextColumn get id => text()();
+  TextColumn get promptQuestionPt => text().nullable()();
+  TextColumn get promptQuestionRu => text().nullable()();
+  TextColumn get contentPt => text()();
+  TextColumn get dialect => text().withDefault(const Constant('pt_BR'))();
+  IntColumn get wordCount => integer()();
+  TextColumn get estimatedLevel => text().withDefault(const Constant('A1'))();
+  TextColumn get feedbackSummaryRu => text()();
+  TextColumn get correctionsJson => text().withDefault(const Constant('[]'))();
+  DateTimeColumn get createdAt => dateTime()();
+
+  @override
+  Set<Column> get primaryKey => {id};
+}
+
 @DriftDatabase(tables: [
   DialogueNodes,
   DialogueHistoryEntries,
@@ -219,6 +236,7 @@ class AssessmentResultEntries extends Table {
   PhoneticMasteryEntries,
   SceneProgressEntries,
   AssessmentResultEntries,
+  DiaryEntries,
 ])
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? e])
@@ -233,7 +251,7 @@ class AppDatabase extends _$AppDatabase {
         );
 
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -247,6 +265,9 @@ class AppDatabase extends _$AppDatabase {
           }
           if (from < 4) {
             await m.createTable(assessmentResultEntries);
+          }
+          if (from < 5) {
+            await m.createTable(diaryEntries);
           }
         },
       );
@@ -643,5 +664,22 @@ class AppDatabase extends _$AppDatabase {
 
   Future<int> insertAssessmentResult(AssessmentResultEntriesCompanion row) {
     return into(assessmentResultEntries).insert(row);
+  }
+
+  // --- Diary queries ---
+  Future<List<DiaryEntryRow>> getAllDiaryEntries() {
+    return (select(diaryEntries)..orderBy([(t) => OrderingTerm.desc(t.createdAt)])).get();
+  }
+
+  Future<DiaryEntryRow?> getDiaryEntryById(String id) {
+    return (select(diaryEntries)..where((t) => t.id.equals(id))).getSingleOrNull();
+  }
+
+  Future<int> insertDiaryEntry(DiaryEntriesCompanion row) {
+    return into(diaryEntries).insertOnConflictUpdate(row);
+  }
+
+  Future<int> deleteDiaryEntry(String id) {
+    return (delete(diaryEntries)..where((t) => t.id.equals(id))).go();
   }
 }

@@ -14,6 +14,7 @@ import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_s
 import 'package:nexus_portuguese_app/features/speech_lab/presentation/screens/speech_lab_screen.dart';
 import 'package:nexus_portuguese_app/features/stories/presentation/screens/stories_screen.dart';
 import 'package:nexus_portuguese_app/features/auditorio/presentation/screens/auditorio_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/diary/presentation/screens/diary_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -584,6 +585,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const AuditorioCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Бортовой дневник',
+                  subtitle: 'Письмо & AI-тьютор 📖',
+                  icon: Icons.history_edu_rounded,
+                  color: Colors.indigo.shade700,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const DiaryCatalogScreen()),
                     );
                   },
                 ),
