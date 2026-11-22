@@ -16,6 +16,7 @@ import 'package:nexus_portuguese_app/features/stories/presentation/screens/stori
 import 'package:nexus_portuguese_app/features/auditorio/presentation/screens/auditorio_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/diary/presentation/screens/diary_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/duels/presentation/screens/duels_lobby_screen.dart';
+import 'package:nexus_portuguese_app/features/idioms/presentation/screens/idioms_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -612,6 +613,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const DuelsLobbyScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Идиомы',
+                  subtitle: 'Образы и поговорки 🎨',
+                  icon: Icons.palette_rounded,
+                  color: Colors.teal.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const IdiomsCatalogScreen()),
                     );
                   },
                 ),
