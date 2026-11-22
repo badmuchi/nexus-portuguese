@@ -108,9 +108,16 @@
 - [x] UI: `GastronomyCatalogScreen`, `RecipeDetailScreen`, `RecipeCookingScreen`, `RecipeCard`, `CulinaryTermTile` (копирование, озвучка, 1-tap FSRS), `RecipeIngredientsView` (чек-лист и экспорт в FSRS), `RecipeStepView` (с таймером, глаголами готовки и звуковым алертом).
 - [x] Тесты: `test/features/gastronomy_test.dart`, `test/features/gastronomy_cubit_test.dart` (263/263 тестов pass, `flutter analyze` 0 warnings).
 
+### Фича 16: Clube de Cinema & Telenovelas (`lib/features/cinema/`)
+- [x] Domain-модели: `MovieSceneEntity`, `CinemaDialogueLineEntity`, `CinemaQuoteEntity`.
+- [x] Data-слой: 5 культовых киносцен с историческим контекстом и сленгом (Cidade de Deus [2002], Central do Brasil [1998], O Auto da Compadecida [2000], Capitães de Abril [2000], Glória [2021]), 10 легендарных крылатых киноцитат («Se correr o bicho pega...», «Pede pra sair!», «Não sei, só sei que foi assim!», «Grândola, Vila Morena»), `CinemaRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `CinemaCatalogCubit` (поиск, фильтры диалектов BR/PT, жанров Crime/Drama/Comédia/Histórico/Suspense), `ScenePlayerCubit` (построчный аудиоплеер с автопроигрыванием, режим дубляжа и теневого повтора, озвучка реплик через TTS).
+- [x] UI: `CinemaCatalogScreen`, `ScenePlayerScreen`, `MovieSceneCard`, `CinemaDialogueBubble` (подсветка сленга и культурного подтекста, озвучка, 1-tap FSRS), `CinemaQuoteCard`, `ScenePlaybackControls` (дубляж, автопроигрывание, перемотка).
+- [x] Тесты: `test/features/cinema_test.dart`, `test/features/cinema_cubit_test.dart` (286/286 тестов pass, `flutter analyze` 0 warnings).
+
 ---
 
 ## 2. Предлагаемые следующие шаги
-- [ ] **Опция 1: «Clube de Cinema & Telenovelas» (Синематека и диалоги из культовых фильмов)** — разбор сцен и диалогов из культового кино (*Cidade de Deus, Central do Brasil, O Auto da Compadecida, Glória, Capitães da Areia*), сленг экрана, интонационные акценты и анализ скрытых культурных подтекстов.
-- [ ] **Опция 2: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes*) vs Бразилии (*chute, drible, goleiro*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
-- [ ] **Опция 3: «Expresso Literário & Poesia» (Литературная гостиная и великие авторы)** — интерактивный разбор произведений (*Fernando Pessoa, Clarice Lispector, Machado de Assis, Luís de Camões*), поэтический синтаксис, метафоры и выразительное чтение под музыку.
+- [ ] **Опция 1: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes, fora-de-jogo*) vs Бразилии (*chute, drible, goleiro, impedimento*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
+- [ ] **Опция 2: «Expresso Literário & Poesia» (Литературная гостиная и великие авторы)** — интерактивный разбор шедевров (*Fernando Pessoa и его гетеронимы, Clarice Lispector, Machado de Assis, Luís de Camões*), глубокий поэтический синтаксис, метафоры и выразительное чтение под музыку.
+- [ ] **Опция 3: «Viagem & Geografia Lusófona» (Интерактивный атлас лузофонии)** — путешествие по 9 странам португальского языка (Бразилия, Португалия, Ангола, Мозамбик, Кабо-Верде, Сан-Томе, Гвинея-Бисау, Тимор-Лешти, Макао), региональные диалекты, достопримечательности и географический квиз.

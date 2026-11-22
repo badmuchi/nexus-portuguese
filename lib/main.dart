@@ -33,6 +33,8 @@ import 'features/career/data/repositories/career_repository_impl.dart';
 import 'features/career/domain/repositories/career_repository.dart';
 import 'features/gastronomy/data/repositories/gastronomy_repository_impl.dart';
 import 'features/gastronomy/domain/repositories/gastronomy_repository.dart';
+import 'features/cinema/data/repositories/cinema_repository_impl.dart';
+import 'features/cinema/domain/repositories/cinema_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -106,6 +108,7 @@ void main() async {
   final survivalGuideRepository = SurvivalGuideRepositoryImpl(database: database);
   final careerRepository = CareerRepositoryImpl(database: database);
   final gastronomyRepository = GastronomyRepositoryImpl(database: database);
+  final cinemaRepository = CinemaRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -136,6 +139,7 @@ void main() async {
         RepositoryProvider<SurvivalGuideRepository>.value(value: survivalGuideRepository),
         RepositoryProvider<CareerRepository>.value(value: careerRepository),
         RepositoryProvider<GastronomyRepository>.value(value: gastronomyRepository),
+        RepositoryProvider<CinemaRepository>.value(value: cinemaRepository),
       ],
       child: MultiBlocProvider(
         providers: [

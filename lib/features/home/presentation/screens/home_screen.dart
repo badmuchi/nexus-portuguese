@@ -22,6 +22,7 @@ import 'package:nexus_portuguese_app/features/chat_simulator/presentation/screen
 import 'package:nexus_portuguese_app/features/survival_guide/presentation/screens/survival_guide_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/career/presentation/screens/career_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/gastronomy/presentation/screens/gastronomy_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/cinema/presentation/screens/cinema_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -696,6 +697,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const GastronomyCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Синематека & Кино',
+                  subtitle: 'Диалоги и цитаты 🎬',
+                  icon: Icons.movie_filter_rounded,
+                  color: Colors.purple.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const CinemaCatalogScreen()),
                     );
                   },
                 ),
