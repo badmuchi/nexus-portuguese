@@ -87,9 +87,16 @@
 - [x] UI: `ChatRoomScreen`, `ChatCatalogScreen`, стилизация пузырей под WhatsApp/iMessage, `ChatTypingIndicator`, `AbbreviationDetailSheet` с 1-tap FSRS, `ChatChoicePanel`.
 - [x] Тесты: `test/features/chat_simulator_test.dart`, `test/features/chat_simulator_cubit_test.dart` (198/198 тестов pass, `flutter analyze` 0 warnings).
 
+### Фича 13: Guia de Sobrevivência & Burocracia Lusófona (`lib/features/survival_guide/`)
+- [x] Domain-модели: `SurvivalQuestEntity`, `SurvivalStepEntity`, `SurvivalPhraseEntity`, `CulturalTipEntity`, `SurvivalCategory`.
+- [x] Data-слой: 4 интерактивных квеста (NIF Finanças Lisboa, Aluguel e Fiador Porto, Bilhete Santa Apolónia, CPF Receita Federal Rio), 20 экспресс-фраз по категориям с пометками SOS, 5 практических советов по этикету (`SurvivalGuideSeedData`), `SurvivalGuideRepositoryImpl`.
+- [x] Cubit & State: `SurvivalCatalogCubit` (поиск, фильтры категорий, диалектов, вкладки), `SurvivalQuestCubit` (шаги, интерактивный выбор, проверка оптимальности, озвучка реплик через TTS, сохранение прогресса в Drift).
+- [x] UI: `SurvivalGuideCatalogScreen`, `SurvivalQuestScreen`, `SurvivalQuestCard`, `SurvivalPhraseTile` (копирование в буфер, озвучка и 1-tap FSRS), `CulturalTipCard`, `QuestStepView`.
+- [x] Тесты: `test/features/survival_guide_test.dart`, `test/features/survival_guide_cubit_test.dart` (229/229 тестов pass, `flutter analyze` 0 warnings).
+
 ---
 
 ## 2. Предлагаемые следующие шаги
-- [ ] **Опция 1: «Guia de Sobrevivência & Burocracia Lusófona» (Интерактивный навигатор туриста & экспата)** — интерактивные пошаговые квесты: оформление NIF в Finanças / CPF в Receita Federal, аренда жилья (contrato de arrendamento, fiador), транспортные узлы (Santa Apolónia / Novo Rio), экстренная помощь и экспресс-шпаргалки с аудио в 1 клик.
-- [ ] **Опция 2: «Cozinha Lusófona & Gastronomia» (Кулинарная лаборатория и рецепты Lusofonia)** — интерактивные аутентичные рецепты (*Pastel de Nata, Feijoada, Bacalhau à Brás, Pão de Queijo, Caldo Verde, Moqueca*), глаголы приготовления (*picar, refogar, ferver, assar, temperar*), кухонная утварь, таймер готовки и квиз по ингредиентам.
-- [ ] **Опция 3: «Clube de Cinema & Telenovelas» (Синематека и диалоги из культовых фильмов)** — разбор сцен бразильского и португальского кино (*Cidade de Deus, Central do Brasil, O Auto da Compadecida*), сленг экрана, интонационные акценты и анализ скрытых культурных подтекстов.
+- [ ] **Опция 1: «Cozinha Lusófona & Gastronomia» (Кулинарная лаборатория и рецепты Lusofonia)** — интерактивные пошаговые рецепты (*Pastel de Nata, Feijoada, Bacalhau à Brás, Pão de Queijo, Caldo Verde, Moqueca*), глаголы приготовления (*picar, refogar, ferver, assar, temperar*), кухонная утварь, встроенный кулинарный таймер и квиз по ингредиентам с озвучкой.
+- [ ] **Опция 2: «Clube de Cinema & Telenovelas» (Синематека и диалоги из культовых фильмов)** — разбор сцен и диалогов из культового кино (*Cidade de Deus, Central do Brasil, O Auto da Compadecida, Capitães da Areia*), сленг экрана, интонационные акценты и анализ скрытых культурных подтекстов.
+- [ ] **Опция 3: «Mercado de Trabalho & Entrevistas» (Симулятор собеседований и деловой португальский)** — симулятор интервью на работу в Лиссабоне и Сан-Паулу: составление CV/Currículo, типичные вопросы HR, техническое интервью, этикет деловой переписки и ловушки резюме.
