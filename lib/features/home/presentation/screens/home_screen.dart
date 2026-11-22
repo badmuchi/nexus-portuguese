@@ -24,6 +24,7 @@ import 'package:nexus_portuguese_app/features/career/presentation/screens/career
 import 'package:nexus_portuguese_app/features/gastronomy/presentation/screens/gastronomy_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/cinema/presentation/screens/cinema_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/travel_guide/presentation/screens/travel_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/literature/presentation/screens/literature_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -724,6 +725,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const TravelCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Литературный экспресс',
+                  subtitle: 'Пессоа, Камоэнс и сонеты 📚',
+                  icon: Icons.auto_stories_rounded,
+                  color: Colors.brown.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const LiteratureCatalogScreen()),
                     );
                   },
                 ),

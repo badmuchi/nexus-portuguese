@@ -124,6 +124,14 @@
 
 ---
 
+### Фича 18: Expresso Literário & Poesia (`lib/features/literature/`)
+- [x] Domain-модели: `LiteraryWorkEntity`, `LiteraryPassageEntity`, `LiteraryVocabularyEntity`, `LiteraryQuoteEntity`.
+- [x] Data-слой: 6 шедевров португалоязычной литературы (Fernando Pessoa [Álvaro de Campos] — «Tabacaria», Clarice Lispector — «A Hora da Estrela», Luís de Camões — «Amor é um fogo que arde sem se ver», Machado de Assis — «Memórias Póstumas de Brás Cubas», Vinicius de Moraes — «Soneto de Fidelidade», Florbela Espanca — «Eu Quero Amar, Amar Perdidamente!») (`LiteratureSeedData`), 6 афоризмов и философских цитат (José Saramago, Mia Couto, Guimarães Rosa, Carlos Drummond de Andrade, Eça de Queirós, Fernando Pessoa), `LiteratureRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `LiteratureCatalogCubit` (поиск, фильтры диалектов BR/PT, жанров Поэзия/Проза/Сонет, вкладки), `ReaderCubit` (построфный интерактивный режим чтения со старинной эстетикой, выразительная декламация через TTS на скорости 0.9x с учётом диалекта автора, разбор грамматики и поэтических фигур, экспорт терминов в FSRS).
+- [x] UI: `LiteratureCatalogScreen`, `ReaderScreen`, `LiteraryWorkCard`, `LiteraryQuoteCard`, `LiteraryVocabSheet` с 1-tap FSRS добавлением.
+- [x] Тесты: `test/features/literature_test.dart`, `test/features/literature_cubit_test.dart` (336/336 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Очередь разработки (по приоритету 3-2-1)
-- [ ] **В разработке (следующая) — Опция 2: «Expresso Literário & Poesia» (Литературная гостиная и великие авторы)** — интерактивный разбор шедевров (*Fernando Pessoa и его гетеронимы, Clarice Lispector, Machado de Assis, Luís de Camões*), глубокий поэтический синтаксис, метафоры, выразительное чтение под музыку и 1-tap FSRS.
-- [ ] **Опция 1: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes, fora-de-jogo*) vs Бразилии (*chute, drible, goleiro, impedimento*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
+- [ ] **В разработке (следующая) — Опция 1: «Gira do Futebol & Torcida» (Футбол и спортивная страсть Lusofonia)** — футбольный жаргон Португалии (*chuto, finta, guarda-redes, fora-de-jogo*) vs Бразилии (*chute, drible, goleiro, impedimento*), симулятор комментатора матча в реальном времени, кричалки торсиды (*cânticos*) и терминология игры.
