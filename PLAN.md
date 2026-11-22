@@ -64,10 +64,25 @@
 - [x] Data-слой: 20 калиброванных вопросов-ловушек (`DuelQuestionsSeed`), `DuelsRepositoryImpl`.
 - [x] Cubit & State: `DuelsCubit` с таймером 15 сек, комбо-множителем (2x, 3x), озвучкой обоих диалектов и титулами.
 - [x] UI: `DuelsLobbyScreen`, `DuelGameplayScreen`, `DuelOptionButton`, `DialectComparisonCard`, `DuelResultScreen`.
-- [x] Тесты: `test/features/duels_test.dart`, `test/features/duels_cubit_test.dart` (159/159 тестов pass, `flutter analyze` 0 warnings).
+- [x] Тесты: `test/features/duels_test.dart`, `test/features/duels_cubit_test.dart` (100% pass).
+
+### Фича 10: Laboratório de Expressões Idiomáticas (`lib/features/idioms/`)
+- [x] Domain-модели: `PortugueseIdiom`, `IdiomCategory` (animais, comida, corpo, vida), `IdiomQuizQuestion`.
+- [x] Data-слой: 16 идиом с этимологией и диалектными пометками (`IdiomsSeedData`), `IdiomsRepositoryImpl`.
+- [x] Cubit & State: `IdiomsCubit` с фильтрами, поиском, режимом квиза (4 варианта) и записью попыток.
+- [x] UI: `IdiomsCatalogScreen`, `IdiomCard`, `IdiomDetailSheet`, `IdiomQuizView` с 1-tap FSRS экспортом.
+- [x] Тесты: `test/features/idioms_test.dart`, `test/features/idioms_cubit_test.dart` (100% pass).
+
+### Фича 11: Trilha Sonora da Língua (`lib/features/music_lab/`)
+- [x] Domain-модели: `PortugueseSong`, `SongLyricLine`, `MusicGenre` (Bossa Nova, Fado, Samba, MPB, Forró).
+- [x] Data-слой: 6 аутентичных шедевров с синхронизированными строками и поэтическими комментариями (`MusicLabSeedData`), `MusicRepositoryImpl`.
+- [x] Cubit & State: `MusicCatalogCubit`, `SongPlayerCubit` (управление строками, скорость 0.75x–1.25x, караоке-автопроигрывание, TTS с диалектом, режим вставки слов `maskedTextPt`).
+- [x] UI: `SongPlayerScreen`, `MusicCatalogScreen`, вращающийся винил, `KaraokeLyricTile`, `SongQuizTile`, `MusicControlsBar`, 1-tap FSRS экспорт.
+- [x] Тесты: `test/features/music_lab_test.dart`, `test/features/music_lab_cubit_test.dart` (184/184 тестов pass, `flutter analyze` 0 warnings).
 
 ---
 
 ## 2. Предлагаемые следующие шаги
-- [ ] **Опция А: «Laboratório de Expressões Idiomáticas» (Лаборатория португальских идиом и поговорок с визуальными метафорами и интерактивным контекстом)** — *«Pagar o pato»*, *«Tirar o cavalinho da chuva»*, *«Falar pelos cotovelos»*, *«Muitos anos a virar frangos»*.
-- [ ] **Опция Б: «Trilha Sonora da Língua» (Караоке и разбор песен: Bossa Nova, Fado, Samba, MPB с синхронным текстом и грамматикой)** — песни с переводом, подстрочником и культурными комментариями.
+- [ ] **Опция 1: «Simulador de Redes & WhatsApp» (Симулятор неформальной переписки и мессенджера)** — реалистичные чаты (Airbnb в Лиссабоне, iFood в Рио, офисный Slack, чат перед чурраско), SMS-сокращения (`vc`, `tbm`, `blz`, `mto`, `pq`, `fds`), ветвление реплик и голосовые аудиосообщения (voice notes).
+- [ ] **Опция 2: «Guia de Sobrevivência & Viagem» (Интерактивный навигатор туриста / экспата)** — интерактивные кейсы (аэропорт, NIF в Finanças / CPF в Receita Federal, аптека, аренда жилья), быстрые карточки-шпаргалки (Cheatsheets) с аудио в 1 клик, культурологическими правилами этикета и экстренным поиском.
+- [ ] **Опция 3: «Cozinha Lusófona» (Кулинарная лаборатория и рецепты Lusofonia)** — интерактивные рецепты (Pastel de Nata, Feijoada, Bacalhau à Brás, Pão de Queijo), глаголы готовки (*picar, refogar, ferver, assar, temperar*), меры веса и кухонная утварь с озвучкой и квизом по ингредиентам.
