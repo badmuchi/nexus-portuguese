@@ -13,6 +13,7 @@ import 'package:nexus_portuguese_app/features/scenes/presentation/screens/scenes
 import 'package:nexus_portuguese_app/features/slang/presentation/screens/slang_screen.dart';
 import 'package:nexus_portuguese_app/features/speech_lab/presentation/screens/speech_lab_screen.dart';
 import 'package:nexus_portuguese_app/features/stories/presentation/screens/stories_screen.dart';
+import 'package:nexus_portuguese_app/features/auditorio/presentation/screens/auditorio_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -572,6 +573,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   icon: Icons.military_tech_rounded,
                   color: Colors.amber.shade800,
                   onTap: () => widget.onNavigateToTab(6),
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Auditório',
+                  subtitle: 'Подкасты & Shadowing 🎙️',
+                  icon: Icons.podcasts_rounded,
+                  color: Colors.deepPurple.shade700,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const AuditorioCatalogScreen()),
+                    );
+                  },
                 ),
               ],
             ),

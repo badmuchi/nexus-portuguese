@@ -15,6 +15,8 @@ import 'features/verb_trainer/presentation/cubit/verb_trainer_cubit.dart';
 import 'features/sentence_builder/data/repositories/sentence_builder_repository_impl.dart';
 import 'features/sentence_builder/domain/repositories/sentence_builder_repository.dart';
 import 'features/sentence_builder/presentation/cubit/sentence_builder_cubit.dart';
+import 'features/auditorio/data/repositories/auditorio_repository_impl.dart';
+import 'features/auditorio/domain/repositories/auditorio_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -79,6 +81,7 @@ void main() async {
   final assessmentRepository = AssessmentRepositoryImpl(database: database);
   final verbTrainerRepository = VerbTrainerRepositoryImpl(database: database);
   const sentenceBuilderRepository = SentenceBuilderRepositoryImpl();
+  final auditorioRepository = AuditorioRepositoryImpl(database: database);
 
   runApp(
     MultiRepositoryProvider(
@@ -86,6 +89,7 @@ void main() async {
         RepositoryProvider<AppSettingsStorage>.value(value: settingsStorage),
         RepositoryProvider<AppDatabase>.value(value: database),
         RepositoryProvider<HybridAudioPlaybackService>.value(value: hybridAudio),
+        RepositoryProvider<SpeechRecognitionService>.value(value: speechService),
         RepositoryProvider<SrsRepository>.value(value: srsRepository),
         RepositoryProvider<ConversationRepository>.value(value: conversationRepository),
         RepositoryProvider<GrammarRepository>.value(value: grammarRepository),
@@ -99,6 +103,7 @@ void main() async {
         RepositoryProvider<AssessmentRepository>.value(value: assessmentRepository),
         RepositoryProvider<VerbTrainerRepository>.value(value: verbTrainerRepository),
         RepositoryProvider<SentenceBuilderRepository>.value(value: sentenceBuilderRepository),
+        RepositoryProvider<AuditorioRepository>.value(value: auditorioRepository),
       ],
       child: MultiBlocProvider(
         providers: [
