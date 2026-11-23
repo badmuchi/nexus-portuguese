@@ -198,17 +198,27 @@
 
 ---
 
+### Фича 26: Festas Populares & Tradições Folclóricas (`lib/features/festas/`)
+- [x] Domain-модели: `FestaEntity`, `FestaTraditionEntity`, `FestaVocabEntity`, `FestaQuizQuestion`, `FestaCategory` (carnaval, santosPopulares, junina, folclore).
+- [x] Data-слой: 6 грандиозных народных праздников (Carnaval do Rio de Janeiro, Carnaval de Salvador da Bahia, Festas de Santo António em Lisboa, Festa de São João no Porto, Festa Junina de Caruaru & Campina Grande, Bumba Meu Boi do Maranhão) (`FestasSeedData`), 4 народные традиции с пошаговыми инструкциями (manjerico com quadras, batalha dos martelinhos e alho-porro, casamento na roça e quadrilha, auto do boi), праздничная и обрядовая лексика (*pipoca, trio elétrico, abadá, comissão de frente, martelinho, manjerico, pamonha, matraca, toada*), 6 вопросов фольклорной викторины, `FestasRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `FestasCatalogCubit` (поиск, фильтры категорий, регионов PT/BR, вкладки), `FestaDetailCubit` (атмосферный аудиогид через `HybridAudioPlaybackService`, обряды, национальные блюда и напитки, сохранение терминов в FSRS), `FestaQuizCubit` (викторина праздников и традиций с подробным разбором).
+- [x] UI: `FestasCatalogScreen` (3 вкладки: Праздники, Традиции & Обряды, Квиз), `FestaDetailScreen` (баннер праздника, аудиоплеер, обряды, гастрономия, лексика с 1-tap FSRS), `FestaQuizScreen`, `FestaCard`, `TraditionCard`.
+- [x] Тесты: `test/features/festas_test.dart`, `test/features/festas_cubit_test.dart` (520/520 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
 - [x] **Опция 1: «Humor Lusófono & Piadas de Boteco»** — завершена (`c27446a`).
 - [x] **Фича 23: «Trilhas da Natureza & Ecoturismo»** — завершена (`765adee`).
 - [x] **Фича 24: «Mestres da Pintura, Azulejos & Artes Plásticas»** — завершена (`cc0f1b1`).
-- [x] **Фича 25: «Arquitetura & Cidades Modernas»** — завершена.
+- [x] **Фича 25: «Arquitetura & Cidades Modernas»** — завершена (`5702195`).
+- [x] **Фича 26: «Festas Populares & Tradições Folclóricas»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Festas Populares & Tradições Folclóricas»**: Карнавал (Рио и Салвадор), Festa Junina, Festas de Santo António в Лиссабоне, São João в Порту, Bumba Meu Boi — фольклор, обрядовые песни, традиционные танцы и сленг праздников.
-2. **«Mercado Financeiro, Startups & Economia Lusófona»**: Терминология инвестиций, финтех-бум (Nubank, Pix, MB Way), стартап-экосистема Лиссабона (Web Summit), ведение бизнеса и переговоров.
-3. **«Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»**: Саси-перере, Курупира, Яра, Бойтата, легенды ориша — культурный контекст, повествовательные времена глаголов и аутентичный вокабуляр.
+1. **«Mercado Financeiro, Startups & Economia Lusófona»**: Терминология инвестиций, финтех-бум (Nubank, Pix, MB Way), стартап-экосистема Лиссабона (Web Summit), ведение бизнеса и переговоров.
+2. **«Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»**: Саси-перере, Курупира, Яра, Бойтата, легенды ориша — культурный контекст, повествовательные времена глаголов и аутентичный вокабуляр.
+3. **«Ciência, Inovação & Oceanografia Lusófona»**: Океанографические экспедиции, биоразнообразие Атлантики, Институт Гюльбенкяна и космические обсерватории Азорских островов.

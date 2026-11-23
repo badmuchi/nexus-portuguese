@@ -53,6 +53,8 @@ import 'features/art/data/repositories/art_repository_impl.dart';
 import 'features/art/domain/repositories/art_repository.dart';
 import 'features/architecture/data/repositories/architecture_repository_impl.dart';
 import 'features/architecture/domain/repositories/architecture_repository.dart';
+import 'features/festas/data/repositories/festas_repository_impl.dart';
+import 'features/festas/domain/repositories/festas_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -148,6 +150,10 @@ void main() async {
     database: database,
     srsRepository: srsRepository,
   );
+  final festasRepository = FestasRepositoryImpl(
+    database: database,
+    srsRepository: srsRepository,
+  );
 
   runApp(
     MultiRepositoryProvider(
@@ -188,6 +194,7 @@ void main() async {
         RepositoryProvider<NatureRepository>.value(value: natureRepository),
         RepositoryProvider<ArtRepository>.value(value: artRepository),
         RepositoryProvider<ArchitectureRepository>.value(value: architectureRepository),
+        RepositoryProvider<FestasRepository>.value(value: festasRepository),
       ],
       child: MultiBlocProvider(
         providers: [
