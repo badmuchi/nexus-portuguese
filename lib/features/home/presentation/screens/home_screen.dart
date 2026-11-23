@@ -26,6 +26,7 @@ import 'package:nexus_portuguese_app/features/cinema/presentation/screens/cinema
 import 'package:nexus_portuguese_app/features/travel_guide/presentation/screens/travel_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/literature/presentation/screens/literature_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/football/presentation/screens/football_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/radionovela/presentation/screens/radio_novela_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -752,6 +753,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const FootballCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Радионовелла & Драма',
+                  subtitle: 'Аудиоспектакли и нуар 📻',
+                  icon: Icons.radio_rounded,
+                  color: Colors.deepPurple.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const RadioNovelaCatalogScreen()),
                     );
                   },
                 ),

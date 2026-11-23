@@ -142,7 +142,15 @@
 
 ---
 
-## 2. Предлагаемые следующие шаги
+### Фича 20: Rádio Novela & Podcast Drama (`lib/features/radionovela/`)
+- [x] Domain-модели: `AudioDramaEntity`, `DramaCharacterEntity`, `DramaSceneEntity`, `DramaLineEntity`, `DramaInteractiveChoice`.
+- [x] Data-слой: 4 атмосферных радиоспектакля («O Mistério da Alfama» [Lisboa, PT-PT], «Amor e Vento no Sertão» [Bahia, PT-BR], «O Farol da Guia na Noite de Tempestade» [Cascais, PT-PT], «O Golpe da Avenida Paulista» [São Paulo, PT-BR]) (`RadioNovelaSeedData`) с профессиональными театральными ремарками, сленгом (*não dar tréguas, quem anda à chuva molha-se, oxente, errar feio, mar bravio, passar batido, viajar na maionese*), интерактивными развилками выбора и аудиосценами, `RadioNovelaRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `RadioNovelaCatalogCubit` (поиск, фильтры диалектов BR/PT, жанров Нуар/Романс/Саспенс), `RadioPlayerCubit` (построчный/посценный аудиоплеер, стилизация радиоволны FM 98.4, регулировка скорости 0.85x–1.15x, переключатель театральных ремарок и перевода, сюжетный выбор на развилках, экспорт реплик в FSRS).
+- [x] UI: `RadioNovelaCatalogScreen`, `RadioPlayerScreen`, `DramaEpisodeCard`, `DramaLineBubble` (аватар актера, ремарки, озвучка и 1-tap FSRS), интерактивная карточка сюжетного поворота.
+- [x] Тесты: `test/features/radionovela_test.dart`, `test/features/radionovela_cubit_test.dart` (388/388 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
+## 2. Очередь разработки (по приоритету 2-3-1)
+- [ ] **В разработке (следующая) — Опция 3: «Bazar & Feira Livre» (Интерактивный рынок и искусство торга)** — колоритные базары (*Feira da Ladra* в Лиссабоне, *Mercado Municipal* в Сан-Паулу, *Feira de São Cristóvão*), единицы веса (*quilo, dúzia, meio quilo*), торг, цены, диалоги и зазывания торговцев.
 - [ ] **Опция 1: «Humor Lusófono & Piadas de Boteco» (Юмор, анекдоты и культурные мемы)** — классические португальские и бразильские шутки (*piadas de Manuel e Maria*, бразильские мемы, игра слов и каламбуры), ирония, сарказм и двойные смыслы в живой разговорной речи.
-- [ ] **Опция 2: «Rádio Novela & Podcast Drama» (Драматические радиопостановки)** — интерактивные аудиоспектакли с атмосферными звуками (шум океана, дождь, уличный шум Лиссабона и Рио), ветвящиеся диалоги актеров с яркими региональными акцентами.
-- [ ] **Опция 3: «Bazar & Feira Livre» (Интерактивный рынок и искусство торга)** — колоритные базары (Feira da Ladra в Лиссабоне, Mercado Municipal в Сан-Паулу, Feira de São Cristóvão), единицы веса (*quilo, dúzia, meio quilo*), торг, цены и зазывания торговцев.
