@@ -207,6 +207,15 @@
 
 ---
 
+### Фича 27: Mercado Financeiro, Startups & Economia Lusófona (`lib/features/finance/`)
+- [x] Domain-модели: `FinanceTopicEntity`, `FintechSimulatorEntity`, `FinanceVocabEntity`, `FinanceQuizQuestion`, `FinanceCategory` (fintech, startups, personalFinance, business).
+- [x] Data-слой: 6 ключевых тем экономики и финтеха (Pix & Pagamentos Instantâneos [BR], MB WAY & Rede Multibanco [PT], Startups & Web Summit Lisboa [PT], Faria Lima & Mercado Financeiro SP [BR], Salários 14 Meses IRS & e-Fatura [PT], CLT vs PJ & Investimentos B3 [BR]) (`FinanceSeedData`), 4 интерактивных сценария симулятора (Pix na feira, dividir conta por MB WAY, pagamento com entidade e referência, fatura com NIF), финансовый и деловой вокабуляр (*chave Pix, referência multibanco, levantar dinheiro, faria limer, subsídio de férias, taxa Selic, aporte financeiro*), 6 вопросов викторины, `FinanceRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `FinanceCatalogCubit` (поиск, фильтры категорий, регионов PT/BR, вкладки), `FinanceTopicDetailCubit` (аудио-сводка через `HybridAudioPlaybackService`, механизмы работы, жизненные советы, 1-tap FSRS экспорт терминов), `FinanceQuizCubit` (викторина финтеха и бизнеса с подсчётом баллов и разбором).
+- [x] UI: `FinanceCatalogScreen` (3 вкладки: Темы, Симуляторы, Квиз), `FinanceTopicDetailScreen` (баннер, аудиоплеер, механизмы, советы для жизни, словарь с 1-tap FSRS), `FinanceQuizScreen`, `FinanceTopicCard`, `FintechSimulatorCard`.
+- [x] Тесты: `test/features/finance_test.dart`, `test/features/finance_cubit_test.dart` (543/543 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
@@ -214,11 +223,12 @@
 - [x] **Фича 23: «Trilhas da Natureza & Ecoturismo»** — завершена (`765adee`).
 - [x] **Фича 24: «Mestres da Pintura, Azulejos & Artes Plásticas»** — завершена (`cc0f1b1`).
 - [x] **Фича 25: «Arquitetura & Cidades Modernas»** — завершена (`5702195`).
-- [x] **Фича 26: «Festas Populares & Tradições Folclóricas»** — завершена.
+- [x] **Фича 26: «Festas Populares & Tradições Folclóricas»** — завершена (`7f43406`).
+- [x] **Фича 27: «Mercado Financeiro, Startups & Economia Lusófona»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Mercado Financeiro, Startups & Economia Lusófona»**: Терминология инвестиций, финтех-бум (Nubank, Pix, MB Way), стартап-экосистема Лиссабона (Web Summit), ведение бизнеса и переговоров.
-2. **«Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»**: Саси-перере, Курупира, Яра, Бойтата, легенды ориша — культурный контекст, повествовательные времена глаголов и аутентичный вокабуляр.
-3. **«Ciência, Inovação & Oceanografia Lusófona»**: Океанографические экспедиции, биоразнообразие Атлантики, Институт Гюльбенкяна и космические обсерватории Азорских островов.
+1. **«Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»**: Саси-перере, Курупира, Яра, Бойтата, легенды ориша — культурный контекст, повествовательные времена глаголов и аутентичный вокабуляр.
+2. **«Ciência, Inovação & Oceanografia Lusófona»**: Океанографические экспедиции, биоразнообразие Атлантики, Институт Гюльбенкяна и космические обсерватории Азорских островов.
+3. **«Moda, Design & Têxtil Lusófono»**: От традиционных кружев Бильрос (Вila do Conde / Ceará) до São Paulo Fashion Week и португальской обувной индустрии.
