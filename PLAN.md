@@ -169,14 +169,26 @@
 
 ---
 
-## 2. Итог выполнения очереди приоритетов (2-3-1):
+---
+
+### Фича 23: Trilhas da Natureza & Ecoturismo (`lib/features/nature/`)
+- [x] Domain-модели: `NatureReserveEntity`, `NatureTrailEntity`, `SpeciesEntity`, `EcoQuizQuestion`, `SpeciesCategory` (fauna, flora).
+- [x] Data-слой: 6 легендарных биосферных зон и национальных парков (Parque Nacional da Chapada Diamantina [BR], Parque Nacional de Anavilhanas & Amazônia [BR], Parque Nacional da Peneda-Gerês [PT], Parque Nacional do Pantanal Matogrossense [BR], Parque Natural de São Miguel & Sete Cidades [Açores, PT], Parque Natural da Serra da Estrela [PT]) (`NatureSeedData`), 12 видов флоры и фауны (onça-pintada, boto-cor-de-rosa, vitória-régia, tuiuiú, capivara, garrano, lobo-ibérico, lírio-do-gerês, cachalote, priolo, cão da serra da estrela, hortênsia-azul), 6 вопросов эко-викторины, `NatureRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `NatureCatalogCubit` (поиск, фильтры диалектов PT/BR, фильтры флоры/фауны, переключение вкладок), `NatureReserveCubit` (детали парка, озвучка описаний через `HybridAudioPlaybackService`, сохранение прохождения треков и добавление видов в FSRS), `EcoQuizCubit` (викторина с подсчетом баллов и разбором экологических терминов).
+- [x] UI: `NatureCatalogScreen` (3 вкладки: Заповедники, Флора & Фауна, Эко-викторина), `NatureDetailScreen` (баннер биома, достопримечательности, треки с дистанцией и перепадом высот, редкие виды), `EcoQuizScreen` (интерактивный тест), `ReserveCard`, `TrailCard` (чипы дистанции/времени, советы безопасности, отметка прохождения), `SpeciesCard` (статус вида, любопытные факты, озвучка и 1-tap FSRS).
+- [x] Тесты: `test/features/nature_test.dart`, `test/features/nature_cubit_test.dart` (452/452 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
+## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
-- [x] **Опция 1: «Humor Lusófono & Piadas de Boteco»** — завершена.
+- [x] **Опция 1: «Humor Lusófono & Piadas de Boteco»** — завершена (`c27446a`).
+- [x] **Фича 23: «Trilhas da Natureza & Ecoturismo»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Trilhas da Natureza & Ecoturismo Lusófono»**: Национальные парки и природные чудеса (Chapada Diamantina, Amazônia, Açores, Serra da Estrela, Pantanal, Fernando de Noronha) — экологический вокабуляр, навигация по маршрутам, флора/фауна и диалоги с рейнджерами.
-2. **«Mestres da Pintura, Azulejos & Artes Plásticas»**: Искусство, стрит-арт (Кобра в Сан-Паулу, Бордало II в Лиссабоне), традиционные азулежу, барокко Алейжадинью, модернизм Тарсилы ду Амарал — эстетическая терминология, описание картин и экскурсионные диалоги.
-3. **«Arquitetura & Cidades Modernas»**: От колониального Оуру-Прету и белемского мануэлино до футуризма Нимейера в Бразилиа и современной архитектуры Порту (Сиза Виейра) — архитектурные стили, урбанистика, планировка городов.
+1. **«Mestres da Pintura, Azulejos & Artes Plásticas»**: Искусство, стрит-арт (Кобра в Сан-Паулу, Бордало II в Лиссабоне), традиционные азулежу, барокко Алейжадинью, модернизм Тарсилы ду Амарал — эстетическая терминология, описание картин и экскурсионные диалоги.
+2. **«Arquitetura & Cidades Modernas»**: От колониального Оуру-Прету и белемского мануэлино до футуризма Нимейера в Бразилиа и современной архитектуры Порту (Сиза Виейра) — архитектурные стили, урбанистика, планировка городов.
+3. **«Festas Populares & Tradições Folclóricas»**: Карнавал (Рио и Салвадор), Festa Junina, Festas de Santo António в Лиссабоне, São João в Порту, Bumba Meu Boi — фольклор, обрядовые песни, традиционные танцы и сленг праздников.

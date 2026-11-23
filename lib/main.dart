@@ -47,6 +47,8 @@ import 'features/bazar/data/repositories/bazar_repository_impl.dart';
 import 'features/bazar/domain/repositories/bazar_repository.dart';
 import 'features/humor/data/repositories/humor_repository_impl.dart';
 import 'features/humor/domain/repositories/humor_repository.dart';
+import 'features/nature/data/repositories/nature_repository_impl.dart';
+import 'features/nature/domain/repositories/nature_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -130,6 +132,10 @@ void main() async {
     database: database,
     srsRepository: srsRepository,
   );
+  final natureRepository = NatureRepositoryImpl(
+    database: database,
+    srsRepository: srsRepository,
+  );
 
   runApp(
     MultiRepositoryProvider(
@@ -167,6 +173,7 @@ void main() async {
         RepositoryProvider<RadioNovelaRepository>.value(value: radioNovelaRepository),
         RepositoryProvider<BazarRepository>.value(value: bazarRepository),
         RepositoryProvider<HumorRepository>.value(value: humorRepository),
+        RepositoryProvider<NatureRepository>.value(value: natureRepository),
       ],
       child: MultiBlocProvider(
         providers: [

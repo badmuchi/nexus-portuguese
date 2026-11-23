@@ -29,6 +29,7 @@ import 'package:nexus_portuguese_app/features/football/presentation/screens/foot
 import 'package:nexus_portuguese_app/features/radionovela/presentation/screens/radio_novela_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/bazar/presentation/screens/bazar_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/humor/presentation/screens/humor_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/nature/presentation/screens/nature_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -794,6 +795,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const HumorCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Природа & Экотуризм',
+                  subtitle: 'Парки, треки и фауна 🌿',
+                  icon: Icons.terrain_rounded,
+                  color: Colors.green.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const NatureCatalogScreen()),
                     );
                   },
                 ),
