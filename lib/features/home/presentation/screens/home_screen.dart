@@ -38,6 +38,7 @@ import 'package:nexus_portuguese_app/features/folklore/presentation/screens/folk
 import 'package:nexus_portuguese_app/features/science/presentation/screens/science_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/fashion/presentation/screens/fashion_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/wine/presentation/screens/wine_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/ancestral/presentation/screens/ancestral_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -920,6 +921,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const WineCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Традиционные народы',
+                  subtitle: 'Рибейриньюс, кайсарас, травники 🌿',
+                  icon: Icons.eco_rounded,
+                  color: Colors.green.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const AncestralCatalogScreen()),
                     );
                   },
                 ),

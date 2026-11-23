@@ -252,6 +252,15 @@
 
 ---
 
+### Фича 32: Povos Tradicionais, Saberes Ancestrais & Sabedoria da Terra (`lib/features/ancestral/`)
+- [x] Domain-модели: `TraditionalCommunityEntity`, `HerbalRemedyEntity`, `AncestralVocabEntity`, `AncestralQuizQuestion`, `CommunityCategory` (ribeirinhos, caicaras, sertanejos, quilombolas, pastores, mariscadores).
+- [x] Data-слой: 6 самобытных традиционных общин (Ribeirinhos dos Rios Solimões e Negro [palafitas, igarapés, pirarucu, regatão], Caiçaras do Litoral Paulista e Fluminense [canoa de voga esculpida em jequitibá, fandango caiçara, cerco flutuante], Vaqueiros e Sertanejos da Caatinga [gibão de couro, aboio no gado, mandacaru], Quilombolas do Vale do Ribeira e Palmares [roça de coivara ecológica, mutirão comunitário, mestres griôs], Pastores da Transumância da Serra da Estrela [canadas milenares, burel de lã impermeável, cão da serra], Mariscadoras e Pescadores da Ria de Aveiro e Ria Formosa [apanha de berbigão nos sapais, barco moliceiro]) (`AncestralSeedData`), 4 рецепта народной фитотерапии и травников (Óleo de Copaíba, Chá de Poejo do Alentejo, Macela do Campo, Tisana de Laranjeira e Erva-Cidreira) с грамматическим фокусом на повелительное наклонение (*Modo Imperativo Afirmativo e Negativo: tome, ferva, não ferva, aplique, abafe*), словарь традиционной жизни и природы (*palafita, igarapé, regatão, canoa de voga, fandango, cerco flutuante, gibão, aboio, mutirão, roça de coivara, griô, transumância, burel, cajado, mariscadora, moliceiro, sapal*), 6 вопросов викторины, `AncestralRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `AncestralCatalogCubit` (поиск, фильтры категорий общин, регионов PT/BR, вкладки, сброс фильтров), `AncestralDetailCubit` (аудионарратив через `HybridAudioPlaybackService`, автосохранение отметки изучения в Drift, 1-tap добавление лексики в FSRS), `AncestralQuizCubit` (викторина по образу жизни, традициям и грамматике повелительного наклонения Imperativo с подсчётом баллов и разбором).
+- [x] UI: `AncestralCatalogScreen` (3 вкладки: Povos, Ervanária, Квиз), `CommunityDetailScreen` (баннер общины, аудиоплеер, образ жизни, история, словарь с 1-tap FSRS), `AncestralQuizScreen`, `CommunityCard`, `HerbalRemedyCard`.
+- [x] Тесты: `test/features/ancestral_test.dart`, `test/features/ancestral_cubit_test.dart` (654/654 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
@@ -264,11 +273,12 @@
 - [x] **Фича 28: «Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»** — завершена (`633ee67`).
 - [x] **Фича 29: «Ciência, Inovação & Oceanografia Lusófona»** — завершена (`1499dc6`).
 - [x] **Фича 30: «Moda, Design & Têxtil Lusófono»** — завершена (`f20b2c9`).
-- [x] **Фича 31: «Vinhos, Azeites & Enogastronomia Lusófona»** — завершена.
+- [x] **Фича 31: «Vinhos, Azeites & Enogastronomia Lusófona»** — завершена (`8539c74`).
+- [x] **Фича 32: «Povos Tradicionais, Saberes Ancestrais & Sabedoria da Terra»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Cinema & Festivais Audiovisuais»**: Cinema Novo (Glauber Rocha), Festival de Gramado, Fantasporto, Doclisboa и дубляж vs субтитры.
-2. **«Povos Tradicionais & Saberes Ancestrais»**: Рибейриньюс, кайсарас, сертанежус, традиционная медицина и устное народное творчество.
-3. **«Carnavais Regionais & Ritmos Populares»**: Frevo, Maracatu, Samba-Enredo, Bumba-meu-boi и карнавал Торреш-Ведраш.
+1. **«Carnavais Regionais & Ritmos Populares»**: Frevo de Olinda, Maracatu de Baque Virado, Samba-Enredo da Sapucaí, Bumba-meu-boi do Maranhão e Carnaval Trapalhão de Torres Vedras.
+2. **«Cinema Novo & Festivais Audiovisuais»**: Glauber Rocha, Festival de Gramado, Fantasporto, Doclisboa и язык кинорежиссуры.
+3. **«Navegações, Espeleologia & Grutas Lusófonas»**: Grutas de Mira de Aire, Algar do Carvão, Cavernas do PETAR e mergulho em Fernando de Noronha.
