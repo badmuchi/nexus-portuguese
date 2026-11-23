@@ -30,6 +30,7 @@ import 'package:nexus_portuguese_app/features/radionovela/presentation/screens/r
 import 'package:nexus_portuguese_app/features/bazar/presentation/screens/bazar_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/humor/presentation/screens/humor_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/nature/presentation/screens/nature_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/art/presentation/screens/art_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -808,6 +809,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const NatureCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Искусство & Азулежу',
+                  subtitle: 'Шедевры, стили и муралы 🎨',
+                  icon: Icons.palette_rounded,
+                  color: Colors.amber.shade900,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ArtCatalogScreen()),
                     );
                   },
                 ),

@@ -180,15 +180,25 @@
 
 ---
 
+### Фича 24: Mestres da Pintura, Azulejos & Artes Plásticas (`lib/features/art/`)
+- [x] Domain-модели: `ArtworkEntity`, `ArtStyleEntity`, `ArtVocabEntity`, `ArtQuizQuestion`, `ArtPeriod`.
+- [x] Data-слой: 6 шедевров и памятников искусства (*Abaporu* [Tarsila do Amaral], *Painéis de São Bento* [Jorge Colaço], *Os Doze Profetas* [Aleijadinho], *Guerra e Paz* [Candido Portinari], *Lince Ibérico* [Bordalo II], *Canção Popular a Russa e o Fígaro* [Amadeo de Souza-Cardoso]), 4 художественных стиля (Modernismo Brasileiro, Azulejaria Tradicional, Barroco Colonial & Rococó, Arte Urbana & Street Art), 12 искусствоведческих терминов, 6 вопросов арт-викторины (`ArtSeedData`), `ArtRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `ArtCatalogCubit` (поиск, фильтры стилей, диалектов PT/BR, переключение вкладок), `ArtworkDetailCubit` (исследование шедевра, озвучка описания, экспорт терминов в FSRS, отметка об изучении), `ArtQuizCubit` (викторина стилей и полотен с интерактивным разбором).
+- [x] UI: `ArtCatalogScreen` (3 вкладки: Шедевры, Направления, Арт-викторина), `ArtworkDetailScreen` (палитра, композиционный анализ, лексика, исторический экскурс), `ArtQuizScreen`, `ArtworkCard`, `ArtStyleCard`.
+- [x] Тесты: `test/features/art_test.dart`, `test/features/art_cubit_test.dart` (473/473 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
 - [x] **Опция 1: «Humor Lusófono & Piadas de Boteco»** — завершена (`c27446a`).
-- [x] **Фича 23: «Trilhas da Natureza & Ecoturismo»** — завершена.
+- [x] **Фича 23: «Trilhas da Natureza & Ecoturismo»** — завершена (`765adee`).
+- [x] **Фича 24: «Mestres da Pintura, Azulejos & Artes Plásticas»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Mestres da Pintura, Azulejos & Artes Plásticas»**: Искусство, стрит-арт (Кобра в Сан-Паулу, Бордало II в Лиссабоне), традиционные азулежу, барокко Алейжадинью, модернизм Тарсилы ду Амарал — эстетическая терминология, описание картин и экскурсионные диалоги.
-2. **«Arquitetura & Cidades Modernas»**: От колониального Оуру-Прету и белемского мануэлино до футуризма Нимейера в Бразилиа и современной архитектуры Порту (Сиза Виейра) — архитектурные стили, урбанистика, планировка городов.
-3. **«Festas Populares & Tradições Folclóricas»**: Карнавал (Рио и Салвадор), Festa Junina, Festas de Santo António в Лиссабоне, São João в Порту, Bumba Meu Boi — фольклор, обрядовые песни, традиционные танцы и сленг праздников.
+1. **«Arquitetura & Cidades Modernas»**: От колониального Оуру-Прету и белемского мануэлино до футуризма Нимейера в Бразилиа и современной архитектуры Порту (Сиза Виейра) — архитектурные стили, урбанистика, планировка городов.
+2. **«Festas Populares & Tradições Folclóricas»**: Карнавал (Рио и Салвадор), Festa Junina, Festas de Santo António в Лиссабоне, São João в Порту, Bumba Meu Boi — фольклор, обрядовые песни, традиционные танцы и сленг праздников.
+3. **«Mercado Financeiro, Startups & Economia Lusófona»**: Терминология инвестиций, финтех-бум (Nubank, Pix, MB Way), стартап-экосистема Лиссабона (Web Summit), ведение бизнеса и переговоров.
