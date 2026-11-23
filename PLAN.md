@@ -216,6 +216,15 @@
 
 ---
 
+### Фича 28: Mitos, Lendas & Folclore Indígena e Afro-Brasileiro (`lib/features/folklore/`)
+- [x] Domain-модели: `MythicalEntity`, `FolkloreTaleSnippet`, `FolkloreVocabEntity`, `FolkloreQuizQuestion`, `FolkloreOrigin` (indigena, afroBrasileiro, iberico, urbanoMisto).
+- [x] Data-слой: 6 легендарных существ и сказаний (Saci-Pererê [redemoinhos e travessuras], Curupira [cabelos de fogo e pés invertidos], Iara [Mãe-d'Água e canto hipnótico], Boitatá [serpente de fogo e protetora contra queimadas], Mula sem Cabeça [fogo pelo pescoço e cascos de prata], Galo de Barcelos [milagre do galo assado e justiça em Portugal]) (`FolkloreSeedData`), 4 отрывка сказок с грамматическим фокусом на разницу прошедших времён Pretérito Perfeito vs Pretérito Imperfeito, фольклорный и мифологический словарь (*redemoinho, travessura, carapuça, pegada invertida, canto hipnótico, igarapé, fogo-fátuo, relincho, ferradura de prata, peregrino, olaria*), 6 вопросов викторины, `FolkloreRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `FolkloreCatalogCubit` (поиск, фильтры по корням/происхождению, регионам PT/BR, вкладки, сброс фильтров), `MythDetailCubit` (аудиогид через `HybridAudioPlaybackService`, магические силы, морально-культурный смысл, сохранение терминов в FSRS), `FolkloreQuizCubit` (викторина по легендам и нарративной грамматике с подсчётом баллов и разбором).
+- [x] UI: `FolkloreCatalogScreen` (3 вкладки: Мифы, Сказки & Грамматика, Квиз), `MythDetailScreen` (баннер существа, аудиоплеер, магические силы, текст легенды, культурный смысл, словарь с 1-tap FSRS), `FolkloreQuizScreen`, `MythCard`, `FolkloreTaleCard`.
+- [x] Тесты: `test/features/folklore_test.dart`, `test/features/folklore_cubit_test.dart` (568/568 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
@@ -224,11 +233,12 @@
 - [x] **Фича 24: «Mestres da Pintura, Azulejos & Artes Plásticas»** — завершена (`cc0f1b1`).
 - [x] **Фича 25: «Arquitetura & Cidades Modernas»** — завершена (`5702195`).
 - [x] **Фича 26: «Festas Populares & Tradições Folclóricas»** — завершена (`7f43406`).
-- [x] **Фича 27: «Mercado Financeiro, Startups & Economia Lusófona»** — завершена.
+- [x] **Фича 27: «Mercado Financeiro, Startups & Economia Lusófona»** — завершена (`ef93c50`).
+- [x] **Фича 28: «Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»**: Саси-перере, Курупира, Яра, Бойтата, легенды ориша — культурный контекст, повествовательные времена глаголов и аутентичный вокабуляр.
-2. **«Ciência, Inovação & Oceanografia Lusófona»**: Океанографические экспедиции, биоразнообразие Атлантики, Институт Гюльбенкяна и космические обсерватории Азорских островов.
-3. **«Moda, Design & Têxtil Lusófono»**: От традиционных кружев Бильрос (Вila do Conde / Ceará) до São Paulo Fashion Week и португальской обувной индустрии.
+1. **«Ciência, Inovação & Oceanografia Lusófona»**: Океанографические экспедиции, биоразнообразие Атлантики, Институт Гюльбенкяна и космические обсерватории Азорских островов.
+2. **«Moda, Design & Têxtil Lusófono»**: От традиционных кружев Бильрос (Вila do Conde / Ceará) до São Paulo Fashion Week и португальской обувной индустрии.
+3. **«Vinhos, Azeites & Enogastronomia»**: Портвейн, Винью Верде, Мадейра, оливковые рощи Алентежу и Дору, винная терминология и дегустация.

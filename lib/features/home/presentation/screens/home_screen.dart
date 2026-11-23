@@ -34,6 +34,7 @@ import 'package:nexus_portuguese_app/features/art/presentation/screens/art_catal
 import 'package:nexus_portuguese_app/features/architecture/presentation/screens/architecture_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/festas/presentation/screens/festas_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/finance/presentation/screens/finance_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/folklore/presentation/screens/folklore_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -864,6 +865,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const FinanceCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Мифы & Фольклор',
+                  subtitle: 'Саси, Курупира, Яра и сказки 🧙‍♂️',
+                  icon: Icons.auto_awesome_rounded,
+                  color: Colors.deepPurple.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const FolkloreCatalogScreen()),
                     );
                   },
                 ),
