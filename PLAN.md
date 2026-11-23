@@ -225,6 +225,15 @@
 
 ---
 
+### Фича 29: Ciência, Inovação & Oceanografia Lusófona (`lib/features/science/`)
+- [x] Domain-модели: `ScienceTopicEntity`, `LabExperimentEntity`, `ScienceVocabEntity`, `ScienceQuizQuestion`, `ScienceField` (oceanografia, biomedicina, energiaVerde, aeroespacial).
+- [x] Data-слой: 6 научно-исследовательских центров и тем (Oceanografia & Fossas Abissais dos Açores [campos hidrotermais Lucky Strike], Instituto Butantan [soros antiofídicos e fármacos derivados de peçonhas], Energia Offshore: WindFloat & Ondas de Peniche [turbinas flutuantes e energia das ondas], Fiocruz: Vacinas & Doenças Tropicais [Bio-Manguinhos e Doença de Chagas], Centro Espacial de Alcântara & Satélites CBERS [foguetes na linha do equador e monitoramento da Amazônia], Fundação Champalimaud & Neurociência Translacional [imagiologia cerebral e imunooncologia]) (`ScienceSeedData`), 4 лабораторных эксперимента с пошаговыми протоколами и грамматическим фокусом на пассивный залог (*Voz Passiva Analítica e Sintética*) и условные гипотезы (*Se + Futuro do Subjuntivo*), научный вокабуляр с диалектными соответствиями (*campo hidrotermal, batimetria, amostragem, peçonha, ensaio clínico, plataforma flutuante, descarbonização, patógeno, sensoriamento remoto / teledeteção, circuito neuronal, imagiologia médica*), 6 вопросов научной викторины, `ScienceRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `ScienceCatalogCubit` (поиск, фильтры сфер науки, регионов PT/BR, вкладки, сброс фильтров), `ScienceDetailCubit` (аудиогид через `HybridAudioPlaybackService`, ключевые открытия, глобальный импакт, сохранение терминов в FSRS), `ScienceQuizCubit` (викторина по науке, океанографии и языку науки с подсчётом баллов и разбором).
+- [x] UI: `ScienceCatalogScreen` (3 вкладки: Темы, Лаборатория & Эксперименты, Квиз), `ScienceTopicDetailScreen` (баннер, аудиоплеер, открытия, научный обзор, словарь с 1-tap FSRS), `ScienceQuizScreen`, `ScienceTopicCard`, `LabExperimentCard`.
+- [x] Тесты: `test/features/science_test.dart`, `test/features/science_cubit_test.dart` (593/593 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
@@ -234,11 +243,12 @@
 - [x] **Фича 25: «Arquitetura & Cidades Modernas»** — завершена (`5702195`).
 - [x] **Фича 26: «Festas Populares & Tradições Folclóricas»** — завершена (`7f43406`).
 - [x] **Фича 27: «Mercado Financeiro, Startups & Economia Lusófona»** — завершена (`ef93c50`).
-- [x] **Фича 28: «Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»** — завершена.
+- [x] **Фича 28: «Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»** — завершена (`633ee67`).
+- [x] **Фича 29: «Ciência, Inovação & Oceanografia Lusófona»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Ciência, Inovação & Oceanografia Lusófona»**: Океанографические экспедиции, биоразнообразие Атлантики, Институт Гюльбенкяна и космические обсерватории Азорских островов.
-2. **«Moda, Design & Têxtil Lusófono»**: От традиционных кружев Бильрос (Вila do Conde / Ceará) до São Paulo Fashion Week и португальской обувной индустрии.
-3. **«Vinhos, Azeites & Enogastronomia»**: Портвейн, Винью Верде, Мадейра, оливковые рощи Алентежу и Дору, винная терминология и дегустация.
+1. **«Moda, Design & Têxtil Lusófono»**: От традиционных кружев Бильрос (Вila do Conde / Ceará) до São Paulo Fashion Week и португальской обувной индустрии.
+2. **«Vinhos, Azeites & Enogastronomia»**: Портвейн, Винью Верде, Мадейра, оливковые рощи Алентежу и Дору, винная терминология и дегустация.
+3. **«Cinema & Festivais Audiovisuais»**: Cinema Novo (Glauber Rocha), Festival de Gramado, Fantasporto, Doclisboa и дубляж vs субтитры.
