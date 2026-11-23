@@ -67,6 +67,8 @@ import 'features/wine/data/repositories/wine_repository_impl.dart';
 import 'features/wine/domain/repositories/wine_repository.dart';
 import 'features/ancestral/data/repositories/ancestral_repository_impl.dart';
 import 'features/ancestral/domain/repositories/ancestral_repository.dart';
+import 'features/carnival/data/repositories/carnival_repository_impl.dart';
+import 'features/carnival/domain/repositories/carnival_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -190,6 +192,10 @@ void main() async {
     database: database,
     srsRepository: srsRepository,
   );
+  final carnivalRepository = CarnivalRepositoryImpl(
+    database: database,
+    srsRepository: srsRepository,
+  );
 
   runApp(
     MultiRepositoryProvider(
@@ -237,6 +243,7 @@ void main() async {
         RepositoryProvider<FashionRepository>.value(value: fashionRepository),
         RepositoryProvider<WineRepository>.value(value: wineRepository),
         RepositoryProvider<AncestralRepository>.value(value: ancestralRepository),
+        RepositoryProvider<CarnivalRepository>.value(value: carnivalRepository),
       ],
       child: MultiBlocProvider(
         providers: [

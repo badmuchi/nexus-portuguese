@@ -261,6 +261,15 @@
 
 ---
 
+### Фича 33: Carnavais Regionais & Ritmos Populares Lusófonos (`lib/features/carnival/`)
+- [x] Domain-модели: `CarnivalTraditionEntity`, `RhythmWorkshopEntity`, `CarnivalVocabEntity`, `CarnivalQuizQuestion`, `CarnivalTraditionCategory` (frevo, maracatu, sambaEnredo, bumbameuboi, entrudoPortugues, trioEletrico).
+- [x] Data-слой: 6 карнавальных традиций и ритмов (Frevo de Olinda & Recife [passos acrobáticos, sombrinha, troças], Maracatu de Baque Virado & Nações de Pernambuco [cortejo régio, alfaias, caboclos de lança, Calunga], Samba-Enredo & Desfiles da Marquês de Sapucaí [bateria furiosa, cuíca, puxador, porta-bandeira], Bumba-Meu-Boi & Autos Juninos do Maranhão [matracas de madeira, zabumbas, toadas], Carnaval de Torres Vedras & Caretos de Podence [matrafonas, cabeçudos, chocalhada de Podence], Trio Elétrico & Blocos Afro de Salvador da Bahia [guitarra baiana, pipoca, abadás, Olodum]) (`CarnivalSeedData`), 4 мастер-класса ритма и лирики с грамматическим фокусом на продолжительное действие: **Gerúndio (PT-BR) vs Estar a + Infinitivo (PT-PT)** (*vem frevendo vs vem a ferver, estão retumbando vs estão a retumbar, vai entrando vs vai a entrar, andam a chocalhar*), словарь карнавальной культуры (*sombrinha, troça, passista, alfaia, calunga, caboclo de lança, puxador, cuíca, porta-bandeira, matraca, toada, sotaque de boi, matrafona, careto, cabeçudo, pipoca, abadá, timbal*), 6 вопросов викторины, `CarnivalRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `CarnivalCatalogCubit` (поиск, фильтры традиций, регионов PT/BR, вкладки, сброс фильтров), `CarnivalDetailCubit` (аудионарратив через `HybridAudioPlaybackService`, автосохранение отметки изучения в Drift, 1-tap добавление лексики в FSRS), `CarnivalQuizCubit` (викторина по истории карнавала, ритмам и сопоставлению герундия PT-BR с инфинитивом PT-PT с подсчётом баллов и разбором).
+- [x] UI: `CarnivalCatalogScreen` (3 вкладки: Folia, Oficinas, Квиз), `CarnivalDetailScreen` (баннер традиции, аудиоплеер, инструменты, обряды, словарь с 1-tap FSRS), `CarnivalQuizScreen`, `CarnivalTraditionCard`, `RhythmWorkshopCard`.
+- [x] Тесты: `test/features/carnival_test.dart`, `test/features/carnival_cubit_test.dart` (672/672 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
@@ -274,11 +283,12 @@
 - [x] **Фича 29: «Ciência, Inovação & Oceanografia Lusófona»** — завершена (`1499dc6`).
 - [x] **Фича 30: «Moda, Design & Têxtil Lusófono»** — завершена (`f20b2c9`).
 - [x] **Фича 31: «Vinhos, Azeites & Enogastronomia Lusófona»** — завершена (`8539c74`).
-- [x] **Фича 32: «Povos Tradicionais, Saberes Ancestrais & Sabedoria da Terra»** — завершена.
+- [x] **Фича 32: «Povos Tradicionais, Saberes Ancestrais & Sabedoria da Terra»** — завершена (`c568cec`).
+- [x] **Фича 33: «Carnavais Regionais & Ritmos Populares Lusófonos»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Carnavais Regionais & Ritmos Populares»**: Frevo de Olinda, Maracatu de Baque Virado, Samba-Enredo da Sapucaí, Bumba-meu-boi do Maranhão e Carnaval Trapalhão de Torres Vedras.
-2. **«Cinema Novo & Festivais Audiovisuais»**: Glauber Rocha, Festival de Gramado, Fantasporto, Doclisboa и язык кинорежиссуры.
-3. **«Navegações, Espeleologia & Grutas Lusófonas»**: Grutas de Mira de Aire, Algar do Carvão, Cavernas do PETAR e mergulho em Fernando de Noronha.
+1. **«Cinema Novo & Festivais Audiovisuais»**: Glauber Rocha, Festival de Gramado, Fantasporto, Doclisboa и язык кинорежиссуры.
+2. **«Navegações, Espeleologia & Grutas Lusófonas»**: Grutas de Mira de Aire, Algar do Carvão, Cavernas do PETAR e mergulho em Fernando de Noronha.
+3. **«Arquitetura Colonial & Cidades Históricas de Ouro»**: Ouro Preto, Tiradentes, Paraty, Olinda, Évora e Guimarães.

@@ -39,6 +39,7 @@ import 'package:nexus_portuguese_app/features/science/presentation/screens/scien
 import 'package:nexus_portuguese_app/features/fashion/presentation/screens/fashion_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/wine/presentation/screens/wine_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/ancestral/presentation/screens/ancestral_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/carnival/presentation/screens/carnival_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -934,6 +935,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const AncestralCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Карнавалы & Ритмы',
+                  subtitle: 'Фрево, маракату, самба и caretos 🎭',
+                  icon: Icons.celebration_rounded,
+                  color: Colors.amber.shade900,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const CarnivalCatalogScreen()),
                     );
                   },
                 ),
