@@ -243,6 +243,15 @@
 
 ---
 
+### Фича 31: Vinhos, Azeites & Enogastronomia Lusófona (`lib/features/wine/`)
+- [x] Domain-модели: `WineRegionEntity`, `TastingGuideEntity`, `WineVocabEntity`, `WineQuizQuestion`, `WineCategory` (vinhoFortificado, vinhoVerdeBranco, azeiteVirgemExtra, vinhoBrasileiroAltitude).
+- [x] Data-слой: 6 легендарных терруаров и зон производства (Vale do Douro & Vinho do Porto [socalcos de xisto, barcos rabelos, Tawnies e Vintages], Vinho Verde & Rota do Alvarinho [Monção e Melgaço, acidez estaladiça e agulha natural], Azeite Virgem Extra do Alentejo & Trás-os-Montes [Cobrançosa, Galega, extração a frio e polifenóis], Vinho da Madeira: O Elixir Vulcânico dos Mares [estufagem, canteiro e castas Sercial, Verdelho, Bual, Malvasia], Vale dos Vinhedos & Serra Gaúcha [D.O. Vale dos Vinhedos, espumantes método tradicional e Merlot de altitude], Vinhos Tropicais do Vale do São Francisco [irrigação do semiárido, dupla poda e colheita o ano inteiro]) (`WineSeedData`), 4 протокола дегустации сомелье (Visual, Olfativo, Gustativo, Azeite) с грамматическим фокусом на Presente do Subjuntivo (*deixe que respire, para que liberte os aromas, recomendo que sirva à temperatura correta*), словарь дегустатора и энолога (*socalco, vinho generoso, estágio em casco, agulha, estaladiço, prensagem a frio, acidez livre, polifenóis, canteiro, estufagem, método tradicional, perlage, colheita de inverno, dupla poda*), 6 вопросов викторины, `WineRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `WineCatalogCubit` (поиск, фильтры категорий напитков/масла, регионов PT/BR, вкладки, сброс фильтров), `WineDetailCubit` (аудионарратив через `HybridAudioPlaybackService`, автосохранение отметки изучения в Drift, 1-tap добавление лексики в FSRS), `WineQuizCubit` (викторина по терруарам, букетам и сослагательному наклонению Subjuntivo с подсчётом баллов и разбором).
+- [x] UI: `WineCatalogScreen` (3 вкладки: Terroirs, Degustação, Квиз), `WineRegionDetailScreen` (баннер терруара, аудиоплеер, сорта вин и оливок, букет, словарь с 1-tap FSRS), `WineQuizScreen`, `WineRegionCard`, `TastingGuideCard`.
+- [x] Тесты: `test/features/wine_test.dart`, `test/features/wine_cubit_test.dart` (636/636 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
@@ -254,11 +263,12 @@
 - [x] **Фича 27: «Mercado Financeiro, Startups & Economia Lusófona»** — завершена (`ef93c50`).
 - [x] **Фича 28: «Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»** — завершена (`633ee67`).
 - [x] **Фича 29: «Ciência, Inovação & Oceanografia Lusófona»** — завершена (`1499dc6`).
-- [x] **Фича 30: «Moda, Design & Têxtil Lusófono»** — завершена.
+- [x] **Фича 30: «Moda, Design & Têxtil Lusófono»** — завершена (`f20b2c9`).
+- [x] **Фича 31: «Vinhos, Azeites & Enogastronomia Lusófona»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Vinhos, Azeites & Enogastronomia»**: Портвейн, Винью Верде, Мадейра, оливковые рощи Алентежу и Дору, винная терминология и дегустация.
-2. **«Cinema & Festivais Audiovisuais»**: Cinema Novo (Glauber Rocha), Festival de Gramado, Fantasporto, Doclisboa и дубляж vs субтитры.
-3. **«Povos Tradicionais & Saberes Ancestrais»**: Рибейриньюс, кайсарас, сертанежус, традиционная медицина и устное народное творчество.
+1. **«Cinema & Festivais Audiovisuais»**: Cinema Novo (Glauber Rocha), Festival de Gramado, Fantasporto, Doclisboa и дубляж vs субтитры.
+2. **«Povos Tradicionais & Saberes Ancestrais»**: Рибейриньюс, кайсарас, сертанежус, традиционная медицина и устное народное творчество.
+3. **«Carnavais Regionais & Ritmos Populares»**: Frevo, Maracatu, Samba-Enredo, Bumba-meu-boi и карнавал Торреш-Ведраш.

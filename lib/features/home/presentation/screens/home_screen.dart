@@ -37,6 +37,7 @@ import 'package:nexus_portuguese_app/features/finance/presentation/screens/finan
 import 'package:nexus_portuguese_app/features/folklore/presentation/screens/folklore_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/science/presentation/screens/science_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/fashion/presentation/screens/fashion_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/wine/presentation/screens/wine_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -906,6 +907,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const FashionCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Вина & Эногастрономия',
+                  subtitle: 'Портвейн, Алваринью, оливковое масло 🍷',
+                  icon: Icons.wine_bar_rounded,
+                  color: Colors.purple.shade900,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const WineCatalogScreen()),
                     );
                   },
                 ),
