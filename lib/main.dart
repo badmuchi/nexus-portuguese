@@ -45,6 +45,8 @@ import 'features/radionovela/data/repositories/radio_novela_repository_impl.dart
 import 'features/radionovela/domain/repositories/radio_novela_repository.dart';
 import 'features/bazar/data/repositories/bazar_repository_impl.dart';
 import 'features/bazar/domain/repositories/bazar_repository.dart';
+import 'features/humor/data/repositories/humor_repository_impl.dart';
+import 'features/humor/domain/repositories/humor_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -124,6 +126,10 @@ void main() async {
   final footballRepository = FootballRepositoryImpl(database: database);
   final radioNovelaRepository = RadioNovelaRepositoryImpl(database: database);
   final bazarRepository = BazarRepositoryImpl(database: database);
+  final humorRepository = HumorRepositoryImpl(
+    database: database,
+    srsRepository: srsRepository,
+  );
 
   runApp(
     MultiRepositoryProvider(
@@ -160,6 +166,7 @@ void main() async {
         RepositoryProvider<FootballRepository>.value(value: footballRepository),
         RepositoryProvider<RadioNovelaRepository>.value(value: radioNovelaRepository),
         RepositoryProvider<BazarRepository>.value(value: bazarRepository),
+        RepositoryProvider<HumorRepository>.value(value: humorRepository),
       ],
       child: MultiBlocProvider(
         providers: [

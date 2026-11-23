@@ -28,6 +28,7 @@ import 'package:nexus_portuguese_app/features/literature/presentation/screens/li
 import 'package:nexus_portuguese_app/features/football/presentation/screens/football_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/radionovela/presentation/screens/radio_novela_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/bazar/presentation/screens/bazar_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/humor/presentation/screens/humor_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -780,6 +781,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const BazarCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Юмор & Piadas',
+                  subtitle: 'Анекдоты и мемы 😂',
+                  icon: Icons.sentiment_very_satisfied_rounded,
+                  color: Colors.teal.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const HumorCatalogScreen()),
                     );
                   },
                 ),

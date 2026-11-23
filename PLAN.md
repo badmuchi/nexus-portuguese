@@ -160,5 +160,23 @@
 
 ---
 
-## 2. Очередь разработки (по приоритету 2-3-1)
-- [ ] **В разработке (следующая) — Опция 1: «Humor Lusófono & Piadas de Boteco» (Юмор, анекдоты и культурные мемы)** — классические португальские и бразильские шутки (*piadas de Manuel e Maria*, бразильские мемы, игра слов и каламбуры trocadilhos), ирония, сарказм и двойные смыслы в живой разговорной речи.
+### Фича 22: Humor Lusófono & Piadas de Boteco (`lib/features/humor/`)
+- [x] Domain-модели: `JokeEntity`, `JokeVocabEntity`, `TrocadilhoEntity`, `HumorQuizEntity`, `JokeCategory` (boteco, alentejano, trocadilho, meme).
+- [x] Data-слой: 8 аутентичных анекдотов («O Bêbado e o Espelho» [BR], «A Mosca na Sopa» [PT], «O Alentejano e o Caracol» [PT], «Manuel e a Árvore do Parque» [PT], «O Livro de Matemática» [All], «O Peixe e a Filosofia» [All], «É Sobre Isso e Tá Tudo Bem» [BR], «Com Certeza, Mas Depende» [PT]) (`HumorSeedData`), 6 каламбуров и загадок-трокадилью с лингвистическим разбором игры слов, 4 вопроса интерактивной викторины «Complete a Piada», `HumorRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `HumorCatalogCubit` (поиск, фильтры категорий, диалектов PT/BR, переключение табов), `JokeReaderCubit` (интерактивное чтение с занавесом панчлайна, озвучка завязки и развязки через `HybridAudioPlaybackService`, разбор юмора «В чём соль?», оценка «Смешно/Так себе», 1-tap FSRS экспорт лексики), `HumorQuizCubit` (викторина панчлайнов с подсчетом очков и разбором).
+- [x] UI: `HumorCatalogScreen` (3 вкладки: Анекдоты, Игра слов, Викторина), `JokeDetailScreen` (завязка, анимация открытия панчлайна, реакции, культурный разбор, термины), `HumorQuizScreen` (интерактивный квиз), `JokeCard`, `TrocadilhoCard` (интерактивный ответ и разбор созвучий).
+- [x] Тесты: `test/features/humor_test.dart`, `test/features/humor_cubit_test.dart` (429/429 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
+## 2. Итог выполнения очереди приоритетов (2-3-1):
+- [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
+- [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
+- [x] **Опция 1: «Humor Lusófono & Piadas de Boteco»** — завершена.
+
+---
+
+## 3. Следующие шаги и идеи развития:
+1. **«Trilhas da Natureza & Ecoturismo Lusófono»**: Национальные парки и природные чудеса (Chapada Diamantina, Amazônia, Açores, Serra da Estrela, Pantanal, Fernando de Noronha) — экологический вокабуляр, навигация по маршрутам, флора/фауна и диалоги с рейнджерами.
+2. **«Mestres da Pintura, Azulejos & Artes Plásticas»**: Искусство, стрит-арт (Кобра в Сан-Паулу, Бордало II в Лиссабоне), традиционные азулежу, барокко Алейжадинью, модернизм Тарсилы ду Амарал — эстетическая терминология, описание картин и экскурсионные диалоги.
+3. **«Arquitetura & Cidades Modernas»**: От колониального Оуру-Прету и белемского мануэлино до футуризма Нимейера в Бразилиа и современной архитектуры Порту (Сиза Виейра) — архитектурные стили, урбанистика, планировка городов.
