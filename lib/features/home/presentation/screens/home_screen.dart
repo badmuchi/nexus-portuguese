@@ -27,6 +27,7 @@ import 'package:nexus_portuguese_app/features/travel_guide/presentation/screens/
 import 'package:nexus_portuguese_app/features/literature/presentation/screens/literature_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/football/presentation/screens/football_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/radionovela/presentation/screens/radio_novela_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/bazar/presentation/screens/bazar_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -766,6 +767,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const RadioNovelaCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Базар & Feira Livre',
+                  subtitle: 'Рынки, зазывы и торг 🛒',
+                  icon: Icons.storefront_rounded,
+                  color: Colors.amber.shade900,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const BazarCatalogScreen()),
                     );
                   },
                 ),

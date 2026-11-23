@@ -151,6 +151,14 @@
 
 ---
 
+### Фича 21: Bazar & Feira Livre (`lib/features/bazar/`)
+- [x] Domain-модели: `MarketItemEntity`, `MarketStallEntity`, `MarketplaceEntity`, `MarketPhraseEntity`, `BargainStepEntity`, `BargainScenarioEntity`.
+- [x] Data-слой: 4 культовых рынка (Feira da Ladra [Lisboa, PT-PT], Mercadão Municipal [São Paulo, PT-BR], Mercado do Bolhão [Porto, PT-PT], Feira de São Cristóvão [Rio de Janeiro, PT-BR]) (`BazarSeedData`), 16 аутентичных ярмарочных выражений по категориям (приветствия, меры веса/объема, дегустация, искусство торга) с контрастами PT/BR, 2 пошаговых сценария торга (Azulejo Antigo в Лиссабоне, Frutas Exóticas в Сан-Паулу), `BazarRepositoryImpl` с логированием в Drift.
+- [x] Cubit & State: `BazarCatalogCubit` (поиск, фильтры диалектов PT/BR, категорий фраз, переключение вкладок), `BargainSimulatorCubit` (пошаговый симулятор торга с прогрессом скидки, расчетом честной цены, озвучкой реплик покупателя и торговца через `HybridAudioPlaybackService`, сохранением прогресса покупки).
+- [x] UI: `BazarCatalogScreen` (3 вкладки: Рынки, Торг, Фразы), `MarketDetailScreen` (баннер рынка, лавки, кричалки торговцев, корзина покупок с подсчетом стоимости), `BargainSimulatorScreen` (шкала торга, скидка, интерактивные раунды), `MarketplaceCard`, `MarketPhraseTile` (озвучка, копирование, 1-tap FSRS), `BargainScenarioCard`.
+- [x] Тесты: `test/features/bazar_test.dart`, `test/features/bazar_cubit_test.dart` (407/407 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Очередь разработки (по приоритету 2-3-1)
-- [ ] **В разработке (следующая) — Опция 3: «Bazar & Feira Livre» (Интерактивный рынок и искусство торга)** — колоритные базары (*Feira da Ladra* в Лиссабоне, *Mercado Municipal* в Сан-Паулу, *Feira de São Cristóvão*), единицы веса (*quilo, dúzia, meio quilo*), торг, цены, диалоги и зазывания торговцев.
-- [ ] **Опция 1: «Humor Lusófono & Piadas de Boteco» (Юмор, анекдоты и культурные мемы)** — классические португальские и бразильские шутки (*piadas de Manuel e Maria*, бразильские мемы, игра слов и каламбуры), ирония, сарказм и двойные смыслы в живой разговорной речи.
+- [ ] **В разработке (следующая) — Опция 1: «Humor Lusófono & Piadas de Boteco» (Юмор, анекдоты и культурные мемы)** — классические португальские и бразильские шутки (*piadas de Manuel e Maria*, бразильские мемы, игра слов и каламбуры trocadilhos), ирония, сарказм и двойные смыслы в живой разговорной речи.
