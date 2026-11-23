@@ -234,6 +234,15 @@
 
 ---
 
+### Фича 30: Moda, Design & Têxtil Lusófono (`lib/features/fashion/`)
+- [x] Domain-модели: `FashionTopicEntity`, `TextileCraftEntity`, `FashionVocabEntity`, `FashionQuizQuestion`, `FashionCategory` (altaCostura, calcadoCouro, rendasTecidos, ourivesariaDesign).
+- [x] Data-слой: 6 тем моды, кожевенного дела и ремесел (São Paulo Fashion Week & Design Autoral [desfiles no Ibirapuera], Calçado Português: A Indústria mais Sexy da Europa [São João da Madeira e método Goodyear Welted], Rendas de Bilros: Da Foz do Ave ao Litoral Cearense [almofadas, bilros e cantigas de rendeiras], Chita: A Alma Colorida e Popular do Brasil [estampas florais, morim e São João], Filigrana Portuguesa: Fios de Ouro de Gondomar [Coração de Viana e traje à vianesa], Eco-Design & Têxteis Sustentáveis do Vale do Ave [fibras marinhas recicladas e tingimento botânico]) (`FashionSeedData`), 4 традиционных мастер-класса с пошаговыми инструкциями и грамматическим фокусом на степени сравнения прилагательных (*Graus dos Adjetivos: comparativos de superioridade, igualdade e superlativos absolutos sintéticos em -íssimo: finíssimo, nobilíssimo, vivíssimo*), тематический словарь моды и дизайна (*passarela, estilista autoral, cabedal, sapateiro, pesponto, bilro, almofada de renda, rendeira / rendilheira, estampa floral, morim, ourivesaria, Coração de Viana, tingimento botânico, economia circular*), 6 вопросов викторины, `FashionRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `FashionCatalogCubit` (поиск с учетом описаний, фильтры категорий, регионов PT/BR, вкладки, сброс фильтров), `FashionDetailCubit` (аудиогид через `HybridAudioPlaybackService`, ключевые особенности, культурное значение, сохранение терминов в FSRS), `FashionQuizCubit` (викторина по моде, ремеслам и степеням сравнения прилагательных с подсчетом баллов и разбором).
+- [x] UI: `FashionCatalogScreen` (3 вкладки: Темы, Мастерские & Ремёсла, Квиз), `FashionTopicDetailScreen` (баннер, аудиоплеер, особенности, история, словарь с 1-tap FSRS), `FashionQuizScreen`, `FashionTopicCard`, `TextileCraftCard`.
+- [x] Тесты: `test/features/fashion_test.dart`, `test/features/fashion_cubit_test.dart` (618/618 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
@@ -244,11 +253,12 @@
 - [x] **Фича 26: «Festas Populares & Tradições Folclóricas»** — завершена (`7f43406`).
 - [x] **Фича 27: «Mercado Financeiro, Startups & Economia Lusófona»** — завершена (`ef93c50`).
 - [x] **Фича 28: «Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»** — завершена (`633ee67`).
-- [x] **Фича 29: «Ciência, Inovação & Oceanografia Lusófona»** — завершена.
+- [x] **Фича 29: «Ciência, Inovação & Oceanografia Lusófona»** — завершена (`1499dc6`).
+- [x] **Фича 30: «Moda, Design & Têxtil Lusófono»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Moda, Design & Têxtil Lusófono»**: От традиционных кружев Бильрос (Вila do Conde / Ceará) до São Paulo Fashion Week и португальской обувной индустрии.
-2. **«Vinhos, Azeites & Enogastronomia»**: Портвейн, Винью Верде, Мадейра, оливковые рощи Алентежу и Дору, винная терминология и дегустация.
-3. **«Cinema & Festivais Audiovisuais»**: Cinema Novo (Glauber Rocha), Festival de Gramado, Fantasporto, Doclisboa и дубляж vs субтитры.
+1. **«Vinhos, Azeites & Enogastronomia»**: Портвейн, Винью Верде, Мадейра, оливковые рощи Алентежу и Дору, винная терминология и дегустация.
+2. **«Cinema & Festivais Audiovisuais»**: Cinema Novo (Glauber Rocha), Festival de Gramado, Fantasporto, Doclisboa и дубляж vs субтитры.
+3. **«Povos Tradicionais & Saberes Ancestrais»**: Рибейриньюс, кайсарас, сертанежус, традиционная медицина и устное народное творчество.

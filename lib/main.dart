@@ -61,6 +61,8 @@ import 'features/folklore/data/repositories/folklore_repository_impl.dart';
 import 'features/folklore/domain/repositories/folklore_repository.dart';
 import 'features/science/data/repositories/science_repository_impl.dart';
 import 'features/science/domain/repositories/science_repository.dart';
+import 'features/fashion/data/repositories/fashion_repository_impl.dart';
+import 'features/fashion/domain/repositories/fashion_repository.dart';
 import 'features/conversation/data/repositories/conversation_repository_impl.dart';
 import 'features/conversation/presentation/cubit/conversation_cubit.dart';
 import 'features/conversation/presentation/screens/conversation_screen.dart';
@@ -172,6 +174,10 @@ void main() async {
     database: database,
     srsRepository: srsRepository,
   );
+  final fashionRepository = FashionRepositoryImpl(
+    database: database,
+    srsRepository: srsRepository,
+  );
 
   runApp(
     MultiRepositoryProvider(
@@ -216,6 +222,7 @@ void main() async {
         RepositoryProvider<FinanceRepository>.value(value: financeRepository),
         RepositoryProvider<FolkloreRepository>.value(value: folkloreRepository),
         RepositoryProvider<ScienceRepository>.value(value: scienceRepository),
+        RepositoryProvider<FashionRepository>.value(value: fashionRepository),
       ],
       child: MultiBlocProvider(
         providers: [

@@ -36,6 +36,7 @@ import 'package:nexus_portuguese_app/features/festas/presentation/screens/festas
 import 'package:nexus_portuguese_app/features/finance/presentation/screens/finance_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/folklore/presentation/screens/folklore_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/science/presentation/screens/science_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/fashion/presentation/screens/fashion_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -892,6 +893,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const ScienceCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Мода & Текстиль',
+                  subtitle: 'SPFW, обувь, кружева и филигрань 👗',
+                  icon: Icons.style_rounded,
+                  color: Colors.pink.shade700,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const FashionCatalogScreen()),
                     );
                   },
                 ),
