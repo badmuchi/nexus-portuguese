@@ -189,16 +189,26 @@
 
 ---
 
+### Фича 25: Arquitetura & Cidades Modernas (`lib/features/architecture/`)
+- [x] Domain-модели: `ArchitecturalMonumentEntity`, `ArchitecturalStyleEntity`, `ArchitectVocabEntity`, `ArchitectureQuizQuestion`, `ArchitectureCategory` (monument, modernUrban, contemporary, colonial).
+- [x] Data-слой: 6 всемирно известных памятников и архитектурных концепций (Catedral de Brasília [Niemeyer], Mosteiro dos Jerónimos [Manuelino, Lisboa], Casa da Música [Koolhaas, Porto], Pelourinho & Igreja de São Francisco [Barroco Baiano, Salvador], Teatro Amazonas [Belle Époque, Manaus], Palácio Nacional da Pena [Romantismo, Sintra]) (`ArchitectureSeedData`), 4 архитектурных стиля (Estilo Manuelino, Modernismo Brasileiro, Barroco Colonial, Escola do Porto & Contemporânea), урбанистическая лексика с диалектными контрастами (*concreto armado* vs *betão armado*, *pilotis*, *claraboia*, *pedra lioz*, *talha dourada*), 6 вопросов викторины, `ArchitectureRepositoryImpl` с логированием в Drift и интеграцией с FSRS.
+- [x] Cubit & State: `ArchitectureCatalogCubit` (поиск, фильтры стилей, категорий и диалектов PT/BR, вкладки), `MonumentDetailCubit` (детали конструкции, аудиогид через `HybridAudioPlaybackService`, разбор терминов урбанистики, добавление в FSRS), `ArchitectureQuizCubit` (викторина архитектора с подсчётом баллов и разбором).
+- [x] UI: `ArchitectureCatalogScreen` (3 вкладки: Памятники, Стили & Школы, Квиз), `MonumentDetailScreen` (баннер, карточка аудиогида, архитектурный анализ, особенности, словарь с 1-tap FSRS), `ArchitectureQuizScreen`, `MonumentCard`, `ArchitecturalStyleCard`.
+- [x] Тесты: `test/features/architecture_test.dart`, `test/features/architecture_cubit_test.dart` (497/497 тестов pass, `flutter analyze` 0 warnings).
+
+---
+
 ## 2. Итог выполнения очереди:
 - [x] **Опция 2: «Rádio Novela & Podcast Drama»** — завершена (`d66a380`).
 - [x] **Опция 3: «Bazar & Feira Livre»** — завершена (`98b47a2`).
 - [x] **Опция 1: «Humor Lusófono & Piadas de Boteco»** — завершена (`c27446a`).
 - [x] **Фича 23: «Trilhas da Natureza & Ecoturismo»** — завершена (`765adee`).
-- [x] **Фича 24: «Mestres da Pintura, Azulejos & Artes Plásticas»** — завершена.
+- [x] **Фича 24: «Mestres da Pintura, Azulejos & Artes Plásticas»** — завершена (`cc0f1b1`).
+- [x] **Фича 25: «Arquitetura & Cidades Modernas»** — завершена.
 
 ---
 
 ## 3. Следующие шаги и идеи развития:
-1. **«Arquitetura & Cidades Modernas»**: От колониального Оуру-Прету и белемского мануэлино до футуризма Нимейера в Бразилиа и современной архитектуры Порту (Сиза Виейра) — архитектурные стили, урбанистика, планировка городов.
-2. **«Festas Populares & Tradições Folclóricas»**: Карнавал (Рио и Салвадор), Festa Junina, Festas de Santo António в Лиссабоне, São João в Порту, Bumba Meu Boi — фольклор, обрядовые песни, традиционные танцы и сленг праздников.
-3. **«Mercado Financeiro, Startups & Economia Lusófona»**: Терминология инвестиций, финтех-бум (Nubank, Pix, MB Way), стартап-экосистема Лиссабона (Web Summit), ведение бизнеса и переговоров.
+1. **«Festas Populares & Tradições Folclóricas»**: Карнавал (Рио и Салвадор), Festa Junina, Festas de Santo António в Лиссабоне, São João в Порту, Bumba Meu Boi — фольклор, обрядовые песни, традиционные танцы и сленг праздников.
+2. **«Mercado Financeiro, Startups & Economia Lusófona»**: Терминология инвестиций, финтех-бум (Nubank, Pix, MB Way), стартап-экосистема Лиссабона (Web Summit), ведение бизнеса и переговоров.
+3. **«Mitos, Lendas & Folclore Indígena e Afro-Brasileiro»**: Саси-перере, Курупира, Яра, Бойтата, легенды ориша — культурный контекст, повествовательные времена глаголов и аутентичный вокабуляр.

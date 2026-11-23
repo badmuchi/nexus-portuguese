@@ -31,6 +31,7 @@ import 'package:nexus_portuguese_app/features/bazar/presentation/screens/bazar_c
 import 'package:nexus_portuguese_app/features/humor/presentation/screens/humor_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/nature/presentation/screens/nature_catalog_screen.dart';
 import 'package:nexus_portuguese_app/features/art/presentation/screens/art_catalog_screen.dart';
+import 'package:nexus_portuguese_app/features/architecture/presentation/screens/architecture_catalog_screen.dart';
 import 'package:nexus_portuguese_app/core/notifications/daily_reminder_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -822,6 +823,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (_) => const ArtCatalogScreen()),
+                    );
+                  },
+                ),
+                _buildModuleCard(
+                  theme,
+                  title: 'Архитектура & Урбанизм',
+                  subtitle: 'Нимейер, мануэлино и дворцы 🏛️',
+                  icon: Icons.apartment_rounded,
+                  color: Colors.indigo.shade800,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const ArchitectureCatalogScreen()),
                     );
                   },
                 ),
