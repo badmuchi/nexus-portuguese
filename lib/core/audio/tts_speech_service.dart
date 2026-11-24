@@ -35,12 +35,29 @@ class TtsSpeechService {
     });
   }
 
-
   static const List<String> _roboticVoiceBlacklist = [
-    'eddy', 'flo', 'grandma', 'grandpa', 'reed', 'rocko',
-    'sandy', 'shelley', 'zarvox', 'trinoids', 'whisper', 'bells',
-    'boing', 'bubbles', 'cellos', 'bad news', 'good news', 'jester',
-    'organ', 'superstar', 'wobble', 'compact',
+    'eddy',
+    'flo',
+    'grandma',
+    'grandpa',
+    'reed',
+    'rocko',
+    'sandy',
+    'shelley',
+    'zarvox',
+    'trinoids',
+    'whisper',
+    'bells',
+    'boing',
+    'bubbles',
+    'cellos',
+    'bad news',
+    'good news',
+    'jester',
+    'organ',
+    'superstar',
+    'wobble',
+    'compact',
   ];
 
   Future<void> _applyBestVoice(String targetLocale) async {
@@ -61,8 +78,32 @@ class TtsSpeechService {
 
       final normalizedTarget = targetLocale.toLowerCase().replaceAll('_', '-');
       final preferredKeywords = normalizedTarget == 'pt-pt'
-          ? ['raquel', 'duarte', 'joana', 'catarina', 'cristiano', 'neural', 'natural', 'premium', 'enhanced', 'google', 'microsoft']
-          : ['francisca', 'antonio', 'thalita', 'google', 'microsoft', 'luciana', 'felipe', 'neural', 'natural', 'premium', 'enhanced'];
+          ? [
+              'raquel',
+              'duarte',
+              'joana',
+              'catarina',
+              'cristiano',
+              'neural',
+              'natural',
+              'premium',
+              'enhanced',
+              'google',
+              'microsoft',
+            ]
+          : [
+              'francisca',
+              'antonio',
+              'thalita',
+              'google',
+              'microsoft',
+              'luciana',
+              'felipe',
+              'neural',
+              'natural',
+              'premium',
+              'enhanced',
+            ];
 
       Map<String, String>? bestVoice;
       int bestScore = -1000;
