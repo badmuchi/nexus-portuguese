@@ -39,6 +39,9 @@ jobs:
       - name: Run unit & widget tests
         run: flutter test
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
       - name: Build Web Release for GitHub Pages
         run: flutter build web --release --base-href "/${{ github.event.repository.name }}/"
 
@@ -46,7 +49,7 @@ jobs:
         run: touch build/web/.nojekyll
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: build/web
 
