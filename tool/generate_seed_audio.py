@@ -221,17 +221,41 @@ async def generate_slang_audio():
             await synthesize_speech(sentence, voice, out_file)
 
 
+async def generate_dictionary_audio():
+    """Generates neural audio for dictionary words."""
+    dict_file = SEED_DIR / "dictionary_seed.json"
+    if not dict_file.exists():
+        return
+
+    with open(dict_file, "r", encoding="utf-8") as f:
+        entries = json.load(f)
+
+    print(f"\n--- Generating Dictionary Audio ({len(entries)} items) ---")
+    for entry in entries:
+        entry_id = entry["id"]
+        word = entry["word"].split("/")[0].strip()
+        dialect = entry.get("dialect", "all")
+        out_rel = f"assets/audio/dictionary/{entry_id}.mp3"
+        out_file = ROOT / out_rel
+
+        if not out_file.exists() or out_file.stat().st_size < 100:
+            voice = select_voice(dialect, "female")
+            print(f"  Synthesizing Dictionary [{voice}]: {word}")
+            await synthesize_speech(word, voice, out_file)
+
+
 async def main():
     parser = argparse.ArgumentParser(description="Generate natural neural Portuguese audio packs")
     parser.add_argument("--srs", action="store_true", help="Generate SRS audio")
     parser.add_argument("--dialogues", action="store_true", help="Generate Dialogue audio")
     parser.add_argument("--listening", action="store_true", help="Generate Listening audio")
     parser.add_argument("--slang", action="store_true", help="Generate Slang audio")
+    parser.add_argument("--dictionary", action="store_true", help="Generate Dictionary audio")
     parser.add_argument("--all", action="store_true", help="Generate all audio packs")
 
     args = parser.parse_args()
 
-    do_all = args.all or not (args.srs or args.dialogues or args.listening or args.slang)
+    do_all = args.all or not (args.srs or args.dialogues or args.listening or args.slang or args.dictionary)
 
     if do_all or args.srs:
         await generate_srs_audio()
@@ -241,6 +265,8 @@ async def main():
         await generate_listening_audio()
     if do_all or args.slang:
         await generate_slang_audio()
+    if do_all or args.dictionary:
+        await generate_dictionary_audio()
 
     print("\n[SUCCESS] Audio synthesis complete!")
 

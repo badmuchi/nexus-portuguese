@@ -338,30 +338,51 @@ void main() async {
 class NexusPortugueseApp extends StatelessWidget {
   const NexusPortugueseApp({super.key});
 
+  ThemeData _buildTheme(Brightness brightness) {
+    const brandPrimary = Color(0xFF006C50);
+    const brandSecondary = Color(0xFFD49B0E);
+
+    final base = ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: brandPrimary,
+        secondary: brandSecondary,
+        brightness: brightness,
+      ),
+    );
+
+    final baseText = base.textTheme;
+    final customTextTheme = baseText.copyWith(
+      displayLarge: baseText.displayLarge?.copyWith(fontFamily: 'Fraunces', fontWeight: FontWeight.w700, letterSpacing: -0.5),
+      displayMedium: baseText.displayMedium?.copyWith(fontFamily: 'Fraunces', fontWeight: FontWeight.w700, letterSpacing: -0.4),
+      displaySmall: baseText.displaySmall?.copyWith(fontFamily: 'Fraunces', fontWeight: FontWeight.w700, letterSpacing: -0.3),
+      headlineLarge: baseText.headlineLarge?.copyWith(fontFamily: 'Fraunces', fontWeight: FontWeight.w700, letterSpacing: -0.3),
+      headlineMedium: baseText.headlineMedium?.copyWith(fontFamily: 'Fraunces', fontWeight: FontWeight.w700, letterSpacing: -0.2),
+      headlineSmall: baseText.headlineSmall?.copyWith(fontFamily: 'Fraunces', fontWeight: FontWeight.w600),
+      titleLarge: baseText.titleLarge?.copyWith(fontFamily: 'Plus Jakarta Sans', fontWeight: FontWeight.w700, letterSpacing: -0.1),
+      titleMedium: baseText.titleMedium?.copyWith(fontFamily: 'Plus Jakarta Sans', fontWeight: FontWeight.w600),
+      titleSmall: baseText.titleSmall?.copyWith(fontFamily: 'Plus Jakarta Sans', fontWeight: FontWeight.w600),
+      bodyLarge: baseText.bodyLarge?.copyWith(fontFamily: 'Inter', height: 1.45),
+      bodyMedium: baseText.bodyMedium?.copyWith(fontFamily: 'Inter', height: 1.4),
+      bodySmall: baseText.bodySmall?.copyWith(fontFamily: 'Inter', height: 1.35),
+      labelLarge: baseText.labelLarge?.copyWith(fontFamily: 'Plus Jakarta Sans', fontWeight: FontWeight.w600, letterSpacing: 0.2),
+      labelMedium: baseText.labelMedium?.copyWith(fontFamily: 'Plus Jakarta Sans', fontWeight: FontWeight.w600),
+      labelSmall: baseText.labelSmall?.copyWith(fontFamily: 'Plus Jakarta Sans', fontWeight: FontWeight.w500),
+    );
+
+    return base.copyWith(
+      textTheme: customTextTheme,
+      primaryTextTheme: customTextTheme,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    const brandPrimary = Color(0xFF006C50); // Emerald Atlantic Green
-    const brandSecondary = Color(0xFFD49B0E); // Sunny Warm Gold
-
     return MaterialApp(
       title: 'Nexus Portuguese',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: brandPrimary,
-          secondary: brandSecondary,
-          brightness: Brightness.light,
-        ),
-      ),
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: brandPrimary,
-          secondary: brandSecondary,
-          brightness: Brightness.dark,
-        ),
-      ),
+      theme: _buildTheme(Brightness.light),
+      darkTheme: _buildTheme(Brightness.dark),
       themeMode: ThemeMode.system,
       home: const MainNavigationShell(),
     );
