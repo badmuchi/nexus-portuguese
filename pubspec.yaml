@@ -1,7 +1,7 @@
 name: nexus_portuguese_app
 description: Offline-first Portuguese learning application built with DDD, Clean Architecture and hybrid PT-BR/PT-PT support.
 publish_to: 'none'
-version: 0.1.0+1
+version: 1.0.0+1
 
 environment:
   sdk: '>=3.5.0 <4.0.0'

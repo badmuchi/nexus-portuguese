@@ -23,3 +23,9 @@
 - Перед созданием новых фич или изменением схемы БД сначала предлагай краткий план и жди подтверждения.
 - Пиши полный рабочий код без `// TODO` заглушек.
 - Перед запуском любой новой команды в терминале сначала в одном предложении пиши в чат, зачем она нужна и что изменит.
+
+# Token & Quota Optimization (STRICT)
+1. **Ultra-concise answers:** Skip greetings, praise, and long explanations. Use short bullet points.
+2. **Diffs & snippets only:** Output ONLY modified functions, widgets, or code blocks with exact file paths. Never print entire files unless explicitly requested.
+3. **Targeted file reads:** Read ONLY files explicitly mentioned via `@` or strictly necessary for the current edit. Never scan whole folders.
+4. **Session handoff:** When a task is complete, provide a 3–5 line summary ready to paste into `STATUS.md`.
